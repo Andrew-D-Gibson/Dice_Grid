@@ -1,3 +1,14 @@
-[gd_scene format=3 uid="uid://io1ko4uxwtba"]
+[gd_scene load_steps=3 format=3 uid="uid://io1ko4uxwtba"]
+
+[ext_resource type="PackedScene" uid="uid://ba56b2edr1yh2" path="res://Source/Grid/grid.tscn" id="1_ig7tw"]
+[ext_resource type="PackedScene" uid="uid://bkyal45wanusk" path="res://Source/Tiles/tile.tscn" id="2_0xm2m"]
 
 [node name="Main" type="Node2D"]
+
+[node name="Grid" parent="." instance=ExtResource("1_ig7tw")]
+
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(3, 3)
+
+[node name="Tile" parent="." instance=ExtResource("2_0xm2m")]
+position = Vector2(-170, -76)

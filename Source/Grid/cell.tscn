@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://bh7wvvkbg6n17"]
+
+[ext_resource type="Script" path="res://Source/Grid/cell.gd" id="1_odflw"]
+[ext_resource type="Texture2D" uid="uid://bm06ldapahjyf" path="res://Assets/Grid/empty_cell.png" id="2_2yh0n"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6dklf"]
+size = Vector2(32, 32)
+
+[node name="Cell" type="Node2D"]
+script = ExtResource("1_odflw")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_2yh0n")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("RectangleShape2D_6dklf")
+
+[connection signal="mouse_entered" from="Area2D" to="." method="_on_area_2d_mouse_entered"]
+[connection signal="mouse_exited" from="Area2D" to="." method="_on_area_2d_mouse_exited"]
