@@ -1,10 +1,39 @@
-[gd_scene load_steps=3 format=3 uid="uid://bkyal45wanusk"]
+[gd_scene load_steps=9 format=3 uid="uid://bkyal45wanusk"]
 
 [ext_resource type="Script" path="res://Source/Tiles/tile.gd" id="1_gtxx6"]
 [ext_resource type="Texture2D" uid="uid://gtv0muihjqa0" path="res://Assets/Tiles/place_holder.png" id="2_it3qb"]
+[ext_resource type="PackedScene" uid="uid://b1gm70vaf8x60" path="res://Source/Tiles/Tile Activations/value_activation.tscn" id="3_it3qb"]
+[ext_resource type="PackedScene" uid="uid://cjq55nrqy2gkt" path="res://Source/Tiles/Tile Effects/dice_particle_explosion_effect.tscn" id="4_grkj4"]
+[ext_resource type="PackedScene" uid="uid://cds0loh1uqra8" path="res://Source/Tiles/Tile Effects/tile_shake_effect.tscn" id="5_horoe"]
+[ext_resource type="Script" path="res://Source/Tiles/Tile Effects/effects_parent.gd" id="6_horoe"]
+[ext_resource type="PackedScene" uid="uid://m1jd175m37tv" path="res://Source/Tiles/Tile Effects/spawn_dice_effect.tscn" id="7_r1d0i"]
 
-[node name="Tile" type="Node2D" groups=["tiles"]]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gtxx6"]
+size = Vector2(32, 32)
+
+[node name="Tile" type="Area2D" node_paths=PackedStringArray("activation_node", "effects_parent")]
 script = ExtResource("1_gtxx6")
+activation_node = NodePath("Value Activation")
+effects_parent = NodePath("Effects Parent")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_gtxx6")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("2_it3qb")
+
+[node name="Value Activation" parent="." instance=ExtResource("3_it3qb")]
+acceptable_values = Array[int]([1])
+
+[node name="Effects Parent" type="Node2D" parent="."]
+script = ExtResource("6_horoe")
+
+[node name="Tile Shake Effect" parent="Effects Parent" node_paths=PackedStringArray("tile_sprite") instance=ExtResource("5_horoe")]
+tile_sprite = NodePath("../../Sprite2D")
+
+[node name="Dice Particle Explosion Effect" parent="Effects Parent" instance=ExtResource("4_grkj4")]
+
+[node name="Spawn Dice Effect" parent="Effects Parent" instance=ExtResource("7_r1d0i")]
+num_of_dice = 2
+
+[connection signal="input_event" from="." to="." method="_on_area_2d_input_event"]

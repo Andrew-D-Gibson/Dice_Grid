@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://b1gm70vaf8x60"]
+
+[ext_resource type="Script" path="res://Source/Tiles/Tile Activations/value_activation.gd" id="1_qwed7"]
+
+[node name="Value Activation" type="Node2D"]
+script = ExtResource("1_qwed7")

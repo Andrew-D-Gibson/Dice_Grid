@@ -1,23 +1,43 @@
-class_name tile
-extends Node2D
+class_name Tile
+extends Holdable
+
+var host_cell: Cell
+
+@export var activation_node: Activation
+@export var effects_parent: Effects_Parent
 
 
-var being_held: bool = false
-
-
-func _process(_delta: float) -> void:
-	if being_held:
-		position = get_global_mouse_position()
+func check_activation(dice: Dice = null) -> void:
+	if activation_node.criteria_satisfied(dice):
+		var dice_value = dice.value
 		
+		dice.queue_free()
+		Events.die_destroyed.emit()
+		
+		effects_parent.play(dice_value)
 
-func check_mouse_pickup() -> void:
-	if $Sprite2D.get_rect().has_point(to_local(get_global_mouse_position())):
-		being_held = true
+
+func _drop() -> void:
+	_check_valid_drop()
+	super()
+
+
+func _check_valid_drop():
+	# Fail the drop if we're not over a cell
+	if not Globals.hovered_cell:
+		return
 		
+	# Fail the drop if we're not over an empty cell
+	if Globals.hovered_cell.occupying_tile:
+		return
 		
-func drop() -> void:
-	# Assign to a grid cell if this is the tile being held
-	if being_held:
-		pass
+	# We're over an empty cell, so succeed the drop!
+	# Remove this tile from the previous host cell if needed
+	if host_cell:
+		host_cell.occupying_tile = null
+		
+	# Give this tile to the new host cell
+	host_cell = Globals.hovered_cell
+	host_cell.occupying_tile = self
 	
-	being_held = false
+	last_valid_position = host_cell.global_position

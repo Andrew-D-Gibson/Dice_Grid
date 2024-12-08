@@ -1,0 +1,74 @@
+[gd_scene load_steps=11 format=3 uid="uid://cu4pw31ijdghb"]
+
+[ext_resource type="Script" path="res://Source/Dice/dice.gd" id="1_cmfg4"]
+[ext_resource type="Texture2D" uid="uid://cnw713iqligtn" path="res://Assets/Dice/dice-Sheet.png" id="1_px73j"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_cmfg4"]
+size = Vector2(24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cmfg4"]
+atlas = ExtResource("1_px73j")
+region = Rect2(0, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2hmnm"]
+atlas = ExtResource("1_px73j")
+region = Rect2(24, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nv3op"]
+atlas = ExtResource("1_px73j")
+region = Rect2(48, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lom3i"]
+atlas = ExtResource("1_px73j")
+region = Rect2(72, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_758wx"]
+atlas = ExtResource("1_px73j")
+region = Rect2(96, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gyi5f"]
+atlas = ExtResource("1_px73j")
+region = Rect2(120, 0, 24, 24)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_evgqa"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": null
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cmfg4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2hmnm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nv3op")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lom3i")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_758wx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gyi5f")
+}],
+"loop": true,
+"name": &"Dice Values",
+"speed": 5.0
+}]
+
+[node name="Dice" type="Area2D"]
+z_index = 1
+script = ExtResource("1_cmfg4")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_cmfg4")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_evgqa")
+animation = &"Dice Values"
+frame = 1
+
+[connection signal="input_event" from="." to="." method="_on_area_2d_input_event"]

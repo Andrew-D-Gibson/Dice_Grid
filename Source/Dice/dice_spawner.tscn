@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://dskiljo0yv3ns"]
+
+[ext_resource type="Script" path="res://Source/Dice/dice_spawner.gd" id="1_w2wu3"]
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_w2wu3"]
+b = Vector2(0, 24)
+
+[node name="Dice Spawner" type="Node2D"]
+script = ExtResource("1_w2wu3")
+
+[node name="Dice Spawn Wall" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Dice Spawn Wall"]
+shape = SubResource("SegmentShape2D_w2wu3")

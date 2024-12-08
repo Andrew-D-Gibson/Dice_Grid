@@ -1,14 +1,24 @@
-[gd_scene load_steps=3 format=3 uid="uid://io1ko4uxwtba"]
+[gd_scene load_steps=5 format=3 uid="uid://io1ko4uxwtba"]
 
 [ext_resource type="PackedScene" uid="uid://ba56b2edr1yh2" path="res://Source/Grid/grid.tscn" id="1_ig7tw"]
 [ext_resource type="PackedScene" uid="uid://bkyal45wanusk" path="res://Source/Tiles/tile.tscn" id="2_0xm2m"]
+[ext_resource type="PackedScene" uid="uid://cu4pw31ijdghb" path="res://Source/Dice/dice.tscn" id="3_h2yge"]
+[ext_resource type="PackedScene" uid="uid://dskiljo0yv3ns" path="res://Source/Dice/dice_spawner.tscn" id="4_1bvp3"]
 
 [node name="Main" type="Node2D"]
-
-[node name="Grid" parent="." instance=ExtResource("1_ig7tw")]
 
 [node name="Camera2D" type="Camera2D" parent="."]
 zoom = Vector2(3, 3)
 
+[node name="Grid" parent="." instance=ExtResource("1_ig7tw")]
+
 [node name="Tile" parent="." instance=ExtResource("2_0xm2m")]
 position = Vector2(-170, -76)
+
+[node name="Dice" parent="." instance=ExtResource("3_h2yge")]
+position = Vector2(167, -62)
+value = 1
+follow_strength = 25.0
+
+[node name="Dice Spawner" parent="." instance=ExtResource("4_1bvp3")]
+position = Vector2(-146, 126)
