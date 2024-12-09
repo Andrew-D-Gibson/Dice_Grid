@@ -10,9 +10,7 @@ var host_cell: Cell
 func check_activation(dice: Dice = null) -> void:
 	if activation_node.criteria_satisfied(dice):
 		var dice_value = dice.value
-		
-		dice.queue_free()
-		Events.die_destroyed.emit()
+		dice.destroy()
 		
 		effects_parent.play(dice_value)
 

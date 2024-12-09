@@ -3,9 +3,9 @@
 [ext_resource type="Script" path="res://Source/Tiles/tile.gd" id="1_gtxx6"]
 [ext_resource type="Texture2D" uid="uid://gtv0muihjqa0" path="res://Assets/Tiles/place_holder.png" id="2_it3qb"]
 [ext_resource type="PackedScene" uid="uid://b1gm70vaf8x60" path="res://Source/Tiles/Tile Activations/value_activation.tscn" id="3_it3qb"]
-[ext_resource type="PackedScene" uid="uid://cjq55nrqy2gkt" path="res://Source/Tiles/Tile Effects/dice_particle_explosion_effect.tscn" id="4_grkj4"]
 [ext_resource type="PackedScene" uid="uid://cds0loh1uqra8" path="res://Source/Tiles/Tile Effects/tile_shake_effect.tscn" id="5_horoe"]
 [ext_resource type="Script" path="res://Source/Tiles/Tile Effects/effects_parent.gd" id="6_horoe"]
+[ext_resource type="PackedScene" uid="uid://cs33qrgmtrv8o" path="res://Source/Tiles/Tile Effects/damage_player_effect.tscn" id="7_32v0e"]
 [ext_resource type="PackedScene" uid="uid://m1jd175m37tv" path="res://Source/Tiles/Tile Effects/spawn_dice_effect.tscn" id="7_r1d0i"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_gtxx6"]
@@ -31,9 +31,9 @@ script = ExtResource("6_horoe")
 [node name="Tile Shake Effect" parent="Effects Parent" node_paths=PackedStringArray("tile_sprite") instance=ExtResource("5_horoe")]
 tile_sprite = NodePath("../../Sprite2D")
 
-[node name="Dice Particle Explosion Effect" parent="Effects Parent" instance=ExtResource("4_grkj4")]
-
 [node name="Spawn Dice Effect" parent="Effects Parent" instance=ExtResource("7_r1d0i")]
 num_of_dice = 2
+
+[node name="Damage Player Effect" parent="Effects Parent" instance=ExtResource("7_32v0e")]
 
 [connection signal="input_event" from="." to="." method="_on_area_2d_input_event"]

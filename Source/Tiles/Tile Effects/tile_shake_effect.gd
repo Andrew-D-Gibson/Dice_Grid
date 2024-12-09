@@ -11,7 +11,6 @@ func play(dice_value: int = 0) -> void:
 	
 	var tween = get_tree().create_tween()
 	tween.tween_property(self, "current_shake_strength", 0, shake_duration)
-	tween.tween_callback(self.queue_free)
 	
 	
 func _process(delta: float) -> void:

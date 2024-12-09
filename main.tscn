@@ -1,9 +1,11 @@
-[gd_scene load_steps=5 format=3 uid="uid://io1ko4uxwtba"]
+[gd_scene load_steps=7 format=3 uid="uid://io1ko4uxwtba"]
 
 [ext_resource type="PackedScene" uid="uid://ba56b2edr1yh2" path="res://Source/Grid/grid.tscn" id="1_ig7tw"]
 [ext_resource type="PackedScene" uid="uid://bkyal45wanusk" path="res://Source/Tiles/tile.tscn" id="2_0xm2m"]
-[ext_resource type="PackedScene" uid="uid://cu4pw31ijdghb" path="res://Source/Dice/dice.tscn" id="3_h2yge"]
 [ext_resource type="PackedScene" uid="uid://dskiljo0yv3ns" path="res://Source/Dice/dice_spawner.tscn" id="4_1bvp3"]
+[ext_resource type="PackedScene" uid="uid://8x4oilg8o8m4" path="res://Source/Player/player.tscn" id="4_lquwl"]
+[ext_resource type="PackedScene" uid="uid://dbywjwvlp3n1b" path="res://Source/Enemies/Enemy Manager/enemy_manager.tscn" id="5_lquwl"]
+[ext_resource type="PackedScene" uid="uid://c0uglhkot8fu2" path="res://Source/Tiles/heal.tscn" id="6_7mycd"]
 
 [node name="Main" type="Node2D"]
 
@@ -12,13 +14,19 @@ zoom = Vector2(3, 3)
 
 [node name="Grid" parent="." instance=ExtResource("1_ig7tw")]
 
-[node name="Tile" parent="." instance=ExtResource("2_0xm2m")]
-position = Vector2(-170, -76)
-
-[node name="Dice" parent="." instance=ExtResource("3_h2yge")]
-position = Vector2(167, -62)
-value = 1
-follow_strength = 25.0
-
 [node name="Dice Spawner" parent="." instance=ExtResource("4_1bvp3")]
-position = Vector2(-146, 126)
+position = Vector2(-64, 128)
+dice_to_spawn = 10
+
+[node name="Player" parent="." instance=ExtResource("4_lquwl")]
+position = Vector2(-305, -77)
+health = 12
+defense = 4
+
+[node name="Enemy Manager" parent="." instance=ExtResource("5_lquwl")]
+
+[node name="Tile" parent="." instance=ExtResource("2_0xm2m")]
+position = Vector2(-47, -112)
+
+[node name="Heal" parent="." instance=ExtResource("6_7mycd")]
+position = Vector2(138, -98)

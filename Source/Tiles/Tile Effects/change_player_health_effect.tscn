@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://3ednd845scpn"]
+
+[ext_resource type="Script" path="res://Source/Tiles/Tile Effects/change_player_health_effect.gd" id="1_rn6xs"]
+
+[node name="Change Player Health Effect" type="Node2D"]
+script = ExtResource("1_rn6xs")

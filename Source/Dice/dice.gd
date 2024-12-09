@@ -3,6 +3,8 @@ extends Holdable
 
 @export var value: int = 0
 
+var destroy_particles := preload('res://Source/Dice/destroy_particles.tscn')
+
 func _ready() -> void:
 	super()
 	if value == 0:
@@ -30,3 +32,13 @@ func _check_valid_drop():
 	# If it succeeds the dice will be destroyed
 	Globals.hovered_cell.occupying_tile.check_activation(self)
 		
+
+func destroy():
+	Events.die_destroyed.emit(self)
+	
+	var particles = destroy_particles.instantiate()
+	particles.position = global_position
+	add_sibling(particles)
+	particles.emitting = true
+	
+	queue_free()
