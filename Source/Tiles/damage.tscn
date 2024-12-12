@@ -1,0 +1,36 @@
+[gd_scene load_steps=8 format=3 uid="uid://jdl0rti53xfr"]
+
+[ext_resource type="Script" path="res://Source/Tiles/tile.gd" id="1_d2m0a"]
+[ext_resource type="Texture2D" uid="uid://dcogx1qymbvf6" path="res://Assets/Tiles/sword.png" id="2_2dlej"]
+[ext_resource type="PackedScene" uid="uid://b1gm70vaf8x60" path="res://Source/Tiles/Tile Activations/value_activation.tscn" id="3_l7ydw"]
+[ext_resource type="Script" path="res://Source/Tiles/Tile Effects/effects_parent.gd" id="4_6ms7q"]
+[ext_resource type="PackedScene" uid="uid://cds0loh1uqra8" path="res://Source/Tiles/Tile Effects/tile_shake_effect.tscn" id="5_l5k3m"]
+[ext_resource type="Script" path="res://Source/Tiles/Tile Effects/damage_random_enemy_effect.gd" id="6_2dlej"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gtxx6"]
+size = Vector2(32, 32)
+
+[node name="Damage" type="Area2D" node_paths=PackedStringArray("activation_node", "effects_parent")]
+script = ExtResource("1_d2m0a")
+activation_node = NodePath("Value Activation")
+effects_parent = NodePath("Effects Parent")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_gtxx6")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_2dlej")
+
+[node name="Value Activation" parent="." instance=ExtResource("3_l7ydw")]
+acceptable_values = Array[int]([5])
+
+[node name="Effects Parent" type="Node2D" parent="."]
+script = ExtResource("4_6ms7q")
+
+[node name="Tile Shake Effect" parent="Effects Parent" node_paths=PackedStringArray("tile_sprite") instance=ExtResource("5_l5k3m")]
+tile_sprite = NodePath("../../Sprite2D")
+
+[node name="Damage Random Enemy Effect" type="Node2D" parent="Effects Parent"]
+script = ExtResource("6_2dlej")
+
+[connection signal="input_event" from="." to="." method="_on_area_2d_input_event"]

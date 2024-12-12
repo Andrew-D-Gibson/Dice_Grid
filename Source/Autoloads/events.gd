@@ -7,4 +7,9 @@ signal die_destroyed(die: Dice)
 
 # Player signals
 signal change_player_health(amount: int) # Negative amount damages, positive heals
+signal change_player_defense(amount: int)
 signal damage_player(amount: int)
+
+
+# Enemy signals
+signal damage_random_enemy(amount: int)

@@ -36,12 +36,13 @@ func _process(delta: float) -> void:
 		
 		# Spawn a new die
 		var new_dice = dice_scene.instantiate()
-		add_sibling(new_dice)
-		
-		dice_queue.append(new_dice)
-		
-		new_dice.position = global_position + Vector2((len(dice_queue)-1) * dice_queue_spacing, 0) + Vector2(200, 0)
+		new_dice.position = global_position + Vector2((len(dice_queue)-1) * dice_queue_spacing, 0) + Vector2(600, 0)
 		new_dice.desired_position = global_position + Vector2((len(dice_queue)-1) * dice_queue_spacing, 0)
+		# new_dice.value = 1
+		
+		add_sibling(new_dice)
+	
+		dice_queue.append(new_dice)
 		
 		dice_to_spawn -= 1
 		time_since_last_spawn = 0

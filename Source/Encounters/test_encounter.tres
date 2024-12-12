@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="Encounter" load_steps=3 format=3 uid="uid://cgodyqsjv5ast"]
+
+[ext_resource type="Script" path="res://Source/Encounters/encounter.gd" id="1_e4i48"]
+[ext_resource type="PackedScene" uid="uid://djowit6k2t6lo" path="res://Source/Enemies/enemy.tscn" id="1_wq1li"]
+
+[resource]
+script = ExtResource("1_e4i48")
+enemies = Array[PackedScene]([ExtResource("1_wq1li")])
+metadata/_custom_type_script = ExtResource("1_e4i48")
