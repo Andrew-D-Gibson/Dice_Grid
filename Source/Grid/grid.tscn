@@ -3,5 +3,5 @@
 [ext_resource type="Script" path="res://Source/Grid/grid.gd" id="1_ngj4n"]
 
 [node name="Grid" type="Node2D"]
-position = Vector2(-64, -64)
 script = ExtResource("1_ngj4n")
+grid_position_offset = Vector2i(-198, -64)

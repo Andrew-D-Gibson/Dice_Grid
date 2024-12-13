@@ -11,9 +11,11 @@
 size = Vector2(32, 32)
 
 [node name="Damage" type="Area2D" node_paths=PackedStringArray("activation_node", "effects_parent")]
+z_index = 1
 script = ExtResource("1_d2m0a")
 activation_node = NodePath("Value Activation")
 effects_parent = NodePath("Effects Parent")
+description = "Activated with a 5.  Inflicts 5 damage on a random enemy."
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_gtxx6")

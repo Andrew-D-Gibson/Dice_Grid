@@ -1,0 +1,62 @@
+[gd_scene load_steps=3 format=3 uid="uid://cygbrgfx6v2tu"]
+
+[ext_resource type="Theme" uid="uid://b6tit6cxjtdpd" path="res://Assets/UI/default_theme.tres" id="2_hokdr"]
+[ext_resource type="Script" path="res://Source/UI/tile_info_shower.gd" id="2_s3k8h"]
+
+[node name="UI" type="CanvasLayer"]
+
+[node name="Tile Info Shower" type="Control" parent="."]
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("2_s3k8h")
+
+[node name="Screen Dim" type="ColorRect" parent="Tile Info Shower"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.796078)
+
+[node name="Tile Display" type="TextureRect" parent="Tile Info Shower"]
+custom_minimum_size = Vector2(256, 256)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="Tile Info Shower/Tile Display"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -82.0
+offset_top = 78.0
+offset_right = 83.0
+offset_bottom = 101.0
+grow_horizontal = 2
+grow_vertical = 0
+theme = ExtResource("2_hokdr")
+theme_override_font_sizes/font_size = 64
+text = "Tile description label!
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[connection signal="gui_input" from="Tile Info Shower/Screen Dim" to="Tile Info Shower" method="_on_screen_dim_gui_input"]

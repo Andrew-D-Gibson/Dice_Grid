@@ -7,7 +7,8 @@ var time_since_last_spawn: float = 0
 var dice_scene := preload('res://Source/Dice/dice.tscn')
 
 @export var dice_queue_spacing: int = 32
-@export var dice_queue: Array[Dice] 
+var dice_queue: Array[Dice] 
+
 
 func _ready() -> void:
 	Events.spawn_dice.connect(_spawn_dice)

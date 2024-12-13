@@ -11,9 +11,11 @@
 size = Vector2(32, 32)
 
 [node name="Heal" type="Area2D" node_paths=PackedStringArray("activation_node", "effects_parent")]
+z_index = 1
 script = ExtResource("1_t7jds")
 activation_node = NodePath("Value Activation")
 effects_parent = NodePath("Effects Parent")
+description = "Activated with a 4.  Heals the player for 4 health."
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_gtxx6")

@@ -1,3 +1,4 @@
+class_name Enemy_Manager
 extends Node2D
 
 @export var encounter: Encounter
@@ -6,13 +7,12 @@ extends Node2D
 func _ready() -> void:
 	# Connect signals
 	Events.damage_random_enemy.connect(_damage_random_enemy)
-	
-	_spawn_encounter()
-	
-	
-func _spawn_encounter() -> void:
-	for enemy_scene in encounter.enemies:
+
+
+func spawn_enemies(encounter_enemies: Array[PackedScene]) -> void:
+	for enemy_scene in encounter_enemies:
 		var enemy = enemy_scene.instantiate()
+		enemy.position = Vector2(0, -90)
 		enemies.append(enemy)
 		add_child(enemy)
 

@@ -13,3 +13,7 @@ signal damage_player(amount: int)
 
 # Enemy signals
 signal damage_random_enemy(amount: int)
+
+
+# Tile signals
+signal tile_clicked_for_info(tile: Tile)
