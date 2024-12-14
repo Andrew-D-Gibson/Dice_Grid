@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://bef2e5iuwomfx"]
+
+[ext_resource type="Script" path="res://Source/Enemies/Enemy Actions/attack_player.gd" id="1_jbnns"]
+
+[node name="Attack Player" type="Node2D"]
+script = ExtResource("1_jbnns")

@@ -1,9 +1,13 @@
 class_name Enemy
 extends Node2D
 
+@export_category("Components")
 @export var hp_and_def: HP_and_Def_Component
+
+@export_category("UI")
 @export var health_label: Label
 @export var defense_label: Label
+
 
 
 func _ready() -> void:
@@ -33,3 +37,10 @@ func _update_ui() -> void:
 
 func _death() -> void:
 	queue_free()
+	
+	
+func _act() -> void:
+	var possible_actions = $"Possible Actions Parent".get_children()
+	var action = possible_actions.pick_random()
+	assert(action is Enemy_Action)
+	action.act(self)

@@ -1,9 +1,12 @@
-[gd_scene load_steps=5 format=3 uid="uid://djowit6k2t6lo"]
+[gd_scene load_steps=8 format=3 uid="uid://djowit6k2t6lo"]
 
 [ext_resource type="Script" path="res://Source/Enemies/enemy.gd" id="1_2wu4v"]
 [ext_resource type="PackedScene" uid="uid://c8t3yoopiopfp" path="res://Source/Entity Components/HP and Def Component/hp_and_def_component.tscn" id="2_muilx"]
 [ext_resource type="Texture2D" uid="uid://6pflrok71dh7" path="res://icon.svg" id="2_xu8cd"]
 [ext_resource type="Theme" uid="uid://b6tit6cxjtdpd" path="res://Assets/UI/default_theme.tres" id="3_xn7u6"]
+[ext_resource type="PackedScene" uid="uid://bef2e5iuwomfx" path="res://Source/Enemies/Enemy Actions/attack_player.tscn" id="4_iqa7y"]
+[ext_resource type="PackedScene" uid="uid://bv4f3vi0c7khc" path="res://Source/Enemies/Enemy Actions/add_defense.tscn" id="5_8gxoy"]
+[ext_resource type="PackedScene" uid="uid://cc8kh4indlc33" path="res://Source/Enemies/Enemy Actions/heal_self.tscn" id="6_8gxoy"]
 
 [node name="Enemy" type="Node2D" node_paths=PackedStringArray("hp_and_def", "health_label", "defense_label") groups=["enemies"]]
 script = ExtResource("1_2wu4v")
@@ -18,6 +21,18 @@ texture = ExtResource("2_xu8cd")
 [node name="Health Component" parent="." instance=ExtResource("2_muilx")]
 starting_health = 12
 max_health = 12
+
+[node name="Action Timer" type="Timer" parent="."]
+wait_time = 2.0
+autostart = true
+
+[node name="Possible Actions Parent" type="Node2D" parent="."]
+
+[node name="Attack Player" parent="Possible Actions Parent" instance=ExtResource("4_iqa7y")]
+
+[node name="Add Defense" parent="Possible Actions Parent" instance=ExtResource("5_8gxoy")]
+
+[node name="Heal Self" parent="Possible Actions Parent" instance=ExtResource("6_8gxoy")]
 
 [node name="Enemy UI" type="VBoxContainer" parent="."]
 offset_left = -87.0
@@ -34,3 +49,5 @@ text = "Enemy Health: X/X"
 layout_mode = 2
 theme = ExtResource("3_xn7u6")
 text = "Enemy Defense: X"
+
+[connection signal="timeout" from="Action Timer" to="." method="_act"]

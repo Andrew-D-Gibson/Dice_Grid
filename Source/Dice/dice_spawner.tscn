@@ -4,3 +4,4 @@
 
 [node name="Dice Spawner" type="Node2D"]
 script = ExtResource("1_w2wu3")
+dice_to_spawn = 3
