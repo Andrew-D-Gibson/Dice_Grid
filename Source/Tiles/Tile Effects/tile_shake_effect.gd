@@ -6,7 +6,7 @@ extends Effect
 
 var current_shake_strength: float = 0
 
-func play(dice_value: int = 0) -> void:
+func play(_die: Dice = null) -> void:
 	current_shake_strength = shake_strength
 	
 	var tween = get_tree().create_tween()

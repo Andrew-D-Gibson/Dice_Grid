@@ -8,8 +8,12 @@ var destroy_particles := preload('res://Source/Dice/destroy_particles.tscn')
 func _ready() -> void:
 	super()
 	if value == 0:
-		value = randi_range(1,6)
+		randomize_value()
+	$AnimatedSprite2D.frame = value
+	
 
+func randomize_value() -> void:
+	value = randi_range(1,6)
 	$AnimatedSprite2D.frame = value
 
 
@@ -34,7 +38,7 @@ func _check_valid_drop():
 		
 
 func destroy():
-	Events.die_destroyed.emit(self)
+	Events.remove_die_from_queue.emit(self)
 	
 	var particles = destroy_particles.instantiate()
 	particles.position = global_position

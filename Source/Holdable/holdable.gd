@@ -2,13 +2,16 @@ class_name Holdable
 extends Area2D
 
 var being_held: bool = false
-@onready var last_valid_position: Vector2 = position
+var last_valid_position: Vector2
 
 @export var follow_strength: float = 25
 var desired_position: Vector2
 
 
 func _ready() -> void:
+	if not last_valid_position:
+		last_valid_position = position
+		
 	desired_position = last_valid_position
 
 
@@ -43,3 +46,8 @@ func _drop() -> void:
 	desired_position = last_valid_position
 	being_held = false
 	Globals.held_object = null
+	
+	
+func set_home_location(location: Vector2) -> void:
+	last_valid_position = location
+	desired_position = location

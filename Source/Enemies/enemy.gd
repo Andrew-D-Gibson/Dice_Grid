@@ -8,6 +8,7 @@ extends Node2D
 @export var health_label: Label
 @export var defense_label: Label
 
+var dice_queue: Array[Dice]
 
 
 func _ready() -> void:
@@ -39,8 +40,22 @@ func _death() -> void:
 	queue_free()
 	
 	
+func add_die_to_queue(die: Dice) -> void:
+	dice_queue.push_back(die)
+	die.desired_position = global_position
+	#die.visible = false
+	
+	
 func _act() -> void:
+	# Only act if we can spend a die
+	if len(dice_queue) == 0:
+		return
+		
+	var die_used = dice_queue.pop_front()
+	die_used.visible = true
+		
 	var possible_actions = $"Possible Actions Parent".get_children()
 	var action = possible_actions.pick_random()
 	assert(action is Enemy_Action)
-	action.act(self)
+	
+	action.act(self, die_used)

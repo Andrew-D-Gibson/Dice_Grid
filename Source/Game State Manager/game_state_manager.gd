@@ -10,8 +10,12 @@ extends Node2D
 func _ready() -> void:
 	Events.damage_random_enemy.connect(_damage_random_enemy)
 
-	_spawn_enemies(game_state.encounter.enemies)
+	# Set up the player
 	grid.create_and_populate_grid(game_state.tile_locations)
+	
+	# Set up the enemies if there's an encounter
+	if game_state.encounter:
+		_spawn_enemies(game_state.encounter.enemies)
 	
 
 
@@ -29,5 +33,11 @@ func _spawn_enemies(encounter_enemies: Array[PackedScene]) -> void:
 
 func _damage_random_enemy(amount: int) -> void:
 	var enemies = get_tree().get_nodes_in_group("enemies")
+	
+	# The list could be empty, 
+	# so stop if there's not a potential enemy to hit
+	if len(enemies) == 0:
+		return
+	
 	var random_enemy = enemies.pick_random()
 	random_enemy.take_damage(amount)

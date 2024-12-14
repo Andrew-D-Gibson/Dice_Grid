@@ -26,4 +26,3 @@ grid_position_offset = Vector2(-198, -64)
 
 [node name="Dice Spawner" parent="." instance=ExtResource("4_1bvp3")]
 position = Vector2(-192, 128)
-dice_to_spawn = 10

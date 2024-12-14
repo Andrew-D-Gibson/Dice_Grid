@@ -5,7 +5,6 @@ var host_cell: Cell
 
 @export_category('Tile Functionality')
 @export var activation_node: Activation
-@export var effects_parent: Effects_Parent
 
 @export_category('Description')
 @export var description: String
@@ -19,12 +18,11 @@ var click_window_time: float = 0.4
 @onready var tile_texture: Texture2D = $Sprite2D.texture
 
 
-func check_activation(dice: Dice = null) -> void:
-	if activation_node.criteria_satisfied(dice):
-		var dice_value = dice.value
-		dice.destroy()
-		
-		effects_parent.play(dice_value)
+func check_activation(die: Dice = null) -> void:
+	if activation_node.criteria_satisfied(die):
+		for effect in $"Effects Parent".get_children():
+			if effect is Effect:
+				effect.play(die)
 
 
 func _pickup() -> void:
@@ -66,4 +64,4 @@ func attach_to_cell(cell: Cell) -> void:
 	host_cell = cell
 	cell.occupying_tile = self
 	
-	last_valid_position = cell.global_position
+	set_home_location(cell.global_position)

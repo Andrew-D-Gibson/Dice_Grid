@@ -2,7 +2,8 @@ extends Node
 
 # Dice signals
 signal spawn_dice(amount_to_spawn: int)
-signal die_destroyed(die: Dice)
+signal remove_die_from_queue(die: Dice)
+signal add_die_to_queue(die: Dice)
 
 
 # Player signals
