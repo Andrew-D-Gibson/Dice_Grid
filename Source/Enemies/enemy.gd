@@ -7,6 +7,7 @@ extends Node2D
 
 
 func _ready() -> void:
+	hp_and_def.death.connect(_death)
 	_update_ui()
 	
 	
@@ -28,3 +29,7 @@ func take_damage(amount: int) -> void:
 func _update_ui() -> void:
 	health_label.text = "Enemy Health: " + str(hp_and_def.health) + " / " + str(hp_and_def.max_health)
 	defense_label.text = "Enemy Defense: " + str(hp_and_def.defense)
+
+
+func _death() -> void:
+	queue_free()

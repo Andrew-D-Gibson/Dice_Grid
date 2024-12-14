@@ -5,7 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://6pflrok71dh7" path="res://icon.svg" id="2_xu8cd"]
 [ext_resource type="Theme" uid="uid://b6tit6cxjtdpd" path="res://Assets/UI/default_theme.tres" id="3_xn7u6"]
 
-[node name="Enemy" type="Node2D" node_paths=PackedStringArray("hp_and_def", "health_label", "defense_label")]
+[node name="Enemy" type="Node2D" node_paths=PackedStringArray("hp_and_def", "health_label", "defense_label") groups=["enemies"]]
 script = ExtResource("1_2wu4v")
 hp_and_def = NodePath("Health Component")
 health_label = NodePath("Enemy UI/Health Label")

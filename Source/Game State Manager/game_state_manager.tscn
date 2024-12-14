@@ -1,0 +1,8 @@
+[gd_scene load_steps=3 format=3 uid="uid://c7lpjg53k5bkl"]
+
+[ext_resource type="Script" path="res://Source/Game State Manager/game_state_manager.gd" id="1_i4ucg"]
+[ext_resource type="Resource" uid="uid://cgodyqsjv5ast" path="res://Source/Encounters/1_basic_encounter.tres" id="2_m4agd"]
+
+[node name="Game State Manager" type="Node2D"]
+script = ExtResource("1_i4ucg")
+encounter = ExtResource("2_m4agd")

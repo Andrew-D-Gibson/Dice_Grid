@@ -1,13 +1,11 @@
-[gd_scene load_steps=9 format=3 uid="uid://io1ko4uxwtba"]
+[gd_scene load_steps=7 format=3 uid="uid://io1ko4uxwtba"]
 
 [ext_resource type="PackedScene" uid="uid://cygbrgfx6v2tu" path="res://Source/UI/ui.tscn" id="1_5vw27"]
 [ext_resource type="PackedScene" uid="uid://ba56b2edr1yh2" path="res://Source/Grid/grid.tscn" id="1_ig7tw"]
-[ext_resource type="PackedScene" uid="uid://drlthou8dixio" path="res://Source/Encounter Manager/encounter_manager.tscn" id="1_kek77"]
+[ext_resource type="PackedScene" uid="uid://c7lpjg53k5bkl" path="res://Source/Game State Manager/game_state_manager.tscn" id="2_272bh"]
+[ext_resource type="Resource" uid="uid://demco14i4e5j0" path="res://Source/Game State Manager/Game State Resources/test_game_state.tres" id="3_7mycd"]
 [ext_resource type="PackedScene" uid="uid://dskiljo0yv3ns" path="res://Source/Dice/dice_spawner.tscn" id="4_1bvp3"]
 [ext_resource type="PackedScene" uid="uid://8x4oilg8o8m4" path="res://Source/Player/player.tscn" id="4_lquwl"]
-[ext_resource type="Resource" uid="uid://cgodyqsjv5ast" path="res://Source/Encounters/test_encounter.tres" id="5_272bh"]
-[ext_resource type="PackedScene" uid="uid://dbywjwvlp3n1b" path="res://Source/Enemies/Enemy Manager/enemy_manager.tscn" id="5_lquwl"]
-[ext_resource type="Resource" uid="uid://d10afepiuynwi" path="res://Source/Grid/Grid Save State/default_grid_state.tres" id="6_272bh"]
 
 [node name="Main" type="Node2D"]
 
@@ -16,21 +14,16 @@
 [node name="Camera2D" type="Camera2D" parent="."]
 zoom = Vector2(3, 3)
 
-[node name="Encounter Manager" parent="." node_paths=PackedStringArray("enemy_manager") instance=ExtResource("1_kek77")]
-encounter = ExtResource("5_272bh")
-enemy_manager = NodePath("../Enemy Manager")
-
-[node name="Enemy Manager" parent="." instance=ExtResource("5_lquwl")]
-position = Vector2(190, 3)
-encounter = ExtResource("5_272bh")
+[node name="Game State Manager" parent="." node_paths=PackedStringArray("grid") instance=ExtResource("2_272bh")]
+game_state = ExtResource("3_7mycd")
+grid = NodePath("../Grid")
 
 [node name="Player" parent="." instance=ExtResource("4_lquwl")]
-position = Vector2(-127, -111)
+position = Vector2(-128, -128)
 
 [node name="Grid" parent="." instance=ExtResource("1_ig7tw")]
-grid_save_state = ExtResource("6_272bh")
 grid_position_offset = Vector2(-198, -64)
 
 [node name="Dice Spawner" parent="." instance=ExtResource("4_1bvp3")]
-position = Vector2(-64, 128)
+position = Vector2(-192, 128)
 dice_to_spawn = 10
