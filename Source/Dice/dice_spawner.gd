@@ -28,6 +28,7 @@ func _remove_die_from_queue(die: Dice):
 
 func _add_die_to_queue(die: Dice):
 	die.randomize_value()
+	die.can_be_held = true
 	dice_queue.append(die)
 	_update_dice_queue()
 	
@@ -51,7 +52,7 @@ func _process(delta: float) -> void:
 		
 		new_dice.position = global_position + Vector2((len(dice_queue)-1) * dice_queue_spacing, 0) + Vector2(600, 0)
 		new_dice.set_home_location(global_position + Vector2((len(dice_queue)-1) * dice_queue_spacing, 0))
-		new_dice.value = 4
+		# new_dice.value = 5
 		
 		add_sibling(new_dice)
 	

@@ -1,12 +1,14 @@
-[gd_scene load_steps=4 format=3 uid="uid://8x4oilg8o8m4"]
+[gd_scene load_steps=5 format=3 uid="uid://8x4oilg8o8m4"]
 
 [ext_resource type="Script" path="res://Source/Player/player.gd" id="1_g4gsc"]
 [ext_resource type="Theme" uid="uid://b6tit6cxjtdpd" path="res://Assets/UI/default_theme.tres" id="3_0tdpy"]
 [ext_resource type="PackedScene" uid="uid://c8t3yoopiopfp" path="res://Source/Entity Components/HP and Def Component/hp_and_def_component.tscn" id="3_v1mne"]
+[ext_resource type="PackedScene" uid="uid://ba56b2edr1yh2" path="res://Source/Player/Grid/grid.tscn" id="4_0tdpy"]
 
-[node name="Player" type="Node2D" node_paths=PackedStringArray("hp_and_def", "health_label", "defense_label")]
+[node name="Player" type="Node2D" node_paths=PackedStringArray("hp_and_def", "grid", "health_label", "defense_label")]
 script = ExtResource("1_g4gsc")
 hp_and_def = NodePath("Health Component")
+grid = NodePath("Grid")
 health_label = NodePath("Player UI/Health Label")
 defense_label = NodePath("Player UI/Defense Label")
 
@@ -22,9 +24,9 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -93.0
-offset_top = -26.0
+offset_top = -154.0
 offset_right = 93.0
-offset_bottom = 26.0
+offset_bottom = -102.0
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 4
@@ -39,3 +41,7 @@ text = "Player Health: X/X"
 layout_mode = 2
 theme = ExtResource("3_0tdpy")
 text = "Player Defense: X"
+
+[node name="Grid" parent="." instance=ExtResource("4_0tdpy")]
+grid_width = 3
+grid_height = 3

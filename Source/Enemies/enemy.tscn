@@ -22,10 +22,6 @@ texture = ExtResource("2_xu8cd")
 starting_health = 12
 max_health = 12
 
-[node name="Action Timer" type="Timer" parent="."]
-wait_time = 2.0
-autostart = true
-
 [node name="Possible Actions Parent" type="Node2D" parent="."]
 
 [node name="Attack Player" parent="Possible Actions Parent" instance=ExtResource("4_iqa7y")]
@@ -49,5 +45,3 @@ text = "Enemy Health: X/X"
 layout_mode = 2
 theme = ExtResource("3_xn7u6")
 text = "Enemy Defense: X"
-
-[connection signal="timeout" from="Action Timer" to="." method="_act"]

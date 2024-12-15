@@ -1,7 +1,6 @@
-[gd_scene load_steps=7 format=3 uid="uid://io1ko4uxwtba"]
+[gd_scene load_steps=6 format=3 uid="uid://io1ko4uxwtba"]
 
 [ext_resource type="PackedScene" uid="uid://cygbrgfx6v2tu" path="res://Source/UI/ui.tscn" id="1_5vw27"]
-[ext_resource type="PackedScene" uid="uid://ba56b2edr1yh2" path="res://Source/Grid/grid.tscn" id="1_ig7tw"]
 [ext_resource type="PackedScene" uid="uid://c7lpjg53k5bkl" path="res://Source/Game State Manager/game_state_manager.tscn" id="2_272bh"]
 [ext_resource type="Resource" uid="uid://demco14i4e5j0" path="res://Source/Game State Manager/Game State Resources/test_game_state.tres" id="3_7mycd"]
 [ext_resource type="PackedScene" uid="uid://dskiljo0yv3ns" path="res://Source/Dice/dice_spawner.tscn" id="4_1bvp3"]
@@ -14,15 +13,12 @@
 [node name="Camera2D" type="Camera2D" parent="."]
 zoom = Vector2(3, 3)
 
-[node name="Game State Manager" parent="." node_paths=PackedStringArray("grid") instance=ExtResource("2_272bh")]
+[node name="Game State Manager" parent="." node_paths=PackedStringArray("player") instance=ExtResource("2_272bh")]
 game_state = ExtResource("3_7mycd")
-grid = NodePath("../Grid")
+player = NodePath("../Player")
 
 [node name="Player" parent="." instance=ExtResource("4_lquwl")]
-position = Vector2(-128, -128)
-
-[node name="Grid" parent="." instance=ExtResource("1_ig7tw")]
-grid_position_offset = Vector2(-198, -64)
+position = Vector2(-128, 0)
 
 [node name="Dice Spawner" parent="." instance=ExtResource("4_1bvp3")]
 position = Vector2(-192, 128)

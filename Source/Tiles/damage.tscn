@@ -1,11 +1,10 @@
-[gd_scene load_steps=8 format=3 uid="uid://jdl0rti53xfr"]
+[gd_scene load_steps=7 format=3 uid="uid://jdl0rti53xfr"]
 
 [ext_resource type="Script" path="res://Source/Tiles/tile.gd" id="1_d2m0a"]
 [ext_resource type="Texture2D" uid="uid://dcogx1qymbvf6" path="res://Assets/Tiles/sword.png" id="2_2dlej"]
 [ext_resource type="PackedScene" uid="uid://b1gm70vaf8x60" path="res://Source/Tiles/Tile Activations/value_activation.tscn" id="3_l7ydw"]
-[ext_resource type="PackedScene" uid="uid://cds0loh1uqra8" path="res://Source/Tiles/Tile Effects/tile_shake_effect.tscn" id="5_l5k3m"]
-[ext_resource type="PackedScene" uid="uid://dnrkvcie4535p" path="res://Source/Tiles/Tile Effects/damage_random_enemy_effect.tscn" id="6_2dlej"]
-[ext_resource type="PackedScene" uid="uid://chvwdboay3rui" path="res://Source/Tiles/Tile Effects/return_die_to_queue_effect.tscn" id="6_d2m0a"]
+[ext_resource type="PackedScene" uid="uid://cds0loh1uqra8" path="res://Source/Effects/tile_shake_effect.tscn" id="5_l5k3m"]
+[ext_resource type="PackedScene" uid="uid://dnrkvcie4535p" path="res://Source/Effects/damage_random_enemy_effect.tscn" id="6_2dlej"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_gtxx6"]
 size = Vector2(32, 32)
@@ -14,7 +13,7 @@ size = Vector2(32, 32)
 z_index = 1
 script = ExtResource("1_d2m0a")
 activation_node = NodePath("Value Activation")
-description = "Activated with a 5.  Inflicts 5 damage on a random enemy."
+description = "Activated with a 5.  Inflicts 5 damage on a random enemy and gives them the die.  Destroys the die if there's no valid target."
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_gtxx6")
@@ -31,7 +30,5 @@ acceptable_values = Array[int]([5])
 tile_sprite = NodePath("../../Sprite2D")
 
 [node name="Damage Random Enemy Effect" parent="Effects Parent" instance=ExtResource("6_2dlej")]
-
-[node name="Return Die to Queue Effect" parent="Effects Parent" instance=ExtResource("6_d2m0a")]
 
 [connection signal="input_event" from="." to="." method="_on_area_2d_input_event"]

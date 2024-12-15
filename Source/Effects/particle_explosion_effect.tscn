@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://cjq55nrqy2gkt"]
 
-[ext_resource type="Script" path="res://Source/Tiles/Tile Effects/particle_explosion_effect.gd" id="1_juhrx"]
+[ext_resource type="Script" path="res://Source/Effects/particle_explosion_effect.gd" id="1_juhrx"]
 [ext_resource type="PackedScene" uid="uid://b4mhoacxdcftk" path="res://Source/Dice/destroy_particles.tscn" id="2_qa3g7"]
 
 [node name="Particle Explosion Effect" type="Node2D"]

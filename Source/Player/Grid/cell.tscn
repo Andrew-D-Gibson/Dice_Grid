@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://bh7wvvkbg6n17"]
 
-[ext_resource type="Script" path="res://Source/Grid/cell.gd" id="1_odflw"]
+[ext_resource type="Script" path="res://Source/Player/Grid/cell.gd" id="1_odflw"]
 [ext_resource type="Texture2D" uid="uid://bm06ldapahjyf" path="res://Assets/Grid/empty_cell.png" id="2_2yh0n"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6dklf"]

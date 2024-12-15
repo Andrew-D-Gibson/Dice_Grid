@@ -3,10 +3,10 @@
 [ext_resource type="Script" path="res://Source/Tiles/tile.gd" id="1_gtxx6"]
 [ext_resource type="Texture2D" uid="uid://gtv0muihjqa0" path="res://Assets/Tiles/place_holder.png" id="2_it3qb"]
 [ext_resource type="PackedScene" uid="uid://b1gm70vaf8x60" path="res://Source/Tiles/Tile Activations/value_activation.tscn" id="3_it3qb"]
-[ext_resource type="PackedScene" uid="uid://cds0loh1uqra8" path="res://Source/Tiles/Tile Effects/tile_shake_effect.tscn" id="5_horoe"]
-[ext_resource type="PackedScene" uid="uid://cs33qrgmtrv8o" path="res://Source/Tiles/Tile Effects/damage_player_effect.tscn" id="7_32v0e"]
-[ext_resource type="PackedScene" uid="uid://chvwdboay3rui" path="res://Source/Tiles/Tile Effects/return_die_to_queue_effect.tscn" id="7_fmra6"]
-[ext_resource type="PackedScene" uid="uid://m1jd175m37tv" path="res://Source/Tiles/Tile Effects/spawn_dice_effect.tscn" id="7_r1d0i"]
+[ext_resource type="PackedScene" uid="uid://cds0loh1uqra8" path="res://Source/Effects/tile_shake_effect.tscn" id="5_horoe"]
+[ext_resource type="PackedScene" uid="uid://cs33qrgmtrv8o" path="res://Source/Effects/damage_player_effect.tscn" id="7_32v0e"]
+[ext_resource type="PackedScene" uid="uid://chvwdboay3rui" path="res://Source/Effects/return_die_to_queue_effect.tscn" id="7_fmra6"]
+[ext_resource type="PackedScene" uid="uid://m1jd175m37tv" path="res://Source/Effects/spawn_dice_effect.tscn" id="7_r1d0i"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_gtxx6"]
 size = Vector2(32, 32)

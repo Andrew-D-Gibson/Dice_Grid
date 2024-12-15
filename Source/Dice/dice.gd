@@ -2,6 +2,7 @@ class_name Dice
 extends Holdable
 
 @export var value: int = 0
+var being_tweened = false
 
 var destroy_particles := preload('res://Source/Dice/destroy_particles.tscn')
 
@@ -11,6 +12,11 @@ func _ready() -> void:
 		randomize_value()
 	$AnimatedSprite2D.frame = value
 	
+	
+func _process(_delta: float) -> void:
+	if being_tweened:
+		return
+	super(_delta)
 
 func randomize_value() -> void:
 	value = randi_range(1,6)
@@ -46,3 +52,25 @@ func destroy():
 	particles.emitting = true
 	
 	queue_free()
+
+
+func send_to_entity(entity: Node2D, effect_function) -> void:
+	var tween_time = 0.75
+	being_tweened = true
+	can_be_held = false
+	
+	# For some reason, even the 'being_tweened' _process workaround
+	# there's a single frame that's processed that moves the die.
+	# This line makes that single frame not move the die before being tweened.
+	last_valid_position = position
+	
+	var tween = get_tree().create_tween().set_parallel(true)
+	tween.tween_property(self, 'global_position', entity.position, tween_time).set_trans(Tween.TRANS_SPRING).set_ease(Tween.EASE_IN)
+	tween.tween_property(self, "rotation_degrees", 360 * 6, tween_time).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_IN)
+	
+	var finish_send = func finish_send() -> void:
+		being_tweened = false
+		effect_function.call(entity, self)
+	
+	tween.chain().tween_callback(finish_send)
+	

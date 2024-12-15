@@ -1,7 +1,11 @@
 class_name Player
 extends Node2D
 
+@export_category("Components")
 @export var hp_and_def: HP_and_Def_Component
+@export var grid: Grid
+
+@export_category("UI")
 @export var health_label: Label
 @export var defense_label: Label
 

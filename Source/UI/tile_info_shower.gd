@@ -7,8 +7,8 @@ func _ready() -> void:
 	
 	
 func _show_tile_info(tile: Tile):
-	$"Tile Display".texture = tile.tile_texture
-	$"Tile Display/Label".text = tile.description
+	$"VBoxContainer/Tile Display".texture = tile.tile_texture
+	$VBoxContainer/Label.text = tile.description
 	self.visible = true
 
 

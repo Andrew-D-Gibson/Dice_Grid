@@ -1,6 +1,7 @@
 class_name Holdable
 extends Area2D
 
+var can_be_held: bool = true
 var being_held: bool = false
 var last_valid_position: Vector2
 
@@ -10,7 +11,7 @@ var desired_position: Vector2
 
 func _ready() -> void:
 	if not last_valid_position:
-		last_valid_position = position
+		last_valid_position = global_position
 		
 	desired_position = last_valid_position
 
@@ -22,10 +23,14 @@ func _process(delta: float) -> void:
 		if not Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT):
 			_drop()
 			
-	position = position.lerp(desired_position, follow_strength * delta)
+	global_position = global_position.lerp(desired_position, follow_strength * delta)
 		
 	
 func _on_area_2d_input_event(_viewport: Node, event: InputEvent, _shape_idx: int) -> void:
+	# Don't get picked up if we can't be held
+	if not can_be_held:
+		return
+		
 	# Don't get picked up if the mouse is already holding an object
 	if Globals.held_object:
 		return
@@ -36,7 +41,7 @@ func _on_area_2d_input_event(_viewport: Node, event: InputEvent, _shape_idx: int
 
 
 func _pickup() -> void:
-	last_valid_position = position
+	last_valid_position = global_position
 	
 	being_held = true
 	Globals.held_object = self
