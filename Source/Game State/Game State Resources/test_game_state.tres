@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="Game_State" load_steps=5 format=3 uid="uid://demco14i4e5j0"]
 
-[ext_resource type="Script" path="res://Source/Game State Manager/Game State Resources/game_state.gd" id="1_defoe"]
+[ext_resource type="Script" path="res://Source/Game State/Game State Resources/game_state.gd" id="1_defoe"]
 [ext_resource type="Resource" uid="uid://cgodyqsjv5ast" path="res://Source/Encounters/1_basic_encounter.tres" id="1_ndfkt"]
 [ext_resource type="PackedScene" uid="uid://c0uglhkot8fu2" path="res://Source/Tiles/heal.tscn" id="2_wunl1"]
 [ext_resource type="PackedScene" uid="uid://jdl0rti53xfr" path="res://Source/Tiles/damage.tscn" id="4_ndfkt"]

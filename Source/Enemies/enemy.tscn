@@ -1,7 +1,7 @@
 [gd_scene load_steps=8 format=3 uid="uid://djowit6k2t6lo"]
 
 [ext_resource type="Script" path="res://Source/Enemies/enemy.gd" id="1_2wu4v"]
-[ext_resource type="PackedScene" uid="uid://c8t3yoopiopfp" path="res://Source/Entity Components/HP and Def Component/hp_and_def_component.tscn" id="2_muilx"]
+[ext_resource type="PackedScene" uid="uid://c8t3yoopiopfp" path="res://Source/Inherited Classes/Actor/HP and Def Component/hp_and_def_component.tscn" id="2_muilx"]
 [ext_resource type="Texture2D" uid="uid://6pflrok71dh7" path="res://icon.svg" id="2_xu8cd"]
 [ext_resource type="Theme" uid="uid://b6tit6cxjtdpd" path="res://Assets/UI/default_theme.tres" id="3_xn7u6"]
 [ext_resource type="PackedScene" uid="uid://bef2e5iuwomfx" path="res://Source/Enemies/Enemy Actions/attack_player.tscn" id="4_iqa7y"]

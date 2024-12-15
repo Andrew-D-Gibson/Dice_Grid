@@ -1,10 +1,11 @@
-[gd_scene load_steps=6 format=3 uid="uid://io1ko4uxwtba"]
+[gd_scene load_steps=7 format=3 uid="uid://io1ko4uxwtba"]
 
 [ext_resource type="PackedScene" uid="uid://cygbrgfx6v2tu" path="res://Source/UI/ui.tscn" id="1_5vw27"]
-[ext_resource type="PackedScene" uid="uid://c7lpjg53k5bkl" path="res://Source/Game State Manager/game_state_manager.tscn" id="2_272bh"]
-[ext_resource type="Resource" uid="uid://demco14i4e5j0" path="res://Source/Game State Manager/Game State Resources/test_game_state.tres" id="3_7mycd"]
+[ext_resource type="PackedScene" uid="uid://c7lpjg53k5bkl" path="res://Source/Game State/Game State Manager/game_state_manager.tscn" id="2_272bh"]
+[ext_resource type="Resource" uid="uid://demco14i4e5j0" path="res://Source/Game State/Game State Resources/test_game_state.tres" id="3_7mycd"]
 [ext_resource type="PackedScene" uid="uid://dskiljo0yv3ns" path="res://Source/Dice/dice_spawner.tscn" id="4_1bvp3"]
 [ext_resource type="PackedScene" uid="uid://8x4oilg8o8m4" path="res://Source/Player/player.tscn" id="4_lquwl"]
+[ext_resource type="Script" path="res://Source/Inherited Classes/Actor/actor.gd" id="6_7mycd"]
 
 [node name="Main" type="Node2D"]
 
@@ -22,3 +23,6 @@ position = Vector2(-128, 0)
 
 [node name="Dice Spawner" parent="." instance=ExtResource("4_1bvp3")]
 position = Vector2(-192, 128)
+
+[node name="Actor" type="Node2D" parent="."]
+script = ExtResource("6_7mycd")

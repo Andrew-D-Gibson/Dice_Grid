@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://Source/Player/player.gd" id="1_g4gsc"]
 [ext_resource type="Theme" uid="uid://b6tit6cxjtdpd" path="res://Assets/UI/default_theme.tres" id="3_0tdpy"]
-[ext_resource type="PackedScene" uid="uid://c8t3yoopiopfp" path="res://Source/Entity Components/HP and Def Component/hp_and_def_component.tscn" id="3_v1mne"]
+[ext_resource type="PackedScene" uid="uid://c8t3yoopiopfp" path="res://Source/Inherited Classes/Actor/HP and Def Component/hp_and_def_component.tscn" id="3_v1mne"]
 [ext_resource type="PackedScene" uid="uid://ba56b2edr1yh2" path="res://Source/Player/Grid/grid.tscn" id="4_0tdpy"]
 
 [node name="Player" type="Node2D" node_paths=PackedStringArray("hp_and_def", "grid", "health_label", "defense_label")]

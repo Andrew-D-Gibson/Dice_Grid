@@ -52,7 +52,7 @@ func _process(delta: float) -> void:
 		
 		new_dice.position = global_position + Vector2((len(dice_queue)-1) * dice_queue_spacing, 0) + Vector2(600, 0)
 		new_dice.set_home_location(global_position + Vector2((len(dice_queue)-1) * dice_queue_spacing, 0))
-		# new_dice.value = 5
+		new_dice.value = 5
 		
 		add_sibling(new_dice)
 	

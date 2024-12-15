@@ -18,25 +18,25 @@ func _ready() -> void:
 	hp_and_def.death.connect(_death)
 	_choose_next_action()
 	_update_ui()
-	
-	
+
+
 func _process(delta: float) -> void:
 	if len(dice_queue) > 0:
 		action_loading_time -= delta
 		
 		if action_loading_time <= 0:
 			_act()
-		
-	
+
+
 func change_health(amount: int) -> void:
 	hp_and_def.change_health(amount)
 	_update_ui()
-	
-	
+
+
 func change_defense(amount: int) -> void:
 	hp_and_def.change_defense(amount)
 	_update_ui()
-	
+
 
 func take_damage(amount: int) -> void:
 	hp_and_def.take_damage(amount)
@@ -50,22 +50,23 @@ func _update_ui() -> void:
 
 func _death() -> void:
 	for die in dice_queue:
+		die.visible = true
 		Events.add_die_to_queue.emit(die)
 	queue_free()
-	
-	
+
+
 func add_die_to_queue(die: Dice) -> void:
 	dice_queue.push_back(die)
 	die.set_home_location(global_position)
-	#die.visible = false
-	
-	
+	die.visible = false
+
+
 func _choose_next_action() -> void:
 	var possible_actions = $"Possible Actions Parent".get_children()
 	next_action = possible_actions.pick_random()
 	action_loading_time = next_action.action_loading_time
 
-	
+
 func _act() -> void:		
 	var die_used = dice_queue.pop_front()
 	die_used.visible = true
