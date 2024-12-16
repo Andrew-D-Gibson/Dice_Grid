@@ -1,5 +1,7 @@
 extends Node
 
+var player: Player
+
 var held_object: Holdable
 var hovered_cell: Cell
 

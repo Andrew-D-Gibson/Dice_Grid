@@ -1,17 +1,12 @@
 class_name Enemy
-extends Node2D
+extends Actor
 
-@export var next_action: Enemy_Action
-var action_loading_time: float
-
-@export_category("Components")
-@export var hp_and_def: HP_and_Def_Component
+var next_action: Node2D
+var action_loading_time: float = 2
 
 @export_category("UI")
 @export var health_label: Label
 @export var defense_label: Label
-
-var dice_queue: Array[Dice]
 
 
 func _ready() -> void:
@@ -26,21 +21,7 @@ func _process(delta: float) -> void:
 		
 		if action_loading_time <= 0:
 			_act()
-
-
-func change_health(amount: int) -> void:
-	hp_and_def.change_health(amount)
-	_update_ui()
-
-
-func change_defense(amount: int) -> void:
-	hp_and_def.change_defense(amount)
-	_update_ui()
-
-
-func take_damage(amount: int) -> void:
-	hp_and_def.take_damage(amount)
-	_update_ui()	
+			action_loading_time = 2
 
 
 func _update_ui() -> void:
@@ -49,27 +30,47 @@ func _update_ui() -> void:
 
 
 func _death() -> void:
-	for die in dice_queue:
-		die.visible = true
-		Events.add_die_to_queue.emit(die)
+	# Remove the die in reverse order so the indices work out
+	for i in range(len(dice_queue)-1, -1, -1):
+		var die = dice_queue[i]
+		remove_die_from_queue(die)
+		Globals.player.add_die_to_queue(die)
 	queue_free()
 
 
-func add_die_to_queue(die: Dice) -> void:
-	dice_queue.push_back(die)
-	die.set_home_location(global_position)
+func add_die_to_queue(die: Dice, preserve_value: bool = false) -> void:
 	die.visible = false
+	die.can_be_held = false
+	super(die, preserve_value)
+	
+	
+func remove_die_from_queue(die: Dice) -> void:
+	die.visible = true
+	super(die)
 
 
 func _choose_next_action() -> void:
-	var possible_actions = $"Possible Actions Parent".get_children()
+	var possible_actions = $"Possible Actions Parent".get_children(false)
 	next_action = possible_actions.pick_random()
-	action_loading_time = next_action.action_loading_time
+	
+	if not next_action:
+		return
 
 
-func _act() -> void:		
+func _act() -> void:
 	var die_used = dice_queue.pop_front()
 	die_used.visible = true
 	
-	next_action.act(self, die_used)
+	# Set up the effects dictionary for chaining effects
+	var effect_dict = {
+		'actor': self,
+		'targets': null,
+		'die_used': die_used,
+		'activating_node': self
+	}
+	
+	for effect in next_action.get_children(false):
+		effect_dict = effect.play(effect_dict)
+	
 	_choose_next_action()
+	_update_ui()

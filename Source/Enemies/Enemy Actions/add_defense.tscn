@@ -1,6 +1,0 @@
-[gd_scene load_steps=2 format=3 uid="uid://bv4f3vi0c7khc"]
-
-[ext_resource type="Script" path="res://Source/Enemies/Enemy Actions/add_defense.gd" id="1_sltff"]
-
-[node name="Add Defense" type="Node2D"]
-script = ExtResource("1_sltff")

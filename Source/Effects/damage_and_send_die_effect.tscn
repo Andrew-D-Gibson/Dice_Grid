@@ -1,0 +1,8 @@
+[gd_scene load_steps=3 format=3 uid="uid://cqbs1nh4yicqw"]
+
+[ext_resource type="Script" path="res://Source/Effects/damage_and_send_die_effect.gd" id="1_52yb5"]
+[ext_resource type="PackedScene" uid="uid://cu4pw31ijdghb" path="res://Source/Dice/dice.tscn" id="2_o5ntj"]
+
+[node name="Damage and Send Die Effect" type="Node2D"]
+script = ExtResource("1_52yb5")
+dice_scene = ExtResource("2_o5ntj")

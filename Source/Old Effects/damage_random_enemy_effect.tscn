@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://dnrkvcie4535p"]
 
-[ext_resource type="Script" path="res://Source/Effects/damage_random_enemy_effect.gd" id="1_fxi6x"]
+[ext_resource type="Script" path="res://Source/Old Effects/damage_random_enemy_effect.gd" id="1_fxi6x"]
 
 [node name="Damage Random Enemy Effect" type="Node2D"]
 script = ExtResource("1_fxi6x")

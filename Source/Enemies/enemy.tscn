@@ -1,18 +1,19 @@
 [gd_scene load_steps=8 format=3 uid="uid://djowit6k2t6lo"]
 
 [ext_resource type="Script" path="res://Source/Enemies/enemy.gd" id="1_2wu4v"]
+[ext_resource type="PackedScene" uid="uid://cu4pw31ijdghb" path="res://Source/Dice/dice.tscn" id="2_8mhou"]
 [ext_resource type="PackedScene" uid="uid://c8t3yoopiopfp" path="res://Source/Inherited Classes/Actor/HP and Def Component/hp_and_def_component.tscn" id="2_muilx"]
 [ext_resource type="Texture2D" uid="uid://6pflrok71dh7" path="res://icon.svg" id="2_xu8cd"]
 [ext_resource type="Theme" uid="uid://b6tit6cxjtdpd" path="res://Assets/UI/default_theme.tres" id="3_xn7u6"]
-[ext_resource type="PackedScene" uid="uid://bef2e5iuwomfx" path="res://Source/Enemies/Enemy Actions/attack_player.tscn" id="4_iqa7y"]
-[ext_resource type="PackedScene" uid="uid://bv4f3vi0c7khc" path="res://Source/Enemies/Enemy Actions/add_defense.tscn" id="5_8gxoy"]
-[ext_resource type="PackedScene" uid="uid://cc8kh4indlc33" path="res://Source/Enemies/Enemy Actions/heal_self.tscn" id="6_8gxoy"]
+[ext_resource type="PackedScene" uid="uid://ckq4boacfru28" path="res://Source/Effects/Targeters/target_player.tscn" id="5_8gxoy"]
+[ext_resource type="PackedScene" uid="uid://cqbs1nh4yicqw" path="res://Source/Effects/damage_and_send_die_effect.tscn" id="6_8mhou"]
 
-[node name="Enemy" type="Node2D" node_paths=PackedStringArray("hp_and_def", "health_label", "defense_label") groups=["enemies"]]
+[node name="Enemy" type="Node2D" node_paths=PackedStringArray("health_label", "defense_label", "hp_and_def") groups=["enemies"]]
 script = ExtResource("1_2wu4v")
-hp_and_def = NodePath("Health Component")
 health_label = NodePath("Enemy UI/Health Label")
 defense_label = NodePath("Enemy UI/Defense Label")
+hp_and_def = NodePath("Health Component")
+dice_scene = ExtResource("2_8mhou")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 scale = Vector2(0.3, 0.3)
@@ -24,11 +25,11 @@ max_health = 12
 
 [node name="Possible Actions Parent" type="Node2D" parent="."]
 
-[node name="Attack Player" parent="Possible Actions Parent" instance=ExtResource("4_iqa7y")]
+[node name="Attack Player" type="Node2D" parent="Possible Actions Parent"]
 
-[node name="Add Defense" parent="Possible Actions Parent" instance=ExtResource("5_8gxoy")]
+[node name="Target Player" parent="Possible Actions Parent/Attack Player" instance=ExtResource("5_8gxoy")]
 
-[node name="Heal Self" parent="Possible Actions Parent" instance=ExtResource("6_8gxoy")]
+[node name="Damage and Send Die Effect" parent="Possible Actions Parent/Attack Player" instance=ExtResource("6_8mhou")]
 
 [node name="Enemy UI" type="VBoxContainer" parent="."]
 offset_left = -87.0

@@ -4,12 +4,12 @@ extends Node2D
 signal death() 
 
 @export_category("Health")
-@export var health: int
+var health: int
 @export var starting_health: int
 @export var max_health: int
 
 @export_category("Defense")
-@export var defense: int
+var defense: int
 @export var starting_defense: int
 
 

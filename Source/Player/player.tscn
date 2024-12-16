@@ -1,21 +1,27 @@
-[gd_scene load_steps=5 format=3 uid="uid://8x4oilg8o8m4"]
+[gd_scene load_steps=6 format=3 uid="uid://8x4oilg8o8m4"]
 
 [ext_resource type="Script" path="res://Source/Player/player.gd" id="1_g4gsc"]
+[ext_resource type="PackedScene" uid="uid://cu4pw31ijdghb" path="res://Source/Dice/dice.tscn" id="2_880o0"]
 [ext_resource type="Theme" uid="uid://b6tit6cxjtdpd" path="res://Assets/UI/default_theme.tres" id="3_0tdpy"]
 [ext_resource type="PackedScene" uid="uid://c8t3yoopiopfp" path="res://Source/Inherited Classes/Actor/HP and Def Component/hp_and_def_component.tscn" id="3_v1mne"]
 [ext_resource type="PackedScene" uid="uid://ba56b2edr1yh2" path="res://Source/Player/Grid/grid.tscn" id="4_0tdpy"]
 
-[node name="Player" type="Node2D" node_paths=PackedStringArray("hp_and_def", "grid", "health_label", "defense_label")]
+[node name="Player" type="Node2D" node_paths=PackedStringArray("grid", "health_label", "defense_label", "hp_and_def")]
 script = ExtResource("1_g4gsc")
-hp_and_def = NodePath("Health Component")
 grid = NodePath("Grid")
 health_label = NodePath("Player UI/Health Label")
 defense_label = NodePath("Player UI/Defense Label")
+hp_and_def = NodePath("Health Component")
+dice_scene = ExtResource("2_880o0")
 
 [node name="Health Component" parent="." instance=ExtResource("3_v1mne")]
 starting_health = 8
-max_health = 25
-starting_defense = 4
+max_health = 12
+starting_defense = 2
+
+[node name="Grid" parent="." instance=ExtResource("4_0tdpy")]
+grid_width = 3
+grid_height = 3
 
 [node name="Player UI" type="VBoxContainer" parent="."]
 anchors_preset = 8
@@ -41,7 +47,3 @@ text = "Player Health: X/X"
 layout_mode = 2
 theme = ExtResource("3_0tdpy")
 text = "Player Defense: X"
-
-[node name="Grid" parent="." instance=ExtResource("4_0tdpy")]
-grid_width = 3
-grid_height = 3

@@ -18,6 +18,7 @@ func _process(_delta: float) -> void:
 		return
 	super(_delta)
 
+
 func randomize_value() -> void:
 	value = randi_range(1,6)
 	$AnimatedSprite2D.frame = value
@@ -44,8 +45,6 @@ func _check_valid_drop():
 		
 
 func destroy():
-	Events.remove_die_from_queue.emit(self)
-	
 	var particles = destroy_particles.instantiate()
 	particles.position = global_position
 	add_sibling(particles)
@@ -54,7 +53,7 @@ func destroy():
 	queue_free()
 
 
-func send_to_entity(entity: Node2D, effect_function) -> void:
+func send_to_target(actor: Actor, target: Actor, effect_function) -> void:
 	var tween_time = 0.75
 	being_tweened = true
 	can_be_held = false
@@ -65,12 +64,12 @@ func send_to_entity(entity: Node2D, effect_function) -> void:
 	last_valid_position = position
 	
 	var tween = get_tree().create_tween().set_parallel(true)
-	tween.tween_property(self, 'global_position', entity.position, tween_time).set_trans(Tween.TRANS_SPRING).set_ease(Tween.EASE_IN)
-	tween.tween_property(self, "rotation_degrees", 360 * 6, tween_time).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_IN)
+	tween.tween_property(self, 'global_position', target.global_position, tween_time).set_trans(Tween.TRANS_SPRING).set_ease(Tween.EASE_IN)
+	tween.tween_property(self, "rotation_degrees", 360 * 6, tween_time).from(0).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_IN)
 	
 	var finish_send = func finish_send() -> void:
 		being_tweened = false
-		effect_function.call(entity, self)
+		effect_function.call(actor, target, self)
 	
 	tween.chain().tween_callback(finish_send)
 	

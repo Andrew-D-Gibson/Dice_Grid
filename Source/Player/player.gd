@@ -1,9 +1,13 @@
 class_name Player
-extends Node2D
+extends Actor
 
 @export_category("Components")
-@export var hp_and_def: HP_and_Def_Component
 @export var grid: Grid
+@export var dice_queue_offset: Vector2 = Vector2(0, 100)
+@export var dice_queue_spacing: int = 32
+@export var starting_dice: int = 5
+@export var starting_dice_spawn_delay: float = 0.2
+
 
 @export_category("UI")
 @export var health_label: Label
@@ -11,29 +15,50 @@ extends Node2D
 
 
 func _ready() -> void:
-	Events.change_player_health.connect(_change_health)
-	Events.change_player_defense.connect(_change_defense)
-	Events.damage_player.connect(_take_damage)
+	Globals.player = self
+	
+	Events.change_player_health.connect(change_health)
+	Events.change_player_defense.connect(change_defense)
+	Events.damage_player.connect(take_damage)
+	Events.remove_die_from_queue.connect(remove_die_from_queue)
+	Events.add_die_to_queue.connect(add_die_to_queue)
 	
 	hp_and_def.death.connect(_death)
 	
-	_update_ui()
-	
-	
-func _change_health(amount: int) -> void:
-	hp_and_def.change_health(amount)
-	_update_ui()
-	
-	
-func _change_defense(amount: int) -> void:
-	hp_and_def.change_defense(amount)
-	_update_ui()
-	
+	# Create a function to spawn the starting dice
+	var spawn_die = func spawn_die():
+		var new_dice = dice_scene.instantiate()
+		new_dice.position = global_position + dice_queue_offset + Vector2((len(dice_queue)-1) * dice_queue_spacing, 0) + Vector2(600, 0)
+		new_dice.set_home_location(global_position + dice_queue_offset + Vector2((len(dice_queue)-1) * dice_queue_spacing, 0))
+		
+		add_die_to_queue(new_dice)
+		new_dice.value = 5
+		get_tree().get_current_scene().add_child(new_dice)
+		
+	# Spawn the starting dice with a tween
+	var tween = get_tree().create_tween()
+	for i in range(starting_dice):
+		tween.tween_callback(spawn_die).set_delay(starting_dice_spawn_delay)
 
-func _take_damage(amount: int) -> void:
-	hp_and_def.take_damage(amount)
-	_update_ui()	
+	_update_ui()
+	
+	
+func add_die_to_queue(die: Dice, preserve_value: bool = false) -> void:
+	die.can_be_held = true
+	super(die, preserve_value)
+	_update_dice_queue_locations()
 
+
+func remove_die_from_queue(die: Dice) -> void:
+	super(die)
+	_update_dice_queue_locations()
+
+
+func _update_dice_queue_locations() -> void:
+	# Update the dice desired locations in the world
+	for n in range(len(dice_queue)):
+		dice_queue[n].set_home_location(global_position + dice_queue_offset + Vector2(n * dice_queue_spacing, 0))
+	
 
 func _update_ui() -> void:
 	health_label.text = "Player Health: " + str(hp_and_def.health) + " / " + str(hp_and_def.max_health)

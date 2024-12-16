@@ -20,9 +20,18 @@ var click_window_time: float = 0.4
 
 func check_activation(die: Dice = null) -> void:
 	if activation_node.criteria_satisfied(die):
-		for effect in $"Effects Parent".get_children():
-			if effect is Effect:
-				effect.play(die)
+		Globals.player.remove_die_from_queue(die)
+		
+		# Set up the effects dictionary for chaining effects
+		var effect_dict = {
+			'actor': Globals.player,
+			'targets': null,
+			'die_used': die,
+			'activating_node': self
+		}
+		
+		for effect in $"Effects Parent".get_children(false):
+			effect_dict = effect.play(effect_dict)
 
 
 func _pickup() -> void:
