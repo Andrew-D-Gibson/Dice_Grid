@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://brsswsoryohs4"]
+
+[ext_resource type="Script" path="res://Source/Effects/give_die_to_player_effect.gd" id="1_sxsl5"]
+
+[node name="Give Die to Player Effect" type="Node2D"]
+script = ExtResource("1_sxsl5")

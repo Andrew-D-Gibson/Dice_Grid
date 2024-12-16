@@ -31,7 +31,8 @@ func check_activation(die: Dice = null) -> void:
 		}
 		
 		for effect in $"Effects Parent".get_children(false):
-			effect_dict = effect.play(effect_dict)
+			if effect is Effect:
+				effect_dict = effect.play(effect_dict)
 
 
 func _pickup() -> void:

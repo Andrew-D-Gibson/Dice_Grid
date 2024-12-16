@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://byyfjl8gtnwhn"]
+
+[ext_resource type="Script" path="res://Source/Effects/defend_self_effect.gd" id="1_71s57"]
+
+[node name="Defend Self Effect" type="Node2D"]
+script = ExtResource("1_71s57")

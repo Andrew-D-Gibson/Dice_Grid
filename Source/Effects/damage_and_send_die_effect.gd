@@ -22,7 +22,6 @@ func play(effect_variables: Dictionary) -> Dictionary:
 		
 		get_tree().get_current_scene().add_child(new_dice)
 		dice_to_send.push_back(new_dice)
-		print('Added dice to damage effect')
 		
 	
 	# Now shoot each dice at each target

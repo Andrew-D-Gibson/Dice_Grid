@@ -17,12 +17,6 @@ extends Actor
 func _ready() -> void:
 	Globals.player = self
 	
-	Events.change_player_health.connect(change_health)
-	Events.change_player_defense.connect(change_defense)
-	Events.damage_player.connect(take_damage)
-	Events.remove_die_from_queue.connect(remove_die_from_queue)
-	Events.add_die_to_queue.connect(add_die_to_queue)
-	
 	hp_and_def.death.connect(_death)
 	
 	# Create a function to spawn the starting dice
@@ -32,7 +26,7 @@ func _ready() -> void:
 		new_dice.set_home_location(global_position + dice_queue_offset + Vector2((len(dice_queue)-1) * dice_queue_spacing, 0))
 		
 		add_die_to_queue(new_dice)
-		new_dice.value = 5
+		#new_dice.value = Array([3,5]).pick_random()
 		get_tree().get_current_scene().add_child(new_dice)
 		
 	# Spawn the starting dice with a tween

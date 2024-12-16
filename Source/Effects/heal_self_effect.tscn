@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://chce5pipr42n2"]
+
+[ext_resource type="Script" path="res://Source/Effects/heal_self_effect.gd" id="1_7gny3"]
+
+[node name="Heal Self Effect" type="Node2D"]
+script = ExtResource("1_7gny3")

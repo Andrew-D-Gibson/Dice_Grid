@@ -1,0 +1,40 @@
+[gd_scene load_steps=6 format=3 uid="uid://dchteabtrevci"]
+
+[ext_resource type="Script" path="res://Source/Enemies/Enemy Actions/enemy_action.gd" id="1_vn75d"]
+[ext_resource type="Theme" uid="uid://b6tit6cxjtdpd" path="res://Assets/UI/default_theme.tres" id="2_2ltto"]
+[ext_resource type="PackedScene" uid="uid://ckq4boacfru28" path="res://Source/Effects/Targeters/target_player.tscn" id="2_3qr8c"]
+[ext_resource type="Texture2D" uid="uid://2g1teotj0pig" path="res://Assets/Enemies/Enemy Intents/attack.png" id="2_jlbiu"]
+[ext_resource type="PackedScene" uid="uid://cqbs1nh4yicqw" path="res://Source/Effects/damage_and_send_die_effect.tscn" id="3_jlbiu"]
+
+[node name="Attack Player" type="Node2D"]
+script = ExtResource("1_vn75d")
+
+[node name="Intent Indicator" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -20.0
+offset_top = 10.0
+offset_right = 20.0
+offset_bottom = 50.0
+grow_horizontal = 2
+size_flags_vertical = 8
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Intent Indicator"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Label" type="Label" parent="Intent Indicator/HBoxContainer"]
+layout_mode = 2
+theme = ExtResource("2_2ltto")
+text = "5"
+
+[node name="TextureRect" type="TextureRect" parent="Intent Indicator/HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("2_jlbiu")
+
+[node name="Target Player" parent="." instance=ExtResource("2_3qr8c")]
+
+[node name="Damage and Send Die Effect" parent="." instance=ExtResource("3_jlbiu")]

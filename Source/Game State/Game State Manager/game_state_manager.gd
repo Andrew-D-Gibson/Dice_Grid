@@ -21,7 +21,7 @@ func _spawn_enemies(encounter_enemies: Array[PackedScene]) -> void:
 	if len(encounter_enemies) == 0:
 		return
 		
-	var enemy_spacing = 360 / (len(encounter_enemies) + 1)
+	var enemy_spacing = 400 / (len(encounter_enemies) + 1)
 	
 	for i in range(len(encounter_enemies)):
 		var enemy = encounter_enemies[i].instantiate()

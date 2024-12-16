@@ -1,9 +1,0 @@
-[gd_scene load_steps=3 format=3 uid="uid://cjq55nrqy2gkt"]
-
-[ext_resource type="Script" path="res://Source/Old Effects/particle_explosion_effect.gd" id="1_juhrx"]
-[ext_resource type="PackedScene" uid="uid://b4mhoacxdcftk" path="res://Source/Dice/destroy_particles.tscn" id="2_qa3g7"]
-
-[node name="Particle Explosion Effect" type="Node2D"]
-script = ExtResource("1_juhrx")
-
-[node name="CPUParticles2D" parent="." instance=ExtResource("2_qa3g7")]
