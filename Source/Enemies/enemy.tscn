@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://djowit6k2t6lo"]
+[gd_scene load_steps=15 format=3 uid="uid://djowit6k2t6lo"]
 
 [ext_resource type="Script" path="res://Source/Enemies/enemy.gd" id="1_2wu4v"]
 [ext_resource type="PackedScene" uid="uid://cu4pw31ijdghb" path="res://Source/Dice/dice.tscn" id="2_8mhou"]
@@ -7,11 +7,19 @@
 [ext_resource type="Theme" uid="uid://b6tit6cxjtdpd" path="res://Assets/UI/default_theme.tres" id="3_xn7u6"]
 [ext_resource type="PackedScene" uid="uid://dchteabtrevci" path="res://Source/Enemies/Enemy Actions/attack_player.tscn" id="4_iqa7y"]
 [ext_resource type="PackedScene" uid="uid://dxgikxh33wmht" path="res://Source/Enemies/Enemy Actions/defend_self.tscn" id="6_8gxoy"]
+[ext_resource type="Texture2D" uid="uid://cosr1royc4yfb" path="res://Assets/Enemies/Enemy Intents/Timing Bar/background.png" id="8_kgr8e"]
+[ext_resource type="Texture2D" uid="uid://jgb5ksjv52fx" path="res://Assets/Enemies/HP and Def UI/HP background.png" id="9_dd0uj"]
+[ext_resource type="Texture2D" uid="uid://b4pcjgof1dt7a" path="res://Assets/Enemies/Enemy Intents/Timing Bar/yellow_fill.png" id="9_lesxe"]
+[ext_resource type="Texture2D" uid="uid://wmuutwjk0pel" path="res://Assets/Enemies/HP and Def UI/HP fill.png" id="10_1hmcw"]
+[ext_resource type="Texture2D" uid="uid://jqfwxy5h0bal" path="res://Assets/Enemies/HP and Def UI/heart.png" id="11_s2lnk"]
+[ext_resource type="Texture2D" uid="uid://kglaknk7yu2l" path="res://Assets/Enemies/HP and Def UI/shield.png" id="13_8aj7q"]
+[ext_resource type="Texture2D" uid="uid://bgc0cv7c31np3" path="res://Assets/Enemies/Dice Queue/3_dice.png" id="14_1hmcw"]
 
-[node name="Enemy" type="Node2D" node_paths=PackedStringArray("health_label", "defense_label", "hp_and_def") groups=["enemies"]]
+[node name="Enemy" type="Node2D" node_paths=PackedStringArray("hp_bar", "def_bar", "intent_timing_bar", "hp_and_def") groups=["enemies"]]
 script = ExtResource("1_2wu4v")
-health_label = NodePath("Enemy UI/Health Label")
-defense_label = NodePath("Enemy UI/Defense Label")
+hp_bar = NodePath("HP Progress Bar")
+def_bar = NodePath("")
+intent_timing_bar = NodePath("Intent Progress Bar")
 hp_and_def = NodePath("Health Component")
 dice_scene = ExtResource("2_8mhou")
 
@@ -26,25 +34,151 @@ max_health = 12
 [node name="Possible Actions Parent" type="Node2D" parent="."]
 
 [node name="Attack Player" parent="Possible Actions Parent" instance=ExtResource("4_iqa7y")]
+visible = false
 
 [node name="Defend Self" parent="Possible Actions Parent" instance=ExtResource("6_8gxoy")]
 
-[node name="Enemy UI" type="VBoxContainer" parent="."]
-offset_left = -87.0
-offset_top = -51.0
-offset_right = 93.0
-offset_bottom = 1.0
+[node name="Intent Progress Bar" type="TextureProgressBar" parent="."]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -18.0
+offset_top = 30.0
+offset_right = 22.0
+offset_bottom = 70.0
+grow_horizontal = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+max_value = 1.0
+step = 0.01
+value = 1.0
+texture_under = ExtResource("8_kgr8e")
+texture_progress = ExtResource("9_lesxe")
 
-[node name="Health Label" type="Label" parent="Enemy UI"]
-layout_mode = 2
-theme = ExtResource("3_xn7u6")
-theme_override_font_sizes/font_size = 16
-text = "Enemy Health: X/X"
-horizontal_alignment = 1
+[node name="HP Progress Bar" type="TextureProgressBar" parent="."]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -31.0
+offset_top = -43.0
+offset_right = 33.0
+offset_bottom = -3.0
+grow_horizontal = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+max_value = 1.0
+step = 0.01
+value = 1.0
+texture_under = ExtResource("9_dd0uj")
+texture_progress = ExtResource("10_1hmcw")
 
-[node name="Defense Label" type="Label" parent="Enemy UI"]
-layout_mode = 2
+[node name="TextureRect" type="TextureRect" parent="HP Progress Bar"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = -23.0
+offset_top = -25.0
+offset_right = 17.0
+offset_bottom = 15.0
+grow_vertical = 2
+texture = ExtResource("11_s2lnk")
+stretch_mode = 5
+
+[node name="HP Label" type="Label" parent="HP Progress Bar"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -0.6875
+anchor_top = 0.05
+anchor_right = -0.6875
+anchor_bottom = 0.05
+offset_left = -30.0
+offset_right = 30.0
+offset_bottom = 24.0
+grow_horizontal = 2
 theme = ExtResource("3_xn7u6")
-theme_override_font_sizes/font_size = 16
-text = "Enemy Defense: X"
-horizontal_alignment = 1
+text = "1000"
+horizontal_alignment = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="Def Indicator" type="TextureRect" parent="HP Progress Bar"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 45.0
+offset_top = -24.0
+offset_right = 85.0
+offset_bottom = 16.0
+grow_vertical = 2
+texture = ExtResource("13_8aj7q")
+stretch_mode = 5
+
+[node name="Def Label" type="Label" parent="HP Progress Bar/Def Indicator"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -0.6875
+anchor_top = 0.05
+anchor_right = -0.6875
+anchor_bottom = 0.05
+offset_left = 59.5
+offset_top = 6.0
+offset_right = 119.5
+offset_bottom = 30.0
+grow_horizontal = 2
+theme = ExtResource("3_xn7u6")
+text = "1000"
+
+[node name="GridContainer" type="GridContainer" parent="."]
+offset_left = 21.0
+offset_top = -6.0
+offset_right = 101.0
+offset_bottom = 46.0
+scale = Vector2(0.5, 0.5)
+columns = 3
+metadata/_edit_use_anchors_ = true
+
+[node name="TextureRect" type="TextureRect" parent="GridContainer"]
+visible = false
+layout_mode = 2
+texture = ExtResource("14_1hmcw")
+
+[node name="TextureRect2" type="TextureRect" parent="GridContainer"]
+visible = false
+layout_mode = 2
+texture = ExtResource("14_1hmcw")
+
+[node name="TextureRect3" type="TextureRect" parent="GridContainer"]
+visible = false
+layout_mode = 2
+texture = ExtResource("14_1hmcw")
+
+[node name="TextureRect4" type="TextureRect" parent="GridContainer"]
+visible = false
+layout_mode = 2
+texture = ExtResource("14_1hmcw")
+
+[node name="TextureRect5" type="TextureRect" parent="GridContainer"]
+visible = false
+layout_mode = 2
+texture = ExtResource("14_1hmcw")
+
+[node name="TextureRect6" type="TextureRect" parent="GridContainer"]
+visible = false
+layout_mode = 2
+texture = ExtResource("14_1hmcw")
+
+[node name="TextureRect7" type="TextureRect" parent="GridContainer"]
+visible = false
+layout_mode = 2
+texture = ExtResource("14_1hmcw")
+
+[node name="TextureRect8" type="TextureRect" parent="GridContainer"]
+visible = false
+layout_mode = 2
+texture = ExtResource("14_1hmcw")
+
+[node name="TextureRect9" type="TextureRect" parent="GridContainer"]
+visible = false
+layout_mode = 2
+texture = ExtResource("14_1hmcw")

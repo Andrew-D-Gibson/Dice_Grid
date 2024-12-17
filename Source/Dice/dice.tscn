@@ -1,7 +1,8 @@
-[gd_scene load_steps=11 format=3 uid="uid://cu4pw31ijdghb"]
+[gd_scene load_steps=12 format=3 uid="uid://cu4pw31ijdghb"]
 
 [ext_resource type="Script" path="res://Source/Dice/dice.gd" id="1_cmfg4"]
 [ext_resource type="Texture2D" uid="uid://cnw713iqligtn" path="res://Assets/Dice/dice-Sheet.png" id="1_px73j"]
+[ext_resource type="Texture2D" uid="uid://0s3q7v4wyd4l" path="res://Assets/Dice/locked_dice.png" id="3_2hmnm"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_cmfg4"]
 size = Vector2(24, 24)
@@ -70,5 +71,15 @@ shape = SubResource("RectangleShape2D_cmfg4")
 sprite_frames = SubResource("SpriteFrames_evgqa")
 animation = &"Dice Values"
 frame = 1
+
+[node name="TextureProgressBar" type="TextureProgressBar" parent="."]
+offset_left = -12.0
+offset_top = -12.0
+offset_right = 28.0
+offset_bottom = 28.0
+max_value = 1.0
+step = 0.01
+fill_mode = 3
+texture_progress = ExtResource("3_2hmnm")
 
 [connection signal="input_event" from="." to="." method="_on_area_2d_input_event"]

@@ -3,15 +3,15 @@ extends Actor
 
 @export_category("Components")
 @export var grid: Grid
-@export var dice_queue_offset: Vector2 = Vector2(0, 100)
+@export var dice_queue_offset: Vector2 = Vector2(-50, 100)
 @export var dice_queue_spacing: int = 32
 @export var starting_dice: int = 5
 @export var starting_dice_spawn_delay: float = 0.2
 
 
 @export_category("UI")
-@export var health_label: Label
-@export var defense_label: Label
+@export var hp_bar: TextureProgressBar
+@export var def_bar: TextureProgressBar
 
 
 func _ready() -> void:
@@ -26,7 +26,8 @@ func _ready() -> void:
 		new_dice.set_home_location(global_position + dice_queue_offset + Vector2((len(dice_queue)-1) * dice_queue_spacing, 0))
 		
 		add_die_to_queue(new_dice)
-		#new_dice.value = Array([3,5]).pick_random()
+		new_dice.value = 5 #Array([3,5]).pick_random()
+		new_dice.set_lockout_time(0)
 		get_tree().get_current_scene().add_child(new_dice)
 		
 	# Spawn the starting dice with a tween
@@ -40,6 +41,7 @@ func _ready() -> void:
 func add_die_to_queue(die: Dice, preserve_value: bool = false) -> void:
 	die.can_be_held = true
 	super(die, preserve_value)
+	die.set_lockout_time(2)
 	_update_dice_queue_locations()
 
 
@@ -55,8 +57,14 @@ func _update_dice_queue_locations() -> void:
 	
 
 func _update_ui() -> void:
-	health_label.text = "Player Health: " + str(hp_and_def.health) + " / " + str(hp_and_def.max_health)
-	defense_label.text = "Player Defense: " + str(hp_and_def.defense)
+	hp_bar.value = hp_and_def.health / float(hp_and_def.max_health)
+	$"HP Progress Bar/HP Label".text = str(hp_and_def.health)
+	
+	$"HP Progress Bar/Def Indicator/Def Label".text = str(hp_and_def.defense)
+	if hp_and_def.defense == 0:
+		$"HP Progress Bar/Def Indicator".visible = false
+	else:
+		$"HP Progress Bar/Def Indicator".visible = true
 
 
 func _death() -> void:

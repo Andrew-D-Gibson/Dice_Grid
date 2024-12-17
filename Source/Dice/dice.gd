@@ -3,6 +3,9 @@ extends Holdable
 
 @export var value: int = 0
 var being_tweened = false
+var locked_out_full_time: float = 0
+var locked_out_time_remaining: float = 0
+
 
 var destroy_particles := preload('res://Source/Dice/destroy_particles.tscn')
 
@@ -12,11 +15,23 @@ func _ready() -> void:
 		randomize_value()
 	$AnimatedSprite2D.frame = value
 	
-	
-func _process(_delta: float) -> void:
+
+func _process(delta: float) -> void:
 	if being_tweened:
 		return
-	super(_delta)
+	super(delta)
+	
+	if locked_out_time_remaining > 0:
+		can_be_held = false
+		locked_out_time_remaining -= delta
+		$TextureProgressBar.value = locked_out_time_remaining / locked_out_full_time
+	else:
+		can_be_held = true
+
+
+func set_lockout_time(duration: float) -> void:
+	locked_out_full_time = duration
+	locked_out_time_remaining = duration
 
 
 func randomize_value() -> void:

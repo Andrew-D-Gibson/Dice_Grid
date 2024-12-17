@@ -2,11 +2,12 @@ class_name Enemy
 extends Actor
 
 var next_action: Node2D
-var action_loading_time: float
+var loading_time: float
 
 @export_category("UI")
-@export var health_label: Label
-@export var defense_label: Label
+@export var hp_bar: TextureProgressBar
+@export var def_bar: TextureProgressBar
+@export var intent_timing_bar: TextureProgressBar
 
 
 func _ready() -> void:
@@ -21,15 +22,31 @@ func _ready() -> void:
 
 func _process(delta: float) -> void:
 	if len(dice_queue) > 0:
-		action_loading_time -= delta
+		loading_time += delta
 		
-		if action_loading_time <= 0:
+		intent_timing_bar.visible = true
+		intent_timing_bar.value = loading_time / next_action.action_loading_time
+		intent_timing_bar.tint_progress.s = intent_timing_bar.value
+		
+		if loading_time >= next_action.action_loading_time:
 			_act()
+	else:
+		loading_time = 0 
+		intent_timing_bar.visible = false
 
 
 func _update_ui() -> void:
-	health_label.text = "Enemy Health: " + str(hp_and_def.health) + " / " + str(hp_and_def.max_health)
-	defense_label.text = "Enemy Defense: " + str(hp_and_def.defense)
+	hp_bar.value = hp_and_def.health / float(hp_and_def.max_health)
+	$"HP Progress Bar/HP Label".text = str(hp_and_def.health)
+	
+	$"HP Progress Bar/Def Indicator/Def Label".text = str(hp_and_def.defense)
+	if hp_and_def.defense == 0:
+		$"HP Progress Bar/Def Indicator".visible = false
+	else:
+		$"HP Progress Bar/Def Indicator".visible = true
+		
+	for i in range($GridContainer.get_child_count()):
+		$GridContainer.get_child(i).visible = len(dice_queue) > i
 
 
 func _death() -> void:
@@ -45,11 +62,13 @@ func add_die_to_queue(die: Dice, preserve_value: bool = false) -> void:
 	die.visible = false
 	die.can_be_held = false
 	super(die, preserve_value)
+	_update_ui()
 	
 	
 func remove_die_from_queue(die: Dice) -> void:
 	die.visible = true
 	super(die)
+	_update_ui()
 
 
 func _choose_next_action() -> void:
@@ -60,7 +79,7 @@ func _choose_next_action() -> void:
 		return
 		
 	next_action.visible = true
-	action_loading_time = next_action.action_loading_time
+	loading_time = 0
 
 
 func _act() -> void:

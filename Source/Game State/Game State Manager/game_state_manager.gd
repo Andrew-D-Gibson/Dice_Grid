@@ -21,9 +21,10 @@ func _spawn_enemies(encounter_enemies: Array[PackedScene]) -> void:
 	if len(encounter_enemies) == 0:
 		return
 		
-	var enemy_spacing = 400 / (len(encounter_enemies) + 1)
+	var spacing: int = 500
+	var enemy_spacing = spacing / float(len(encounter_enemies) + 1)
 	
 	for i in range(len(encounter_enemies)):
 		var enemy = encounter_enemies[i].instantiate()
-		enemy.position = Vector2(192, -180 + (enemy_spacing * (i+1)))
+		enemy.position = Vector2(192, -(spacing / float(2)) + (enemy_spacing * (i+1)))
 		add_child(enemy)
