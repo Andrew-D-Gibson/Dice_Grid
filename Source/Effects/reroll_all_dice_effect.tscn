@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://cou8tsfj2phkl"]
+
+[ext_resource type="Script" path="res://Source/Effects/reroll_all_dice_effect.gd" id="1_hxp1c"]
+
+[node name="ReRoll All Dice Effect" type="Node2D"]
+script = ExtResource("1_hxp1c")

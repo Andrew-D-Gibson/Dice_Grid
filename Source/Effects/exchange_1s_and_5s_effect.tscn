@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://lfg362yo2srt"]
+
+[ext_resource type="Script" path="res://Source/Effects/exchange_1s_and_5s_effect.gd" id="1_fyl3y"]
+
+[node name="Exchange 1s and 5s Effect" type="Node2D"]
+script = ExtResource("1_fyl3y")

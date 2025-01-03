@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://b25arw8dpmxop"]
+
+[ext_resource type="Script" path="res://Source/Effects/destroy_activator_die_effect.gd" id="1_nemqw"]
+
+[node name="Destroy Activator Die" type="Node2D"]
+script = ExtResource("1_nemqw")

@@ -1,16 +1,20 @@
-[gd_resource type="Resource" script_class="Game_State" load_steps=6 format=3 uid="uid://demco14i4e5j0"]
+[gd_resource type="Resource" script_class="Game_State" load_steps=8 format=3 uid="uid://demco14i4e5j0"]
 
 [ext_resource type="Resource" uid="uid://mkpluwvpx1xp" path="res://Source/Encounters/3_basics_encounter.tres" id="1_05nu1"]
 [ext_resource type="Script" path="res://Source/Game State/Game State Resources/game_state.gd" id="1_defoe"]
 [ext_resource type="PackedScene" uid="uid://c0uglhkot8fu2" path="res://Source/Tiles/heal.tscn" id="2_wunl1"]
 [ext_resource type="PackedScene" uid="uid://jdl0rti53xfr" path="res://Source/Tiles/damage.tscn" id="4_ndfkt"]
 [ext_resource type="PackedScene" uid="uid://b7h0g1bsdfxrm" path="res://Source/Tiles/defend.tscn" id="5_1fyx3"]
+[ext_resource type="PackedScene" uid="uid://bor5yhebnn4pb" path="res://Source/Tiles/reroll.tscn" id="6_tot3m"]
+[ext_resource type="PackedScene" uid="uid://ou3pqnoqpj38" path="res://Source/Tiles/exchange.tscn" id="7_87hhd"]
 
 [resource]
 script = ExtResource("1_defoe")
 tile_locations = Dictionary[Vector2, PackedScene]({
 Vector2(0, 0): ExtResource("2_wunl1"),
 Vector2(0, 1): ExtResource("4_ndfkt"),
+Vector2(1, 0): ExtResource("6_tot3m"),
+Vector2(1, 1): ExtResource("7_87hhd"),
 Vector2(2, 2): ExtResource("5_1fyx3")
 })
 encounter = ExtResource("1_05nu1")

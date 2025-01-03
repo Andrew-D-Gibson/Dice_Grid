@@ -5,7 +5,7 @@ extends Actor
 @export var grid: Grid
 @export var dice_queue_offset: Vector2 = Vector2(-50, 100)
 @export var dice_queue_spacing: int = 32
-@export var starting_dice: int = 5
+@export var starting_dice: int = 10
 @export var starting_dice_spawn_delay: float = 0.2
 
 
@@ -26,7 +26,7 @@ func _ready() -> void:
 		new_dice.set_home_location(global_position + dice_queue_offset + Vector2((len(dice_queue)-1) * dice_queue_spacing, 0))
 		
 		add_die_to_queue(new_dice)
-		new_dice.value = 5 #Array([3,5]).pick_random()
+		#new_dice.value = 5 #Array([3,5]).pick_random()
 		new_dice.set_lockout_time(0)
 		get_tree().get_current_scene().add_child(new_dice)
 		

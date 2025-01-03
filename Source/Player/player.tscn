@@ -10,11 +10,10 @@
 [ext_resource type="Texture2D" uid="uid://jqfwxy5h0bal" path="res://Assets/Enemies/HP and Def UI/heart.png" id="7_3ojbm"]
 [ext_resource type="Texture2D" uid="uid://kglaknk7yu2l" path="res://Assets/Enemies/HP and Def UI/shield.png" id="9_l0e3u"]
 
-[node name="Player" type="Node2D" node_paths=PackedStringArray("grid", "hp_bar", "def_bar", "hp_and_def")]
+[node name="Player" type="Node2D" node_paths=PackedStringArray("grid", "hp_bar", "hp_and_def")]
 script = ExtResource("1_g4gsc")
 grid = NodePath("Grid")
 hp_bar = NodePath("HP Progress Bar")
-def_bar = NodePath("")
 hp_and_def = NodePath("Health Component")
 dice_scene = ExtResource("2_880o0")
 

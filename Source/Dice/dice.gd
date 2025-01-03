@@ -35,7 +35,11 @@ func set_lockout_time(duration: float) -> void:
 
 
 func randomize_value() -> void:
-	value = randi_range(1,6)
+	set_value(randi_range(1,6))
+	
+	
+func set_value(val: int) -> void:
+	value = val
 	$AnimatedSprite2D.frame = value
 
 
@@ -73,7 +77,7 @@ func send_to_target(actor: Actor, target: Actor, effect_function) -> void:
 	being_tweened = true
 	can_be_held = false
 	
-	# For some reason, even the 'being_tweened' _process workaround
+	# For some reason, with the 'being_tweened' _process workaround
 	# there's a single frame that's processed that moves the die.
 	# This line makes that single frame not move the die before being tweened.
 	last_valid_position = position

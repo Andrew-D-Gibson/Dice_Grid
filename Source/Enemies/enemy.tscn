@@ -15,10 +15,9 @@
 [ext_resource type="Texture2D" uid="uid://kglaknk7yu2l" path="res://Assets/Enemies/HP and Def UI/shield.png" id="13_8aj7q"]
 [ext_resource type="Texture2D" uid="uid://bgc0cv7c31np3" path="res://Assets/Enemies/Dice Queue/3_dice.png" id="14_1hmcw"]
 
-[node name="Enemy" type="Node2D" node_paths=PackedStringArray("hp_bar", "def_bar", "intent_timing_bar", "hp_and_def") groups=["enemies"]]
+[node name="Enemy" type="Node2D" node_paths=PackedStringArray("hp_bar", "intent_timing_bar", "hp_and_def") groups=["enemies"]]
 script = ExtResource("1_2wu4v")
 hp_bar = NodePath("HP Progress Bar")
-def_bar = NodePath("")
 intent_timing_bar = NodePath("Intent Progress Bar")
 hp_and_def = NodePath("Health Component")
 dice_scene = ExtResource("2_8mhou")
