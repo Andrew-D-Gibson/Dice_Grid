@@ -11,7 +11,6 @@ extends Actor
 
 @export_category("UI")
 @export var hp_bar: TextureProgressBar
-@export var def_bar: TextureProgressBar
 
 
 func _ready() -> void:

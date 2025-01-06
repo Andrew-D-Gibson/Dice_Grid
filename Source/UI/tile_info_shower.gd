@@ -1,9 +1,10 @@
 extends Control
 
 func _ready() -> void:
-	Events.tile_clicked_for_info.connect(_show_tile_info)
-	
+	process_mode = Node.PROCESS_MODE_ALWAYS
 	self.visible = false
+	
+	Events.tile_clicked_for_info.connect(_show_tile_info)
 	
 	
 func _show_tile_info(tile: Tile):

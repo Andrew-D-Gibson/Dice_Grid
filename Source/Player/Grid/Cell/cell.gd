@@ -12,6 +12,7 @@ extends Node2D
 var occupying_tile: Tile
 
 func _ready():
+	process_mode = Node.PROCESS_MODE_ALWAYS
 	update_graphics()
 
 

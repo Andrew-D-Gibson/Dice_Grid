@@ -1,10 +1,11 @@
-[gd_scene load_steps=7 format=3 uid="uid://ou3pqnoqpj38"]
+[gd_scene load_steps=8 format=3 uid="uid://ou3pqnoqpj38"]
 
 [ext_resource type="Script" path="res://Source/Tiles/tile.gd" id="1_2552k"]
 [ext_resource type="Texture2D" uid="uid://cylbran026euv" path="res://Assets/Tiles/exchange.png" id="2_2552k"]
 [ext_resource type="PackedScene" uid="uid://bwtgx83ngvi3h" path="res://Source/Tiles/Tile Activations/accept_all_activation.tscn" id="3_cljg6"]
 [ext_resource type="PackedScene" uid="uid://lfg362yo2srt" path="res://Source/Effects/exchange_1s_and_5s_effect.tscn" id="4_uopnf"]
 [ext_resource type="PackedScene" uid="uid://bykepwjoitqvl" path="res://Source/Effects/Targeters/target_random_enemy.tscn" id="5_uopnf"]
+[ext_resource type="PackedScene" uid="uid://ri7bhdwesyrp" path="res://Source/Effects/give_die_to_target_effect.tscn" id="6_spoo7"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_gtxx6"]
 size = Vector2(32, 32)
@@ -29,6 +30,6 @@ texture = ExtResource("2_2552k")
 
 [node name="Target Random Enemy" parent="Effects Parent" instance=ExtResource("5_uopnf")]
 
-[node name="Give Die to Target" type="Node2D" parent="Effects Parent"]
+[node name="Give Die to Target Effect" parent="Effects Parent" instance=ExtResource("6_spoo7")]
 
 [connection signal="input_event" from="." to="." method="_on_area_2d_input_event"]

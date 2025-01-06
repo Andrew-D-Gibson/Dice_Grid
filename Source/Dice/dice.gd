@@ -2,10 +2,8 @@ class_name Dice
 extends Holdable
 
 @export var value: int = 0
-var being_tweened = false
 var locked_out_full_time: float = 0
 var locked_out_time_remaining: float = 0
-
 
 var destroy_particles := preload('res://Source/Dice/destroy_particles.tscn')
 
@@ -17,8 +15,6 @@ func _ready() -> void:
 	
 
 func _process(delta: float) -> void:
-	if being_tweened:
-		return
 	super(delta)
 	
 	if locked_out_time_remaining > 0:
@@ -72,7 +68,7 @@ func destroy():
 	queue_free()
 
 
-func send_to_target(actor: Actor, target: Actor, effect_function) -> void:
+func attack_tween(actor: Actor, target: Actor, effect_function) -> void:
 	var tween_time = 0.75
 	being_tweened = true
 	can_be_held = false
@@ -84,7 +80,7 @@ func send_to_target(actor: Actor, target: Actor, effect_function) -> void:
 	
 	var tween = get_tree().create_tween().set_parallel(true)
 	tween.tween_property(self, 'global_position', target.global_position, tween_time).set_trans(Tween.TRANS_SPRING).set_ease(Tween.EASE_IN)
-	tween.tween_property(self, "rotation_degrees", 360 * 6, tween_time).from(0).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_IN)
+	tween.tween_property(self, 'rotation_degrees', 360 * 6, tween_time).from(0).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_IN)
 	
 	var finish_send = func finish_send() -> void:
 		being_tweened = false
@@ -92,3 +88,24 @@ func send_to_target(actor: Actor, target: Actor, effect_function) -> void:
 	
 	tween.chain().tween_callback(finish_send)
 	
+
+func send_tween(actor: Actor, target: Actor, effect_function) -> void:
+	var tween_time = 0.75
+	being_tweened = true
+	can_be_held = false
+	
+	# For some reason, with the 'being_tweened' _process workaround
+	# there's a single frame that's processed that moves the die.
+	# This line makes that single frame not move the die before being tweened.
+	last_valid_position = position
+	
+	var tween = get_tree().create_tween().set_parallel(true)
+	tween.tween_property(self, 'global_position', target.global_position, tween_time).set_trans(Tween.TRANS_CIRC).set_ease(Tween.EASE_IN_OUT)
+	tween.tween_property($AnimatedSprite2D, 'scale', Vector2(0.1,0.1), tween_time).from_current().set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_IN)
+	
+	var finish_send = func finish_send() -> void:
+		being_tweened = false
+		$AnimatedSprite2D.scale = Vector2(1,1)
+		effect_function.call(actor, target, self)
+	
+	tween.chain().tween_callback(finish_send)

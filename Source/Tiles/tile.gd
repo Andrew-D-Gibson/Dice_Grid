@@ -18,8 +18,15 @@ var click_window_time: float = 0.4
 @onready var tile_texture: Texture2D = $Sprite2D.texture
 
 
+func _ready() -> void:
+	process_mode = Node.PROCESS_MODE_ALWAYS
+	super()
+	
+
 func check_activation(die: Dice = null) -> void:
 	if activation_node.criteria_satisfied(die):
+		bob_tween()
+		
 		Globals.player.remove_die_from_queue(die)
 		
 		# Set up the effects dictionary for chaining effects

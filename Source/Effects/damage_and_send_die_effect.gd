@@ -26,7 +26,7 @@ func play(effect_variables: Dictionary) -> Dictionary:
 	
 	# Now shoot each dice at each target
 	for i in range(len(effect_variables['targets'])):
-		dice_to_send[i].send_to_target(effect_variables['actor'], effect_variables['targets'][i], damage)
+		dice_to_send[i].attack_tween(effect_variables['actor'], effect_variables['targets'][i], damage)
 	
 	return effect_variables
 	

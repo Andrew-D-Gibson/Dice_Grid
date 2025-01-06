@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://cygbrgfx6v2tu"]
+[gd_scene load_steps=6 format=3 uid="uid://cygbrgfx6v2tu"]
 
 [ext_resource type="Theme" uid="uid://b6tit6cxjtdpd" path="res://Assets/UI/default_theme.tres" id="2_hokdr"]
 [ext_resource type="Script" path="res://Source/UI/tile_info_shower.gd" id="2_s3k8h"]
 [ext_resource type="Texture2D" uid="uid://3nfb6quhg5m1" path="res://Assets/Tiles/heal.png" id="2_yups5"]
 [ext_resource type="Script" path="res://Source/UI/game_over_screen.gd" id="3_hokdr"]
+[ext_resource type="Script" path="res://Source/UI/paused_display.gd" id="5_mfmks"]
 
 [node name="UI" type="CanvasLayer"]
 
@@ -94,5 +95,34 @@ grow_vertical = 2
 theme = ExtResource("2_hokdr")
 theme_override_font_sizes/font_size = 128
 text = "Game Over!"
+
+[node name="Paused Display" type="Control" parent="."]
+visible = false
+layout_mode = 3
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -20.0
+offset_right = 20.0
+offset_bottom = 40.0
+grow_horizontal = 2
+size_flags_vertical = 0
+script = ExtResource("5_mfmks")
+
+[node name="Label" type="Label" parent="Paused Display"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -216.0
+offset_top = 84.0
+offset_right = 216.0
+offset_bottom = 228.0
+grow_horizontal = 2
+theme = ExtResource("2_hokdr")
+theme_override_font_sizes/font_size = 192
+text = "PAUSED"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [connection signal="gui_input" from="Tile Info Shower/Screen Dim" to="Tile Info Shower" method="_on_screen_dim_gui_input"]
