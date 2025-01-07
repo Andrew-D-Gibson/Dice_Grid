@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://djowit6k2t6lo"]
+[gd_scene load_steps=14 format=3 uid="uid://djowit6k2t6lo"]
 
 [ext_resource type="Script" path="res://Source/Enemies/enemy.gd" id="1_2wu4v"]
 [ext_resource type="PackedScene" uid="uid://cu4pw31ijdghb" path="res://Source/Dice/dice.tscn" id="2_8mhou"]
@@ -6,7 +6,6 @@
 [ext_resource type="Texture2D" uid="uid://6pflrok71dh7" path="res://icon.svg" id="2_xu8cd"]
 [ext_resource type="Theme" uid="uid://b6tit6cxjtdpd" path="res://Assets/UI/default_theme.tres" id="3_xn7u6"]
 [ext_resource type="PackedScene" uid="uid://dchteabtrevci" path="res://Source/Enemies/Enemy Actions/attack_player.tscn" id="4_iqa7y"]
-[ext_resource type="PackedScene" uid="uid://dxgikxh33wmht" path="res://Source/Enemies/Enemy Actions/defend_self.tscn" id="6_8gxoy"]
 [ext_resource type="Texture2D" uid="uid://cosr1royc4yfb" path="res://Assets/Enemies/Enemy Intents/Timing Bar/background.png" id="8_kgr8e"]
 [ext_resource type="Texture2D" uid="uid://jgb5ksjv52fx" path="res://Assets/Enemies/HP and Def UI/HP background.png" id="9_dd0uj"]
 [ext_resource type="Texture2D" uid="uid://b4pcjgof1dt7a" path="res://Assets/Enemies/Enemy Intents/Timing Bar/yellow_fill.png" id="9_lesxe"]
@@ -34,8 +33,6 @@ max_health = 12
 
 [node name="Attack Player" parent="Possible Actions Parent" instance=ExtResource("4_iqa7y")]
 visible = false
-
-[node name="Defend Self" parent="Possible Actions Parent" instance=ExtResource("6_8gxoy")]
 
 [node name="Intent Progress Bar" type="TextureProgressBar" parent="."]
 anchors_preset = 5

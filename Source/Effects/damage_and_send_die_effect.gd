@@ -6,7 +6,7 @@ extends Effect
 
 func play(effect_variables: Dictionary) -> Dictionary:
 	# If there's no target, destroy the die
-	if len(effect_variables['targets']) == 0:
+	if len(effect_variables['targets']) == 0 or effect_variables['targets'][0] == null:
 		effect_variables['die_used'].destroy()
 		effect_variables['die_used'] = null
 		return effect_variables

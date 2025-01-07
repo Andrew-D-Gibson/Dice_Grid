@@ -23,7 +23,7 @@ func _ready() -> void:
 	super()
 	
 
-func check_activation(die: Dice = null) -> void:
+func check_activation(die: Dice = null, destroy_on_fail = false) -> void:
 	if activation_node.criteria_satisfied(die):
 		bob_tween()
 		
@@ -40,6 +40,9 @@ func check_activation(die: Dice = null) -> void:
 		for effect in $"Effects Parent".get_children(false):
 			if effect is Effect:
 				effect_dict = effect.play(effect_dict)
+				
+	elif destroy_on_fail:
+		die.destroy()
 
 
 func _pickup() -> void:

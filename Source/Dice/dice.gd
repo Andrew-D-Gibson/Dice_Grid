@@ -109,3 +109,26 @@ func send_tween(actor: Actor, target: Actor, effect_function) -> void:
 		effect_function.call(actor, target, self)
 	
 	tween.chain().tween_callback(finish_send)
+
+
+func activate_tile_tween(target: Tile) -> void:
+	var tween_time = 0.75
+	being_tweened = true
+	can_be_held = false
+	 
+	# For some reason, with the 'being_tweened' _process workaround
+	# there's a single frame that's processed that moves the die.
+	# This line makes that single frame not move the die before being tweened.
+	last_valid_position = position
+	
+	var tween = get_tree().create_tween().set_parallel(true)
+	tween.tween_property(self, 'global_position', target.global_position, tween_time).set_trans(Tween.TRANS_CIRC).set_ease(Tween.EASE_IN_OUT)
+	#tween.tween_property($AnimatedSprite2D, 'scale', Vector2(0.1,0.1), tween_time).from_current().set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_IN)
+	
+	var finish_send = func finish_send() -> void:
+		being_tweened = false
+		$AnimatedSprite2D.scale = Vector2(1,1)
+		
+		target.check_activation(self, true)
+	
+	tween.chain().tween_callback(finish_send)
