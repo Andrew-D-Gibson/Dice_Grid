@@ -26,27 +26,6 @@ func play(effect_variables: Dictionary) -> Dictionary:
 	
 	# Now shoot each dice at each target
 	for i in range(len(effect_variables['targets'])):
-		dice_to_send[i].attack_tween(effect_variables['actor'], effect_variables['targets'][i], damage)
+		dice_to_send[i].attack_tween(effect_variables['targets'][i], damage_amount)
 	
 	return effect_variables
-	
-
-func damage(actor: Actor, target: Actor, die_used: Dice) -> void:
-	# The target might die before this is called,
-	# so add the die back to the sender's queue if needed
-	if not target:
-		# Check that we can return it to the sender.
-		# If we can't, just destroy the die
-		# This potentially should add it back to the player's queue. We'll see.
-		if not actor:
-			die_used.destroy()
-			return
-			
-		actor.add_die_to_queue(die_used)
-		return
-	
-	# Also, we need to add the die to the target then damage it.
-	# If the target dies to this attack without owning the die, 
-	# it won't handle returning the die to the player's queue
-	target.add_die_to_queue(die_used)
-	target.take_damage(damage_amount)

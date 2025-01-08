@@ -17,4 +17,4 @@ game_state = ExtResource("3_7mycd")
 player = NodePath("../Player")
 
 [node name="Player" parent="." instance=ExtResource("4_lquwl")]
-position = Vector2(-180, 0)
+position = Vector2(-147, 0)

@@ -2,13 +2,13 @@
 
 importer="font_data_dynamic"
 type="FontFile"
-uid="uid://vxh6vocslhy4"
-path="res://.godot/imported/Kenney High.ttf-bac7c30135f7232e59d08e1c8e412cc0.fontdata"
+uid="uid://dfj32bjv8g60g"
+path="res://.godot/imported/munro-narrow.ttf-28f95d997f5c729ee7a76a2828fcf50c.fontdata"
 
 [deps]
 
-source_file="res://Assets/Fonts/Kenney High.ttf"
-dest_files=["res://.godot/imported/Kenney High.ttf-bac7c30135f7232e59d08e1c8e412cc0.fontdata"]
+source_file="res://Assets/Fonts/Munro/munro-narrow.ttf"
+dest_files=["res://.godot/imported/munro-narrow.ttf-28f95d997f5c729ee7a76a2828fcf50c.fontdata"]
 
 [params]
 

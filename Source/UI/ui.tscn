@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://cygbrgfx6v2tu"]
+[gd_scene load_steps=8 format=3 uid="uid://cygbrgfx6v2tu"]
 
 [ext_resource type="Script" path="res://Source/UI/dev_console.gd" id="1_4eq4m"]
 [ext_resource type="Theme" uid="uid://b6tit6cxjtdpd" path="res://Assets/UI/default_theme.tres" id="2_hokdr"]
@@ -6,6 +6,9 @@
 [ext_resource type="Texture2D" uid="uid://3nfb6quhg5m1" path="res://Assets/Tiles/heal.png" id="2_yups5"]
 [ext_resource type="Script" path="res://Source/UI/game_over_screen.gd" id="3_hokdr"]
 [ext_resource type="Script" path="res://Source/UI/paused_display.gd" id="5_mfmks"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4eq4m"]
+bg_color = Color(0.144, 0.3416, 0.6, 0.72549)
 
 [node name="UI" type="CanvasLayer"]
 
@@ -30,6 +33,7 @@ offset_top = -360.0
 offset_right = 640.0
 grow_vertical = 0
 theme = ExtResource("2_hokdr")
+theme_override_styles/panel = SubResource("StyleBoxFlat_4eq4m")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Dev Console/PanelContainer"]
 layout_mode = 2
@@ -38,10 +42,12 @@ alignment = 2
 [node name="RichTextLabel" type="RichTextLabel" parent="Dev Console/PanelContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
+theme = ExtResource("2_hokdr")
 scroll_following = true
 
 [node name="LineEdit" type="LineEdit" parent="Dev Console/PanelContainer/VBoxContainer"]
 layout_mode = 2
+theme = ExtResource("2_hokdr")
 placeholder_text = "Enter console command"
 context_menu_enabled = false
 caret_blink = true

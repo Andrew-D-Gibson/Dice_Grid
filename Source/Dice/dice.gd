@@ -68,7 +68,7 @@ func destroy():
 	queue_free()
 
 
-func attack_tween(actor: Actor, target: Actor, effect_function) -> void:
+func attack_tween(target: Actor, damage_amount: int) -> void:
 	var tween_time = 0.75
 	being_tweened = true
 	can_be_held = false
@@ -84,12 +84,16 @@ func attack_tween(actor: Actor, target: Actor, effect_function) -> void:
 	
 	var finish_send = func finish_send() -> void:
 		being_tweened = false
-		effect_function.call(actor, target, self)
+		if target:
+			target.take_damage(damage_amount)
+			target.add_die_to_queue(self)
+		else:
+			destroy()
 	
 	tween.chain().tween_callback(finish_send)
 	
 
-func send_tween(actor: Actor, target: Actor, effect_function) -> void:
+func send_tween(target: Actor) -> void:
 	var tween_time = 0.75
 	being_tweened = true
 	can_be_held = false
@@ -106,7 +110,12 @@ func send_tween(actor: Actor, target: Actor, effect_function) -> void:
 	var finish_send = func finish_send() -> void:
 		being_tweened = false
 		$AnimatedSprite2D.scale = Vector2(1,1)
-		effect_function.call(actor, target, self)
+		
+		if target:
+			target.add_die_to_queue(self)
+		else:
+			destroy()
+		
 	
 	tween.chain().tween_callback(finish_send)
 
@@ -129,6 +138,9 @@ func activate_tile_tween(target: Tile) -> void:
 		being_tweened = false
 		$AnimatedSprite2D.scale = Vector2(1,1)
 		
-		target.check_activation(self, true)
-	
+		if target:
+			target.check_activation(self)
+		else:
+			destroy()
+		
 	tween.chain().tween_callback(finish_send)

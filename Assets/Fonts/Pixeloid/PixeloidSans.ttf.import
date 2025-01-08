@@ -2,13 +2,13 @@
 
 importer="font_data_dynamic"
 type="FontFile"
-uid="uid://ccx2jnuf10pia"
-path="res://.godot/imported/Kenney Blocks.ttf-3bed01be33226837caf3b2f41c55de49.fontdata"
+uid="uid://nq2yrkgjkueh"
+path="res://.godot/imported/PixeloidSans.ttf-f389eb3ac63a0729771a34bbcd2809a5.fontdata"
 
 [deps]
 
-source_file="res://Assets/Fonts/Kenney Blocks.ttf"
-dest_files=["res://.godot/imported/Kenney Blocks.ttf-3bed01be33226837caf3b2f41c55de49.fontdata"]
+source_file="res://Assets/Fonts/Pixeloid/PixeloidSans.ttf"
+dest_files=["res://.godot/imported/PixeloidSans.ttf-f389eb3ac63a0729771a34bbcd2809a5.fontdata"]
 
 [params]
 

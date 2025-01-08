@@ -2,13 +2,13 @@
 
 importer="font_data_dynamic"
 type="FontFile"
-uid="uid://ddjc1sfd5q6gm"
-path="res://.godot/imported/Kenney High Square.ttf-29859efae61ad3f8fcf0161b812f5a02.fontdata"
+uid="uid://cmiflcx2ipcec"
+path="res://.godot/imported/C&C Red Alert [LAN].ttf-eb32383611f96486bd4037b492b73fa4.fontdata"
 
 [deps]
 
-source_file="res://Assets/Fonts/Kenney High Square.ttf"
-dest_files=["res://.godot/imported/Kenney High Square.ttf-29859efae61ad3f8fcf0161b812f5a02.fontdata"]
+source_file="res://Assets/Fonts/CC/C&C Red Alert [LAN].ttf"
+dest_files=["res://.godot/imported/C&C Red Alert [LAN].ttf-eb32383611f96486bd4037b492b73fa4.fontdata"]
 
 [params]
 

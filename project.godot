@@ -25,11 +25,17 @@ Globals="*res://Source/Autoloads/globals.gd"
 
 window/size/viewport_width=1920
 window/size/viewport_height=1080
-window/size/resizable=false
+window/size/mode=2
+window/stretch/mode="viewport"
 
 [global_group]
 
 enemies=""
+
+[gui]
+
+theme/custom="res://Assets/UI/default_theme.tres"
+theme/custom_font="res://Assets/Fonts/m5x7/m5x7.ttf"
 
 [input]
 

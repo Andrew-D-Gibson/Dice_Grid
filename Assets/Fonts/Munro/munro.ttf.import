@@ -2,13 +2,13 @@
 
 importer="font_data_dynamic"
 type="FontFile"
-uid="uid://cyjmsnxl0ajwx"
-path="res://.godot/imported/Kenney Rocket.ttf-e85a3db9f30dd1d6be1a5a9e060404ba.fontdata"
+uid="uid://b7xom2yuarnqq"
+path="res://.godot/imported/munro.ttf-3a97e402d7ed6847e0df02f22af4a994.fontdata"
 
 [deps]
 
-source_file="res://Assets/Fonts/Kenney Rocket.ttf"
-dest_files=["res://.godot/imported/Kenney Rocket.ttf-e85a3db9f30dd1d6be1a5a9e060404ba.fontdata"]
+source_file="res://Assets/Fonts/Munro/munro.ttf"
+dest_files=["res://.godot/imported/munro.ttf-3a97e402d7ed6847e0df02f22af4a994.fontdata"]
 
 [params]
 
