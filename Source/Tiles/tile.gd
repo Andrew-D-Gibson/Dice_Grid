@@ -9,13 +9,15 @@ var host_cell: Cell
 @export_category('Description')
 @export var description: String
 
+signal activation_completed()
 
 # Set the time (in seconds) that can elapse for a "click" to be registered,
 # rather than a long "hold."  A "click" means we want to show this tile's info.
 var click_window_time: float = 0.4
 
-# Record this tile's texture so we can display it's info in the UI later
+# Grab this tile's texture so we can display it's info in the UI later
 @onready var tile_texture: Texture2D = $Sprite2D.texture
+@onready var highlight: Sprite2D = $Highlight
 
 
 func _ready() -> void:
@@ -40,6 +42,8 @@ func check_activation(die: Dice = null) -> void:
 		for effect in $"Effects Parent".get_children(false):
 			if effect is Effect:
 				effect_dict = effect.play(effect_dict)
+		highlight.visible = false
+		activation_completed.emit()
 
 
 func _pickup() -> void:

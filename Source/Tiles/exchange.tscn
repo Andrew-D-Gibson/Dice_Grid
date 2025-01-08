@@ -1,7 +1,8 @@
-[gd_scene load_steps=8 format=3 uid="uid://ou3pqnoqpj38"]
+[gd_scene load_steps=9 format=3 uid="uid://ou3pqnoqpj38"]
 
 [ext_resource type="Script" path="res://Source/Tiles/tile.gd" id="1_2552k"]
 [ext_resource type="Texture2D" uid="uid://cylbran026euv" path="res://Assets/Tiles/exchange.png" id="2_2552k"]
+[ext_resource type="Texture2D" uid="uid://dn5lgv5oi1u5n" path="res://Assets/Tiles/highlight.png" id="3_1ukxt"]
 [ext_resource type="PackedScene" uid="uid://bwtgx83ngvi3h" path="res://Source/Tiles/Tile Activations/accept_all_activation.tscn" id="3_cljg6"]
 [ext_resource type="PackedScene" uid="uid://lfg362yo2srt" path="res://Source/Effects/exchange_1s_and_5s_effect.tscn" id="4_uopnf"]
 [ext_resource type="PackedScene" uid="uid://bykepwjoitqvl" path="res://Source/Effects/Targeters/target_random_enemy.tscn" id="5_uopnf"]
@@ -21,6 +22,11 @@ shape = SubResource("RectangleShape2D_gtxx6")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("2_2552k")
+
+[node name="Highlight" type="Sprite2D" parent="."]
+visible = false
+z_index = 1
+texture = ExtResource("3_1ukxt")
 
 [node name="Accept All Activation" parent="." instance=ExtResource("3_cljg6")]
 

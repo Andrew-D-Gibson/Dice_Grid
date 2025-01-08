@@ -20,6 +20,7 @@ config/icon="res://icon.svg"
 InputManager="*res://Source/Autoloads/input_manager.gd"
 Events="*res://Source/Autoloads/events.gd"
 Globals="*res://Source/Autoloads/globals.gd"
+Debug="*res://Source/Autoloads/debug.gd"
 
 [display]
 

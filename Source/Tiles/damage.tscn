@@ -1,7 +1,8 @@
-[gd_scene load_steps=7 format=3 uid="uid://jdl0rti53xfr"]
+[gd_scene load_steps=8 format=3 uid="uid://jdl0rti53xfr"]
 
 [ext_resource type="Script" path="res://Source/Tiles/tile.gd" id="1_d2m0a"]
 [ext_resource type="Texture2D" uid="uid://dcogx1qymbvf6" path="res://Assets/Tiles/sword.png" id="2_2dlej"]
+[ext_resource type="Texture2D" uid="uid://dn5lgv5oi1u5n" path="res://Assets/Tiles/highlight.png" id="3_2dlej"]
 [ext_resource type="PackedScene" uid="uid://b1gm70vaf8x60" path="res://Source/Tiles/Tile Activations/value_activation.tscn" id="3_l7ydw"]
 [ext_resource type="PackedScene" uid="uid://cqbs1nh4yicqw" path="res://Source/Effects/damage_and_send_die_effect.tscn" id="4_44vkw"]
 [ext_resource type="PackedScene" uid="uid://bykepwjoitqvl" path="res://Source/Effects/Targeters/target_random_enemy.tscn" id="4_tmrne"]
@@ -20,6 +21,11 @@ shape = SubResource("RectangleShape2D_gtxx6")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("2_2dlej")
+
+[node name="Highlight" type="Sprite2D" parent="."]
+visible = false
+z_index = 1
+texture = ExtResource("3_2dlej")
 
 [node name="Value Activation" parent="." instance=ExtResource("3_l7ydw")]
 acceptable_values = Array[int]([5])

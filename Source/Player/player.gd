@@ -25,7 +25,7 @@ func _ready() -> void:
 		new_dice.set_home_location(global_position + dice_queue_offset + Vector2((len(dice_queue)-1) * dice_queue_spacing, 0))
 		
 		add_die_to_queue(new_dice)
-		#new_dice.value = 5 #Array([3,5]).pick_random()
+		new_dice.value = 5 #Array([3,5]).pick_random()
 		new_dice.set_lockout_time(0)
 		get_tree().get_current_scene().add_child(new_dice)
 		
@@ -40,7 +40,7 @@ func _ready() -> void:
 func add_die_to_queue(die: Dice, preserve_value: bool = false) -> void:
 	die.can_be_held = true
 	super(die, preserve_value)
-	die.set_lockout_time(2)
+	die.set_lockout_time(5)
 	_update_dice_queue_locations()
 
 

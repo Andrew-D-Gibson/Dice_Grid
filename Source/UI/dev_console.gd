@@ -29,6 +29,13 @@ func _on_line_edit_text_submitted(console_command: String) -> void:
 			Globals.player.change_health(1000)
 			command_history.append_text('\n[center][i]Healed player![/i][/center]')
 			
+		'player_invulnerable':
+			Globals.player.hp_and_def.invulnerable = !Globals.player.hp_and_def.invulnerable
+			if Globals.player.hp_and_def.invulnerable:
+				command_history.append_text('\n[center][i]Made player invulnerable![/i][/center]')
+			else:
+				command_history.append_text('\n[center][i]Returned player to vulnerable.[/i][/center]')
+			
 		'kill_enemies':
 			for enemy in get_tree().get_nodes_in_group('enemies'):
 				enemy.take_damage(1_000_000)

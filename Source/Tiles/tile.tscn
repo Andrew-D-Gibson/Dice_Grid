@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://bkyal45wanusk"]
+[gd_scene load_steps=6 format=3 uid="uid://bkyal45wanusk"]
 
 [ext_resource type="Script" path="res://Source/Tiles/tile.gd" id="1_gtxx6"]
 [ext_resource type="Texture2D" uid="uid://gtv0muihjqa0" path="res://Assets/Tiles/place_holder.png" id="2_it3qb"]
+[ext_resource type="Texture2D" uid="uid://dn5lgv5oi1u5n" path="res://Assets/Tiles/highlight.png" id="3_grkj4"]
 [ext_resource type="PackedScene" uid="uid://b1gm70vaf8x60" path="res://Source/Tiles/Tile Activations/value_activation.tscn" id="3_it3qb"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_gtxx6"]
@@ -18,6 +19,11 @@ shape = SubResource("RectangleShape2D_gtxx6")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("2_it3qb")
+
+[node name="Highlight" type="Sprite2D" parent="."]
+visible = false
+z_index = 1
+texture = ExtResource("3_grkj4")
 
 [node name="Value Activation" parent="." instance=ExtResource("3_it3qb")]
 acceptable_values = Array[int]([1])

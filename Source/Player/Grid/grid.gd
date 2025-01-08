@@ -1,34 +1,54 @@
-@tool
 class_name Grid
 extends Node2D
 
-@export var grid_width := 5
-@export var grid_height := 5
-@export var grid_spacing := 32
-
 @export var cell_scene: PackedScene
 
-# The 2D array of cells
-# GDScript doesn't support 2D array declaration to my knowledge
-var cell_array
+# The 2D array of cells, stored as a dictionary so
+# we can check if things exist without running the risk of an error
+var cell_array = {}
 
-func create_and_populate_grid(tile_dictionary: Dictionary[Vector2, PackedScene]) -> void:
-	cell_array = []
+func create_and_populate_grid(tile_dictionary: Dictionary[Vector2i, PackedScene]) -> void:
+	var cell = cell_scene.instantiate()
+	cell.position = Vector2(0, 0)
+	cell.grid_location = Vector2i(0, 0)
+	add_child(cell)
 	
-	var grid_pos_offset := Vector2(-((grid_width-1) * grid_spacing)/2.0, -((grid_height-1) * grid_spacing)/2.0)
-	for x in range(grid_width):
-		cell_array.append([])
-		
-		for y in range(grid_height):
-			var cell = cell_scene.instantiate()
-			cell.position = grid_pos_offset + Vector2(x * grid_spacing, y * grid_spacing)
-			cell.grid_location = Vector2i(x, y)
-			add_child(cell)
-			
-			cell_array[x].append(cell)
+	cell_array[0] = {}
+	cell_array[0][0] = cell
 			
 	for pos in tile_dictionary:
 		var tile = tile_dictionary[pos].instantiate()
-		tile.attach_to_cell(cell_array[int(pos.x)][int(pos.y)])
-		tile.global_position = cell_array[pos.x][pos.y].global_position
-		add_child(tile)
+		
+		if cell_array.has(pos.x) and cell_array[pos.x].has(pos.y):
+			tile.attach_to_cell(cell_array[pos.x][pos.y])
+			tile.global_position = cell_array[pos.x][pos.y].global_position
+			add_child(tile)
+
+
+func get_surrounding_tiles_by_pip_value(value: int, activator_grid_location: Vector2i) -> Array[Tile]:
+	var pip_offsets = {
+		2: [Vector2i(-1,-1), Vector2i(1,1)],
+		3: [Vector2i(-1,1), Vector2i(1,-1)],
+		4: [Vector2i(-1,-1), Vector2i(-1,1), Vector2i(1,-1), Vector2i(1,1)],
+		5: [Vector2i(-1,-1), Vector2i(-1,1), Vector2i(1,-1), Vector2i(1,1)],
+		6: [Vector2i(-1,-1), Vector2i(-1,0), Vector2i(-1,1), 
+			Vector2i(1,-1), Vector2i(1,0), Vector2i(1,1)]
+	}
+	
+	if not pip_offsets.has(value):
+		return []
+	
+	var tile_list: Array[Tile] = []
+	for offset in pip_offsets[value]:
+		if not cell_array.has(activator_grid_location.x + offset.x):
+			continue
+		
+		if not cell_array[activator_grid_location.x + offset.x].has(activator_grid_location.y + offset.y):
+			continue
+			
+		if not cell_array[activator_grid_location.x + offset.x][activator_grid_location.y + offset.y].occupying_tile:
+			continue
+			
+		tile_list.append(cell_array[activator_grid_location.x + offset.x][activator_grid_location.y + offset.y].occupying_tile)
+		
+	return tile_list

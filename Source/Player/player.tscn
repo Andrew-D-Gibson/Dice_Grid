@@ -4,27 +4,29 @@
 [ext_resource type="PackedScene" uid="uid://cu4pw31ijdghb" path="res://Source/Dice/dice.tscn" id="2_880o0"]
 [ext_resource type="Theme" uid="uid://b6tit6cxjtdpd" path="res://Assets/UI/default_theme.tres" id="3_0tdpy"]
 [ext_resource type="PackedScene" uid="uid://c8t3yoopiopfp" path="res://Source/Inherited Classes/Actor/HP and Def Component/hp_and_def_component.tscn" id="3_v1mne"]
-[ext_resource type="PackedScene" uid="uid://ba56b2edr1yh2" path="res://Source/Player/Grid/grid.tscn" id="4_0tdpy"]
 [ext_resource type="Texture2D" uid="uid://jgb5ksjv52fx" path="res://Assets/Enemies/HP and Def UI/HP background.png" id="5_hjit1"]
+[ext_resource type="PackedScene" uid="uid://ddwxm63iod07c" path="res://Source/Player/Grid/Grid Layouts/rectangular_grid.tscn" id="5_mjklq"]
 [ext_resource type="Texture2D" uid="uid://wmuutwjk0pel" path="res://Assets/Enemies/HP and Def UI/HP fill.png" id="6_mjklq"]
 [ext_resource type="Texture2D" uid="uid://jqfwxy5h0bal" path="res://Assets/Enemies/HP and Def UI/heart.png" id="7_3ojbm"]
 [ext_resource type="Texture2D" uid="uid://kglaknk7yu2l" path="res://Assets/Enemies/HP and Def UI/shield.png" id="9_l0e3u"]
 
 [node name="Player" type="Node2D" node_paths=PackedStringArray("grid", "hp_bar", "hp_and_def")]
 script = ExtResource("1_g4gsc")
-grid = NodePath("Grid")
+grid = NodePath("Rectangular Grid")
+starting_dice = 5
 hp_bar = NodePath("HP Progress Bar")
 hp_and_def = NodePath("Health Component")
 dice_scene = ExtResource("2_880o0")
 
 [node name="Health Component" parent="." instance=ExtResource("3_v1mne")]
+invulnerable = true
 starting_health = 16
 max_health = 16
 starting_defense = 2
 
-[node name="Grid" parent="." instance=ExtResource("4_0tdpy")]
-grid_width = 3
-grid_height = 3
+[node name="Rectangular Grid" parent="." instance=ExtResource("5_mjklq")]
+grid_width = 4
+grid_height = 4
 
 [node name="HP Progress Bar" type="TextureProgressBar" parent="."]
 anchors_preset = 5

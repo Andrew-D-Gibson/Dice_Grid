@@ -3,6 +3,8 @@ extends Node2D
 
 signal death() 
 
+@export var invulnerable: bool = false
+
 @export_category("Health")
 var health: int
 @export var starting_health: int
@@ -19,6 +21,9 @@ func _ready() -> void:
 	
 
 func take_damage(amount: int) -> void:
+	if invulnerable:
+		return
+		
 	if defense > amount:
 		change_defense(-amount)
 	else:

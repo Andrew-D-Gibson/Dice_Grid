@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://dm1f3fkx0to2c"]
+
+[ext_resource type="Script" path="res://Source/Effects/activate_based_on_value_effect.gd" id="1_m08a2"]
+
+[node name="Activate Based on Pip Value Effect" type="Node2D"]
+script = ExtResource("1_m08a2")
