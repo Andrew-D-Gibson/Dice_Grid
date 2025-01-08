@@ -1,0 +1,35 @@
+[gd_resource type="Resource" script_class="GameState" load_steps=10 format=3 uid="uid://dbevm8luap6p3"]
+
+[ext_resource type="Script" path="res://Source/Game State/Game State Resources/game_state.gd" id="1_bvtba"]
+[ext_resource type="Resource" uid="uid://mkpluwvpx1xp" path="res://Source/Encounters/3_basics_encounter.tres" id="1_kqqu6"]
+[ext_resource type="PackedScene" uid="uid://ddwxm63iod07c" path="res://Source/Player/Grid/Grid Layouts/rectangular_grid.tscn" id="2_6cq2r"]
+[ext_resource type="PackedScene" uid="uid://jdl0rti53xfr" path="res://Source/Tiles/damage.tscn" id="3_6cq2r"]
+[ext_resource type="PackedScene" uid="uid://b7h0g1bsdfxrm" path="res://Source/Tiles/defend.tscn" id="4_gl1pb"]
+[ext_resource type="PackedScene" uid="uid://cjngk56klrvr4" path="res://Source/Tiles/dump.tscn" id="5_w6yhv"]
+[ext_resource type="PackedScene" uid="uid://bor5yhebnn4pb" path="res://Source/Tiles/reroll.tscn" id="6_fqhts"]
+[ext_resource type="PackedScene" uid="uid://bmfev84raru45" path="res://Source/Tiles/activator.tscn" id="7_xlsnp"]
+[ext_resource type="PackedScene" uid="uid://c0uglhkot8fu2" path="res://Source/Tiles/heal.tscn" id="8_gn3rq"]
+
+[resource]
+script = ExtResource("1_bvtba")
+player_health = 21
+player_max_health = 21
+player_defense = 0
+num_of_dice = 8
+grid = ExtResource("2_6cq2r")
+grid_width = 4
+grid_height = 4
+tile_locations = Dictionary[Vector2i, PackedScene]({
+Vector2i(0, 0): ExtResource("3_6cq2r"),
+Vector2i(0, 1): ExtResource("8_gn3rq"),
+Vector2i(0, 2): ExtResource("4_gl1pb"),
+Vector2i(1, 0): ExtResource("8_gn3rq"),
+Vector2i(1, 1): ExtResource("7_xlsnp"),
+Vector2i(1, 2): ExtResource("7_xlsnp"),
+Vector2i(1, 3): ExtResource("3_6cq2r"),
+Vector2i(2, 0): ExtResource("5_w6yhv"),
+Vector2i(2, 2): ExtResource("6_fqhts"),
+Vector2i(2, 3): ExtResource("3_6cq2r")
+})
+encounter = ExtResource("1_kqqu6")
+metadata/_custom_type_script = ExtResource("1_bvtba")

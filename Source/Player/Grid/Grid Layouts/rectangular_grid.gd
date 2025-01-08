@@ -1,3 +1,4 @@
+class_name RectangularGrid
 extends Grid
 
 @export var grid_width := 5

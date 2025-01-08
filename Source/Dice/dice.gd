@@ -85,10 +85,10 @@ func attack_tween(target: Actor, damage_amount: int) -> void:
 	var finish_send = func finish_send() -> void:
 		being_tweened = false
 		if target:
-			target.take_damage(damage_amount)
 			target.add_die_to_queue(self)
+			target.take_damage(damage_amount)
 		else:
-			destroy()
+			Globals.player.add_die_to_queue(self)
 	
 	tween.chain().tween_callback(finish_send)
 	
@@ -114,7 +114,7 @@ func send_tween(target: Actor) -> void:
 		if target:
 			target.add_die_to_queue(self)
 		else:
-			destroy()
+			Globals.player.add_die_to_queue(self)
 		
 	
 	tween.chain().tween_callback(finish_send)
@@ -141,6 +141,6 @@ func activate_tile_tween(target: Tile) -> void:
 		if target:
 			target.check_activation(self)
 		else:
-			destroy()
+			Globals.player.add_die_to_queue(self)
 		
 	tween.chain().tween_callback(finish_send)

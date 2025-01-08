@@ -13,20 +13,16 @@
 [node name="Player" type="Node2D" node_paths=PackedStringArray("grid", "hp_bar", "hp_and_def")]
 script = ExtResource("1_g4gsc")
 grid = NodePath("Rectangular Grid")
-starting_dice = 5
 hp_bar = NodePath("HP Progress Bar")
 hp_and_def = NodePath("Health Component")
 dice_scene = ExtResource("2_880o0")
 
 [node name="Health Component" parent="." instance=ExtResource("3_v1mne")]
 invulnerable = true
-starting_health = 16
-max_health = 16
-starting_defense = 2
 
 [node name="Rectangular Grid" parent="." instance=ExtResource("5_mjklq")]
-grid_width = 4
-grid_height = 4
+grid_width = 3
+grid_height = 1
 
 [node name="HP Progress Bar" type="TextureProgressBar" parent="."]
 anchors_preset = 5

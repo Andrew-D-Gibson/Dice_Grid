@@ -1,0 +1,25 @@
+[gd_resource type="Resource" script_class="GameState" load_steps=7 format=3 uid="uid://bpgrf52o0y81k"]
+
+[ext_resource type="Script" path="res://Source/Game State/Game State Resources/game_state.gd" id="1_58imm"]
+[ext_resource type="Resource" uid="uid://cgodyqsjv5ast" path="res://Source/Encounters/1_basic_encounter.tres" id="1_v8k8r"]
+[ext_resource type="PackedScene" uid="uid://ddwxm63iod07c" path="res://Source/Player/Grid/Grid Layouts/rectangular_grid.tscn" id="2_l5w21"]
+[ext_resource type="PackedScene" uid="uid://jdl0rti53xfr" path="res://Source/Tiles/damage.tscn" id="4_347jl"]
+[ext_resource type="PackedScene" uid="uid://c0uglhkot8fu2" path="res://Source/Tiles/heal.tscn" id="5_3k6mu"]
+[ext_resource type="PackedScene" uid="uid://cjngk56klrvr4" path="res://Source/Tiles/dump.tscn" id="6_wen1r"]
+
+[resource]
+script = ExtResource("1_58imm")
+player_health = 12
+player_max_health = 12
+player_defense = 0
+num_of_dice = 3
+grid = ExtResource("2_l5w21")
+grid_width = 3
+grid_height = 1
+tile_locations = Dictionary[Vector2i, PackedScene]({
+Vector2i(0, 0): ExtResource("4_347jl"),
+Vector2i(1, 0): ExtResource("5_3k6mu"),
+Vector2i(2, 0): ExtResource("6_wen1r")
+})
+encounter = ExtResource("1_v8k8r")
+metadata/_custom_type_script = ExtResource("1_58imm")

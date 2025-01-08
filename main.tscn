@@ -1,9 +1,12 @@
-[gd_scene load_steps=5 format=3 uid="uid://io1ko4uxwtba"]
+[gd_scene load_steps=8 format=3 uid="uid://io1ko4uxwtba"]
 
 [ext_resource type="PackedScene" uid="uid://cygbrgfx6v2tu" path="res://Source/UI/ui.tscn" id="1_5vw27"]
 [ext_resource type="PackedScene" uid="uid://c7lpjg53k5bkl" path="res://Source/Game State/Game State Manager/game_state_manager.tscn" id="2_272bh"]
-[ext_resource type="Resource" uid="uid://demco14i4e5j0" path="res://Source/Game State/Game State Resources/test_game_state.tres" id="3_7mycd"]
+[ext_resource type="Script" path="res://Source/Game State/Game State Resources/game_state.gd" id="4_7mycd"]
 [ext_resource type="PackedScene" uid="uid://8x4oilg8o8m4" path="res://Source/Player/player.tscn" id="4_lquwl"]
+[ext_resource type="Resource" uid="uid://demco14i4e5j0" path="res://Source/Game State/Game State Resources/test_game_state.tres" id="5_272bh"]
+[ext_resource type="Resource" uid="uid://dbevm8luap6p3" path="res://Source/Game State/Game State Resources/3_enemy_state.tres" id="6_5vw27"]
+[ext_resource type="Resource" uid="uid://bpgrf52o0y81k" path="res://Source/Game State/Game State Resources/basic_encounter.tres" id="6_272bh"]
 
 [node name="Main" type="Node2D"]
 
@@ -12,9 +15,9 @@
 [node name="Camera2D" type="Camera2D" parent="."]
 zoom = Vector2(3, 3)
 
-[node name="Game State Manager" parent="." node_paths=PackedStringArray("player") instance=ExtResource("2_272bh")]
-game_state = ExtResource("3_7mycd")
-player = NodePath("../Player")
-
 [node name="Player" parent="." instance=ExtResource("4_lquwl")]
 position = Vector2(-147, 0)
+
+[node name="Game State Manager" parent="." node_paths=PackedStringArray("player") instance=ExtResource("2_272bh")]
+game_states = Array[ExtResource("4_7mycd")]([ExtResource("5_272bh"), ExtResource("6_272bh"), ExtResource("6_5vw27")])
+player = NodePath("../Player")

@@ -3,10 +3,13 @@ extends Actor
 
 @export_category("Components")
 @export var grid: Grid
+
 @export var dice_queue_offset: Vector2 = Vector2(-50, 100)
 @export var dice_queue_spacing: int = 32
-@export var starting_dice: int = 10
-@export var starting_dice_spawn_delay: float = 0.2
+
+@export var dice_to_spawn: int = 10
+@export var dice_spawn_delay: float = 0.2
+var time_since_last_die_spawn: float = 0
 
 
 @export_category("UI")
@@ -15,27 +18,31 @@ extends Actor
 
 func _ready() -> void:
 	Globals.player = self
-	
 	hp_and_def.death.connect(_death)
-	
-	# Create a function to spawn the starting dice
-	var spawn_die = func spawn_die():
-		var new_dice = dice_scene.instantiate()
-		new_dice.position = global_position + dice_queue_offset + Vector2((len(dice_queue)-1) * dice_queue_spacing, 0) + Vector2(600, 0)
-		new_dice.set_home_location(global_position + dice_queue_offset + Vector2((len(dice_queue)-1) * dice_queue_spacing, 0))
-		
-		add_die_to_queue(new_dice)
-		new_dice.value = 5 #Array([3,5]).pick_random()
-		new_dice.set_lockout_time(0)
-		get_tree().get_current_scene().add_child(new_dice)
-		
-	# Spawn the starting dice with a tween
-	var tween = get_tree().create_tween()
-	for i in range(starting_dice):
-		tween.tween_callback(spawn_die).set_delay(starting_dice_spawn_delay)
 
 	_update_ui()
 	
+	
+func _process(delta: float) -> void:
+	if dice_to_spawn > 0:
+		if time_since_last_die_spawn > dice_spawn_delay:
+			spawn_die()
+			dice_to_spawn -= 1
+			time_since_last_die_spawn = 0
+			
+		time_since_last_die_spawn += delta
+	
+	
+func spawn_die() -> void:
+	var new_dice = dice_scene.instantiate()
+	new_dice.position = global_position + dice_queue_offset + Vector2((len(dice_queue)-1) * dice_queue_spacing, 0) + Vector2(600, 0)
+	new_dice.set_home_location(global_position + dice_queue_offset + Vector2((len(dice_queue)-1) * dice_queue_spacing, 0))
+	
+	add_die_to_queue(new_dice)
+	#new_dice.value = 5 #Array([3,5]).pick_random()
+	new_dice.set_lockout_time(0)
+	get_tree().get_current_scene().add_child(new_dice)
+		
 	
 func add_die_to_queue(die: Dice, preserve_value: bool = false) -> void:
 	die.can_be_held = true

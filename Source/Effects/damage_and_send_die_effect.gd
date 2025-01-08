@@ -5,12 +5,17 @@ extends Effect
 
 
 func play(effect_variables: Dictionary) -> Dictionary:
-	# If there's no target, destroy the die
-	if len(effect_variables['targets']) == 0 or effect_variables['targets'][0] == null:
-		effect_variables['die_used'].destroy()
-		effect_variables['die_used'] = null
+	# First remove null entries from our list of targets (they may have died)
+	for i in range(len(effect_variables['targets'])-1, -1, -1):
+		if not effect_variables['targets'][i]:
+			effect_variables['targets'].remove_at(i)
+			
+	# If there's no target, return the die to the player
+	if len(effect_variables['targets']) == 0:
+		Globals.player.add_die_to_queue(effect_variables['die_used'])
 		return effect_variables
 		
+	
 	# If there's multiple targets, we need to create die to send at them
 	var dice_to_send = []
 	dice_to_send.push_back(effect_variables['die_used'])

@@ -25,7 +25,12 @@ func take_damage(amount: int) -> void:
 func add_die_to_queue(die: Dice, preserve_value: bool = false) -> void:
 	if not preserve_value:
 		die.randomize_value()
-	dice_queue.append(die)
+		
+	# Just in case we send a die back that's already in the queue, 
+	# don't add it again
+	if die not in dice_queue:
+		dice_queue.append(die)
+	
 	die.set_home_location(global_position)
 	_update_ui()
 

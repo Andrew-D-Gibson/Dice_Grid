@@ -1,19 +1,60 @@
 extends Node2D
 
-@export_category("Encounter")
-@export var game_state: Game_State
+@export_category("Encounters")
+@export var current_state: int
+@export var game_states: Array[GameState] 
 
 @export_category("Components")
 @export var player: Player
 
 
 func _ready() -> void:
-	# Set up the player
-	player.grid.create_and_populate_grid(game_state.tile_locations)
+	_load_game_state(current_state)
+	
+	Events.load_game_state.connect(_load_game_state)
+	
+	
+func _load_game_state(state_num: int) -> void:
+	# Check for a valid game state to load
+	if state_num < 0 or state_num >= game_states.size():
+		print('Attempting to load a non-existent game state: ' + str(state_num))
+		return
+		
+	
+	# Set up the player's health and defense
+	player.hp_and_def.starting_health = game_states[state_num].player_health
+	player.hp_and_def.health = game_states[state_num].player_health
+	player.hp_and_def.max_health = game_states[state_num].player_max_health
+	player.hp_and_def.starting_defense = game_states[state_num].player_defense
+	player.hp_and_def.defense = game_states[state_num].player_defense
+	
+	# Set up the player's dice
+	for die in player.dice_queue:
+		die.destroy()
+	player.dice_queue = []
+	player.dice_to_spawn = game_states[state_num].num_of_dice
+	
+	# Set up the player's grid
+	player.grid.queue_free()
+	player.grid = game_states[state_num].grid.instantiate()
+	
+	if player.grid is RectangularGrid:
+		player.grid.grid_width = game_states[state_num].grid_width
+		player.grid.grid_height = game_states[state_num].grid_height
+		
+	player.add_child(player.grid)
+	player.grid.create_and_populate_grid(game_states[state_num].tile_locations)
+	
+	player._update_ui()
+	
 	
 	# Set up the enemies if there's an encounter
-	if game_state.encounter:
-		_spawn_enemies(game_state.encounter.enemies)
+	var existing_enemies = get_tree().get_nodes_in_group('enemies')
+	for enemy in existing_enemies:
+		enemy.queue_free()
+		
+	if game_states[state_num].encounter:
+		_spawn_enemies(game_states[state_num].encounter.enemies)
 	
 
 

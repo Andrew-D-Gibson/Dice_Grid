@@ -1,8 +1,10 @@
-[gd_scene load_steps=3 format=3 uid="uid://c7lpjg53k5bkl"]
+[gd_scene load_steps=5 format=3 uid="uid://c7lpjg53k5bkl"]
 
 [ext_resource type="Script" path="res://Source/Game State/Game State Manager/game_state_manager.gd" id="1_i4ucg"]
-[ext_resource type="Resource" uid="uid://cgodyqsjv5ast" path="res://Source/Encounters/1_basic_encounter.tres" id="2_m4agd"]
+[ext_resource type="Script" path="res://Source/Game State/Game State Resources/game_state.gd" id="2_yvg62"]
+[ext_resource type="Resource" uid="uid://demco14i4e5j0" path="res://Source/Game State/Game State Resources/test_game_state.tres" id="3_srfr4"]
+[ext_resource type="Resource" uid="uid://dbevm8luap6p3" path="res://Source/Game State/Game State Resources/3_enemy_state.tres" id="4_srfr4"]
 
 [node name="Game State Manager" type="Node2D"]
 script = ExtResource("1_i4ucg")
-encounter = ExtResource("2_m4agd")
+game_states = Array[ExtResource("2_yvg62")]([ExtResource("3_srfr4"), ExtResource("4_srfr4")])
