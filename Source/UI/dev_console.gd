@@ -79,8 +79,7 @@ func _heal(command_args: Array[String] = []) -> void:
 
 func _reroll(command_args: Array[String] = []) -> void:
 	for dice in Globals.player.dice_queue:
-		dice.randomize_value()
-		dice.small_shake()
+		dice.reroll_tween()
 
 
 func _player_invulnerable(command_args: Array[String] = []) -> void:

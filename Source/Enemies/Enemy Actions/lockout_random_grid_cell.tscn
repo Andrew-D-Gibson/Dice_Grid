@@ -1,0 +1,30 @@
+[gd_scene load_steps=4 format=3 uid="uid://dq7vh7ajug7qe"]
+
+[ext_resource type="Texture2D" uid="uid://d1ocbmfk0tf5r" path="res://Assets/Enemies/Enemy Intents/lockout.png" id="2_51akq"]
+[ext_resource type="PackedScene" uid="uid://c10g0shxvmvls" path="res://Source/Effects/lockout_random_grid_cell_effect.tscn" id="3_a3urt"]
+[ext_resource type="PackedScene" uid="uid://brsswsoryohs4" path="res://Source/Effects/give_die_to_player_effect.tscn" id="4_is30r"]
+
+[node name="Lockout Random Grid Cell" type="Node2D"]
+
+[node name="Intent Indicator" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -16.0
+offset_top = 12.0
+offset_right = 24.0
+offset_bottom = 52.0
+grow_horizontal = 2
+size_flags_vertical = 8
+
+[node name="TextureRect" type="TextureRect" parent="Intent Indicator"]
+layout_mode = 2
+offset_right = 32.0
+offset_bottom = 40.0
+texture = ExtResource("2_51akq")
+stretch_mode = 5
+
+[node name="Lockout Random Grid Cell Effect" parent="." instance=ExtResource("3_a3urt")]
+
+[node name="Give Die to Player Effect" parent="." instance=ExtResource("4_is30r")]

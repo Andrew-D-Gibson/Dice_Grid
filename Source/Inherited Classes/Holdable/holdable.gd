@@ -12,8 +12,8 @@ var desired_position: Vector2
 
 var shake_strength: float = 0
 @export var shake_fade: float = 5
-@export var small_shake_amount: float = 2
-@export var large_shake_amount: float = 4
+@export var small_shake_amount: float = 1
+@export var large_shake_amount: float = 2
 
 
 func _ready() -> void:
@@ -71,12 +71,14 @@ func _pickup() -> void:
 	last_valid_position = global_position
 	
 	being_held = true
+	z_index += 1
 	Globals.held_object = self
 	
 
 func _drop() -> void:
 	desired_position = last_valid_position
 	being_held = false
+	z_index -= 1
 	Globals.held_object = null
 	
 	

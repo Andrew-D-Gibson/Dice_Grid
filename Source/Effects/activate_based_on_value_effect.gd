@@ -25,11 +25,17 @@ func _process_next_tile_activation() -> void:
 		currently_activating = false
 		return
 		
-	# Re-highlight all the tiles
+	# Check for locked out tiles and remove them from the list
+	# Then re-highlight all queued tiles
 	# This keeps tiles highlighted that are queued multiple times and would
 	# usually de-highlight themselves after their first activation
-	for t in tiles_to_activate_queue:
-			t.highlight.visible = true
+	for i in range(len(tiles_to_activate_queue)-1, -1, -1):
+		if tiles_to_activate_queue[i].host_cell.locked_out:
+			tiles_to_activate_queue[i].highlight.visible = false
+			tiles_to_activate_queue.remove_at(i)
+			continue
+			
+		tiles_to_activate_queue[i].highlight.visible = true
 		
 		
 	# Grab the first tile in the tile activation queue

@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://Source/Game State/Game State Manager/game_state_manager.gd" id="1_i4ucg"]
 [ext_resource type="Script" path="res://Source/Game State/Game State Resources/game_state.gd" id="2_yvg62"]
 [ext_resource type="Resource" uid="uid://demco14i4e5j0" path="res://Source/Game State/Game State Resources/test_game_state.tres" id="3_srfr4"]
-[ext_resource type="Resource" uid="uid://dbevm8luap6p3" path="res://Source/Game State/Game State Resources/3_enemy_state.tres" id="4_srfr4"]
+[ext_resource type="Resource" uid="uid://dbevm8luap6p3" path="res://Source/Game State/Game State Resources/tutorial_1.tres" id="4_srfr4"]
 
 [node name="Game State Manager" type="Node2D"]
 script = ExtResource("1_i4ucg")

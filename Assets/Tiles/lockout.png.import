@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cj0u1gs8ymxxq"
-path="res://.godot/imported/empty_cell_hovered.png-3fa8674fa01cc5da57336531b69f0bfc.ctex"
+uid="uid://b1c15qt4qfli1"
+path="res://.godot/imported/lockout.png-30a9363d686f059b72ec5bee12ce9091.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Grid/empty_cell_hovered.png"
-dest_files=["res://.godot/imported/empty_cell_hovered.png-3fa8674fa01cc5da57336531b69f0bfc.ctex"]
+source_file="res://Assets/Tiles/lockout.png"
+dest_files=["res://.godot/imported/lockout.png-30a9363d686f059b72ec5bee12ce9091.ctex"]
 
 [params]
 

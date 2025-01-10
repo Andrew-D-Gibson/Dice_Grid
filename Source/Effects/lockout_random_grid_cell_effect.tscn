@@ -1,0 +1,8 @@
+[gd_scene load_steps=3 format=3 uid="uid://c10g0shxvmvls"]
+
+[ext_resource type="Script" path="res://Source/Effects/lockout_random_grid_cell_effect.gd" id="1_pv2gm"]
+[ext_resource type="PackedScene" uid="uid://uiul56g2ssgd" path="res://Source/Player/Grid/Cell/Cell Modifiers/lockout_modifier.tscn" id="2_v10hx"]
+
+[node name="Lockout Random Grid Cell Effect" type="Node2D"]
+script = ExtResource("1_pv2gm")
+lockout_modifier_scene = ExtResource("2_v10hx")

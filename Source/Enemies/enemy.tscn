@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://djowit6k2t6lo"]
+[gd_scene load_steps=15 format=3 uid="uid://djowit6k2t6lo"]
 
 [ext_resource type="Script" path="res://Source/Enemies/enemy.gd" id="1_2wu4v"]
 [ext_resource type="PackedScene" uid="uid://cu4pw31ijdghb" path="res://Source/Dice/dice.tscn" id="2_8mhou"]
@@ -6,18 +6,18 @@
 [ext_resource type="Texture2D" uid="uid://6pflrok71dh7" path="res://icon.svg" id="2_xu8cd"]
 [ext_resource type="Theme" uid="uid://b6tit6cxjtdpd" path="res://Assets/UI/default_theme.tres" id="3_xn7u6"]
 [ext_resource type="PackedScene" uid="uid://dchteabtrevci" path="res://Source/Enemies/Enemy Actions/attack_player.tscn" id="4_iqa7y"]
-[ext_resource type="Texture2D" uid="uid://cosr1royc4yfb" path="res://Assets/Enemies/Enemy Intents/Timing Bar/background.png" id="8_kgr8e"]
+[ext_resource type="Texture2D" uid="uid://cjhwwtn6nwq7s" path="res://Assets/Enemies/Enemy Intents/reroll_guide.png" id="4_m14e6"]
+[ext_resource type="PackedScene" uid="uid://dxgikxh33wmht" path="res://Source/Enemies/Enemy Actions/defend_self.tscn" id="6_1hmcw"]
+[ext_resource type="PackedScene" uid="uid://dq7vh7ajug7qe" path="res://Source/Enemies/Enemy Actions/lockout_random_grid_cell.tscn" id="7_s2lnk"]
 [ext_resource type="Texture2D" uid="uid://jgb5ksjv52fx" path="res://Assets/Enemies/HP and Def UI/HP background.png" id="9_dd0uj"]
-[ext_resource type="Texture2D" uid="uid://b4pcjgof1dt7a" path="res://Assets/Enemies/Enemy Intents/Timing Bar/yellow_fill.png" id="9_lesxe"]
 [ext_resource type="Texture2D" uid="uid://wmuutwjk0pel" path="res://Assets/Enemies/HP and Def UI/HP fill.png" id="10_1hmcw"]
 [ext_resource type="Texture2D" uid="uid://jqfwxy5h0bal" path="res://Assets/Enemies/HP and Def UI/heart.png" id="11_s2lnk"]
 [ext_resource type="Texture2D" uid="uid://kglaknk7yu2l" path="res://Assets/Enemies/HP and Def UI/shield.png" id="13_8aj7q"]
 [ext_resource type="Texture2D" uid="uid://bgc0cv7c31np3" path="res://Assets/Enemies/Dice Queue/3_dice.png" id="14_1hmcw"]
 
-[node name="Enemy" type="Node2D" node_paths=PackedStringArray("hp_bar", "intent_timing_bar", "hp_and_def") groups=["enemies"]]
+[node name="Enemy" type="Node2D" node_paths=PackedStringArray("hp_bar", "hp_and_def") groups=["enemies"]]
 script = ExtResource("1_2wu4v")
 hp_bar = NodePath("HP Progress Bar")
-intent_timing_bar = NodePath("Intent Progress Bar")
 hp_and_def = NodePath("Health Component")
 dice_scene = ExtResource("2_8mhou")
 
@@ -25,31 +25,24 @@ dice_scene = ExtResource("2_8mhou")
 scale = Vector2(0.3, 0.3)
 texture = ExtResource("2_xu8cd")
 
+[node name="ReRoll Guide" type="Sprite2D" parent="."]
+position = Vector2(34, 0)
+texture = ExtResource("4_m14e6")
+
 [node name="Health Component" parent="." instance=ExtResource("2_muilx")]
 starting_health = 12
 max_health = 12
 
 [node name="Possible Actions Parent" type="Node2D" parent="."]
 
+[node name="Lockout Random Grid Cell" parent="Possible Actions Parent" instance=ExtResource("7_s2lnk")]
+visible = false
+
 [node name="Attack Player" parent="Possible Actions Parent" instance=ExtResource("4_iqa7y")]
 visible = false
 
-[node name="Intent Progress Bar" type="TextureProgressBar" parent="."]
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -18.0
-offset_top = 30.0
-offset_right = 22.0
-offset_bottom = 70.0
-grow_horizontal = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
-max_value = 1.0
-step = 0.01
-value = 1.0
-texture_under = ExtResource("8_kgr8e")
-texture_progress = ExtResource("9_lesxe")
+[node name="Defend Self" parent="Possible Actions Parent" instance=ExtResource("6_1hmcw")]
+visible = false
 
 [node name="HP Progress Bar" type="TextureProgressBar" parent="."]
 anchors_preset = 5

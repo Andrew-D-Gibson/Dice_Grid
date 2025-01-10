@@ -61,7 +61,11 @@ func _check_valid_drop():
 	if not Globals.hovered_cell:
 		return
 		
-	# Fail the drop if we're not over an empty cell
+	# Fail the drop if we're over a locked out cell
+	if Globals.hovered_cell.locked_out:
+		return
+
+	# Handle if we're over an occcupied cell
 	if Globals.hovered_cell.occupying_tile:
 		# We might be over the tile we started on, 
 		# so now check if we're within the click window 
@@ -69,7 +73,15 @@ func _check_valid_drop():
 		if (Globals.hovered_cell == host_cell 
 		and Time.get_unix_time_from_system() - Globals.mouse_down_unix_time < click_window_time):
 			Events.tile_clicked_for_info.emit(self)
-			
+		else:
+			# We're over a different tile, so if it's not locked out we can switch
+			if not Globals.hovered_cell.locked_out:
+				# Move the destination cell's tile here
+				Globals.hovered_cell.occupying_tile.attach_to_cell(host_cell)
+				
+				# Move us to the hovered cell
+				attach_to_cell(Globals.hovered_cell)
+
 		return
 		
 	# We're over an empty cell, so succeed the drop!
@@ -78,7 +90,7 @@ func _check_valid_drop():
 
 
 func attach_to_cell(cell: Cell) -> void:
-	if host_cell:
+	if host_cell and host_cell.occupying_tile == self:
 		host_cell.occupying_tile = null
 		
 	# Give this tile to the new host cell

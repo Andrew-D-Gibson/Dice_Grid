@@ -68,11 +68,13 @@ script = ExtResource("1_cmfg4")
 shape = SubResource("RectangleShape2D_cmfg4")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+z_index = 10
 sprite_frames = SubResource("SpriteFrames_evgqa")
 animation = &"Dice Values"
 frame = 1
 
 [node name="TextureProgressBar" type="TextureProgressBar" parent="."]
+z_index = 12
 offset_left = -12.0
 offset_top = -12.0
 offset_right = 28.0

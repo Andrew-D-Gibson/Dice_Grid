@@ -14,7 +14,7 @@ size = Vector2(32, 32)
 z_index = 1
 script = ExtResource("1_nt65t")
 activation_node = NodePath("Value Activation")
-description = "Activated with a 4.  Heals the player for 4 health."
+description = "Activated with a 3.  Adds 3 defense and returns the die to the player."
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_gtxx6")

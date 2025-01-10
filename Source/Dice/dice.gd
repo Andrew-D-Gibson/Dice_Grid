@@ -49,14 +49,8 @@ func _check_valid_drop():
 	if not Globals.hovered_cell:
 		return
 		
-	# Fail the drop if we're not over a tile
-	if not Globals.hovered_cell.occupying_tile:
-		return
-		
-	# Try to activate using the dice
-	# If it fails the dice will return to its previous location
-	# If it succeeds the dice will be destroyed
-	Globals.hovered_cell.occupying_tile.check_activation(self)
+	# Pass this die onto the cell which will handle it as needed
+	Globals.hovered_cell.on_die_dropped(self)
 		
 
 func destroy():
@@ -144,3 +138,25 @@ func activate_tile_tween(target: Tile) -> void:
 			Globals.player.add_die_to_queue(self)
 		
 	tween.chain().tween_callback(finish_send)
+
+
+func reroll_tween() -> void:
+	var tween_time = 0.75
+	being_tweened = true
+
+	var tween = get_tree().create_tween()
+	tween.tween_property(self, 'rotation_degrees', 360, tween_time).from(0).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_IN)
+	
+	var finish_reroll = func finish_reroll() -> void:
+		being_tweened = false
+		randomize_value()
+		small_shake()
+	
+	tween.tween_callback(finish_reroll)
+	
+	#tween = get_tree().create_tween()
+	#tween.tween_property(self, 'rotation_degrees', 360, tween_time/2).from(0).set_trans(Tween.TRANS_ELASTIC).set_ease(Tween.EASE_OUT)
+	#
+	#
+	#
+	#tween.tween_callback(finish_send)

@@ -1,0 +1,22 @@
+[gd_scene load_steps=6 format=3 uid="uid://uiul56g2ssgd"]
+
+[ext_resource type="Script" path="res://Source/Player/Grid/Cell/Cell Modifiers/lockout.gd" id="1_dbwkg"]
+[ext_resource type="Texture2D" uid="uid://ci64j0j5dglde" path="res://Assets/Grid/Cell/Cell Modifiers/lockout.png" id="2_g0acy"]
+[ext_resource type="PackedScene" uid="uid://bykepwjoitqvl" path="res://Source/Effects/Targeters/target_random_enemy.tscn" id="3_mj6wu"]
+[ext_resource type="PackedScene" uid="uid://b1gm70vaf8x60" path="res://Source/Tiles/Tile Activations/value_activation.tscn" id="3_olxxj"]
+[ext_resource type="PackedScene" uid="uid://ri7bhdwesyrp" path="res://Source/Effects/give_die_to_target_effect.tscn" id="4_olxxj"]
+
+[node name="Lockout Modifier" type="Node2D" node_paths=PackedStringArray("activation_node")]
+script = ExtResource("1_dbwkg")
+activation_node = NodePath("Value Activation")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+z_index = 2
+texture = ExtResource("2_g0acy")
+
+[node name="Value Activation" parent="." instance=ExtResource("3_olxxj")]
+acceptable_values = Array[int]([2])
+
+[node name="Target Random Enemy" parent="." instance=ExtResource("3_mj6wu")]
+
+[node name="Give Die to Target Effect" parent="." instance=ExtResource("4_olxxj")]

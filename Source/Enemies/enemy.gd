@@ -6,8 +6,6 @@ var loading_time: float
 
 @export_category("UI")
 @export var hp_bar: TextureProgressBar
-@export var def_bar: TextureProgressBar
-@export var intent_timing_bar: TextureProgressBar
 
 
 func _ready() -> void:
@@ -24,15 +22,10 @@ func _process(delta: float) -> void:
 	if len(dice_queue) > 0:
 		loading_time += delta
 		
-		intent_timing_bar.visible = true
-		intent_timing_bar.value = loading_time / next_action.action_loading_time
-		intent_timing_bar.tint_progress.s = intent_timing_bar.value
-		
-		if loading_time >= next_action.action_loading_time:
+		if loading_time >= 2:
 			_act()
 	else:
 		loading_time = 0 
-		intent_timing_bar.visible = false
 
 
 func _update_ui() -> void:

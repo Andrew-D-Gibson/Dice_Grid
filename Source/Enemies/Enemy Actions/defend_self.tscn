@@ -37,6 +37,5 @@ texture = ExtResource("3_vbr7t")
 stretch_mode = 5
 
 [node name="Defend Self Effect" parent="." instance=ExtResource("4_ikv1w")]
-defense_amount = null
 
 [node name="Give Die to Player Effect" parent="." instance=ExtResource("5_vbr7t")]
