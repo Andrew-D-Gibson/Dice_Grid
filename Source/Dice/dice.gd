@@ -140,23 +140,46 @@ func activate_tile_tween(target: Tile) -> void:
 	tween.chain().tween_callback(finish_send)
 
 
-func reroll_tween() -> void:
+func reroll_tween(enemy_to_act: Enemy = null) -> void:
 	var tween_time = 0.75
 	being_tweened = true
+	can_be_held = false
 
 	var tween = get_tree().create_tween()
-	tween.tween_property(self, 'rotation_degrees', 360, tween_time).from(0).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_IN)
+	tween.tween_property(self, 'rotation_degrees', 180, tween_time/2).from(0).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_IN)
+	tween.tween_callback(randomize_value)
+	tween.tween_property(self, 'rotation_degrees', 360, tween_time/2).from_current().set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
 	
 	var finish_reroll = func finish_reroll() -> void:
 		being_tweened = false
-		randomize_value()
+		can_be_held = true
 		small_shake()
+		
+		if enemy_to_act:
+			await get_tree().create_timer(1).timeout
+			enemy_intent_tween(enemy_to_act)
+			
 	
 	tween.tween_callback(finish_reroll)
+
+
+func enemy_intent_tween(enemy_to_act: Enemy) -> void:
+	var tween_time = 0.75
+	being_tweened = true
+	can_be_held = false
 	
-	#tween = get_tree().create_tween()
-	#tween.tween_property(self, 'rotation_degrees', 360, tween_time/2).from(0).set_trans(Tween.TRANS_ELASTIC).set_ease(Tween.EASE_OUT)
-	#
-	#
-	#
-	#tween.tween_callback(finish_send)
+	# For some reason, with the 'being_tweened' _process workaround
+	# there's a single frame that's processed that moves the die.
+	# This line makes that single frame not move the die before being tweened.
+	last_valid_position = position
+	
+	var tween = get_tree().create_tween().set_parallel(true)
+	tween.tween_property(self, 'global_position', enemy_to_act.action_indicator.get_child(value-1).global_position, tween_time).set_trans(Tween.TRANS_CIRC).set_ease(Tween.EASE_IN_OUT)
+	tween.tween_property($AnimatedSprite2D, 'scale', Vector2(0.1,0.1), tween_time).from_current().set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_IN)
+	
+	var finish_send = func finish_send() -> void:
+		being_tweened = false
+		$AnimatedSprite2D.scale = Vector2(1,1)
+		enemy_to_act.act(self)
+
+	tween.chain().tween_callback(finish_send)

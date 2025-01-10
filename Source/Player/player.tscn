@@ -18,7 +18,6 @@ hp_and_def = NodePath("Health Component")
 dice_scene = ExtResource("2_880o0")
 
 [node name="Health Component" parent="." instance=ExtResource("3_v1mne")]
-invulnerable = true
 
 [node name="Rectangular Grid" parent="." instance=ExtResource("5_mjklq")]
 grid_width = 3

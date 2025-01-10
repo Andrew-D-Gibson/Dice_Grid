@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://bjty87em77mkw"]
+
+[ext_resource type="Script" path="res://Source/Enemies/Enemy Actions/enemy_action.gd" id="1_8wtlg"]
+[ext_resource type="PackedScene" uid="uid://brsswsoryohs4" path="res://Source/Effects/give_die_to_player_effect.tscn" id="4_7k3ai"]
+
+[node name="Do Nothing" type="Node2D"]
+script = ExtResource("1_8wtlg")
+likelihood_weight = 3.0
+
+[node name="Give Die to Player Effect" parent="." instance=ExtResource("4_7k3ai")]
