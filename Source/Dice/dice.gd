@@ -155,8 +155,8 @@ func reroll_tween(enemy_to_act: Enemy = null) -> void:
 		can_be_held = true
 		small_shake()
 		
+		await get_tree().create_timer(1).timeout
 		if enemy_to_act:
-			await get_tree().create_timer(1).timeout
 			enemy_intent_tween(enemy_to_act)
 			
 	

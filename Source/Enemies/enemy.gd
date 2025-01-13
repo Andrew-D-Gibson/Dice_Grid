@@ -52,7 +52,7 @@ func _update_ui() -> void:
 		
 	# Set the dice queue display
 	for i in range($GridContainer.get_child_count()):
-		$GridContainer.get_child(i).visible = len(dice_queue) > i
+		$GridContainer.get_child(i).visible = len(dice_queue)-1 > i
 		
 	# Set up the action indicator sprites
 	for i in range(6):
@@ -87,13 +87,15 @@ func remove_die_from_queue(die: Dice) -> void:
 func _reroll_die_for_action() -> void:
 	currently_acting = true
 	
-	var die_used = dice_queue.pop_front()
+	var die_used = dice_queue[0]
 	die_used.visible = true
 	die_used.reroll_tween(self)
 	_update_ui()
 	
 
 func act(die_used: Dice):
+	remove_die_from_queue(die_used)
+	
 	# Set up the effects dictionary for chaining effects
 	var effect_dict = {
 		'actor': self,
