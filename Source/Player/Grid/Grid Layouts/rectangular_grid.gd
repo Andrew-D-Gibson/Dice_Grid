@@ -1,10 +1,9 @@
 class_name RectangularGrid
 extends Grid
 
-@export var grid_width := 5
-@export var grid_height := 5
+@export var grid_width := 7
+@export var grid_height := 4
 @export var grid_spacing := 32
-
 
 func create_and_populate_grid(tile_dictionary: Dictionary[Vector2i, PackedScene]) -> void:
 	cell_array = {}

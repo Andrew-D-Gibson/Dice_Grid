@@ -4,9 +4,6 @@ extends Node2D
 
 @export var hovered := false
 
-@export var empty_texture: Texture2D
-@export var hovered_texture: Texture2D
-
 @export var grid_location: Vector2i
 
 var occupying_tile: Tile
@@ -19,7 +16,7 @@ func _ready():
 
 
 func update_graphics() -> void:
-	$Sprite2D.texture = hovered_texture if hovered else empty_texture
+	$AnimatedSprite2D.frame = 1 if hovered else 0
 
 
 func _on_area_2d_mouse_entered() -> void:

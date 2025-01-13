@@ -1,0 +1,114 @@
+[gd_scene load_steps=13 format=3 uid="uid://la8qk5ro0527"]
+
+[ext_resource type="Script" path="res://Source/UI/Reroll Button/reroll_button.gd" id="1_7ri8o"]
+[ext_resource type="Texture2D" uid="uid://bkf3hlqjdgbe4" path="res://Assets/UI/Reroll Button/uses_indicator_Sheet.png" id="2_8mkyc"]
+[ext_resource type="Texture2D" uid="uid://5wlj120g10p0" path="res://Assets/UI/Reroll Button/button-Sheet.png" id="3_eyx18"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_eyx18"]
+atlas = ExtResource("2_8mkyc")
+region = Rect2(0, 0, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pdxwd"]
+atlas = ExtResource("2_8mkyc")
+region = Rect2(8, 0, 8, 8)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_mxsju"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_eyx18")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pdxwd")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mxsju"]
+atlas = ExtResource("3_eyx18")
+region = Rect2(0, 0, 48, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_34qtr"]
+atlas = ExtResource("3_eyx18")
+region = Rect2(48, 0, 48, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_15acs"]
+atlas = ExtResource("3_eyx18")
+region = Rect2(96, 0, 48, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ifedu"]
+atlas = ExtResource("3_eyx18")
+region = Rect2(144, 0, 48, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tg6r5"]
+atlas = ExtResource("3_eyx18")
+region = Rect2(192, 0, 48, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_0v87s"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mxsju")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_34qtr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_15acs")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ifedu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_15acs")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_34qtr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mxsju")
+}],
+"loop": false,
+"name": &"button_pushed",
+"speed": 30.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tg6r5")
+}],
+"loop": true,
+"name": &"disabled",
+"speed": 5.0
+}]
+
+[node name="Reroll Button" type="Node2D"]
+script = ExtResource("1_7ri8o")
+indicator_sprite_sheet = SubResource("SpriteFrames_mxsju")
+num_of_uses = 3
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_0v87s")
+animation = &"button_pushed"
+frame = 6
+frame_progress = 1.0
+
+[node name="Button" type="Button" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -24.0
+offset_top = -8.0
+offset_right = 14.0
+offset_bottom = 13.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(1.28, 0.8)
+focus_mode = 0
+flat = true
+
+[connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
+[connection signal="pressed" from="Button" to="." method="_reroll"]

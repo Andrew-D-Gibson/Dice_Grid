@@ -24,6 +24,11 @@ func _ready() -> void:
 
 
 func _process(delta: float) -> void:
+	# Shaking
+	if shake_strength > 0:
+		shake_strength = lerpf(shake_strength, 0, shake_fade * delta)
+		global_position += _random_offset()
+		
 	if being_tweened:
 		return
 		
@@ -34,11 +39,6 @@ func _process(delta: float) -> void:
 			_drop()
 			
 	global_position = global_position.lerp(desired_position, follow_strength * delta)
-	
-	# Shaking
-	if shake_strength > 0:
-		shake_strength = lerpf(shake_strength, 0, shake_fade * delta)
-		global_position += _random_offset()
 		
 		
 func _random_offset() -> Vector2:

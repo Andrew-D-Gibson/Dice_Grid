@@ -35,14 +35,7 @@ func _load_game_state(state_num: int) -> void:
 	player.dice_to_spawn = game_states[state_num].num_of_dice
 	
 	# Set up the player's grid
-	player.grid.queue_free()
-	player.grid = game_states[state_num].grid.instantiate()
-	
-	if player.grid is RectangularGrid:
-		player.grid.grid_width = game_states[state_num].grid_width
-		player.grid.grid_height = game_states[state_num].grid_height
-		
-	player.add_child(player.grid)
+	player.grid.clear_grid()
 	player.grid.create_and_populate_grid(game_states[state_num].tile_locations)
 	
 	player._update_ui()
@@ -62,10 +55,10 @@ func _spawn_enemies(encounter_enemies: Array[PackedScene]) -> void:
 	if len(encounter_enemies) == 0:
 		return
 		
-	var spacing: int = 500
+	var spacing: int = 800
 	var enemy_spacing = spacing / float(len(encounter_enemies) + 1)
 	
 	for i in range(len(encounter_enemies)):
 		var enemy = encounter_enemies[i].instantiate()
-		enemy.position = Vector2(192, -(spacing / float(2)) + (enemy_spacing * (i+1)))
+		enemy.position = Vector2(-(spacing / float(2)) + (enemy_spacing * (i+1)), -96)
 		add_child(enemy)

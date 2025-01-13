@@ -1,99 +1,20 @@
-[gd_scene load_steps=10 format=3 uid="uid://8x4oilg8o8m4"]
+[gd_scene load_steps=5 format=3 uid="uid://8x4oilg8o8m4"]
 
 [ext_resource type="Script" path="res://Source/Player/player.gd" id="1_g4gsc"]
 [ext_resource type="PackedScene" uid="uid://cu4pw31ijdghb" path="res://Source/Dice/dice.tscn" id="2_880o0"]
-[ext_resource type="Theme" uid="uid://b6tit6cxjtdpd" path="res://Assets/UI/default_theme.tres" id="3_0tdpy"]
 [ext_resource type="PackedScene" uid="uid://c8t3yoopiopfp" path="res://Source/Inherited Classes/Actor/HP and Def Component/hp_and_def_component.tscn" id="3_v1mne"]
-[ext_resource type="Texture2D" uid="uid://jgb5ksjv52fx" path="res://Assets/Enemies/HP and Def UI/HP background.png" id="5_hjit1"]
 [ext_resource type="PackedScene" uid="uid://ddwxm63iod07c" path="res://Source/Player/Grid/Grid Layouts/rectangular_grid.tscn" id="5_mjklq"]
-[ext_resource type="Texture2D" uid="uid://wmuutwjk0pel" path="res://Assets/Enemies/HP and Def UI/HP fill.png" id="6_mjklq"]
-[ext_resource type="Texture2D" uid="uid://jqfwxy5h0bal" path="res://Assets/Enemies/HP and Def UI/heart.png" id="7_3ojbm"]
-[ext_resource type="Texture2D" uid="uid://kglaknk7yu2l" path="res://Assets/Enemies/HP and Def UI/shield.png" id="9_l0e3u"]
 
-[node name="Player" type="Node2D" node_paths=PackedStringArray("grid", "hp_bar", "hp_and_def")]
+[node name="Player" type="Node2D" node_paths=PackedStringArray("grid", "hp_and_def")]
 script = ExtResource("1_g4gsc")
 grid = NodePath("Rectangular Grid")
-hp_bar = NodePath("HP Progress Bar")
+dice_queue_offset = null
+dice_queue_spacing = null
+dice_to_spawn = null
+dice_spawn_delay = null
 hp_and_def = NodePath("Health Component")
 dice_scene = ExtResource("2_880o0")
 
 [node name="Health Component" parent="." instance=ExtResource("3_v1mne")]
 
 [node name="Rectangular Grid" parent="." instance=ExtResource("5_mjklq")]
-grid_width = 3
-grid_height = 1
-
-[node name="HP Progress Bar" type="TextureProgressBar" parent="."]
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -61.0
-offset_top = -109.0
-offset_right = 3.0
-offset_bottom = -69.0
-grow_horizontal = 2
-scale = Vector2(2, 2)
-size_flags_horizontal = 4
-size_flags_vertical = 4
-max_value = 1.0
-step = 0.01
-value = 1.0
-texture_under = ExtResource("5_hjit1")
-texture_progress = ExtResource("6_mjklq")
-
-[node name="TextureRect" type="TextureRect" parent="HP Progress Bar"]
-layout_mode = 1
-anchors_preset = 4
-anchor_top = 0.5
-anchor_bottom = 0.5
-offset_left = -23.0
-offset_top = -25.0
-offset_right = 17.0
-offset_bottom = 15.0
-grow_vertical = 2
-texture = ExtResource("7_3ojbm")
-stretch_mode = 5
-
-[node name="HP Label" type="Label" parent="HP Progress Bar"]
-layout_mode = 1
-anchors_preset = -1
-anchor_left = -0.6875
-anchor_top = 0.05
-anchor_right = -0.6875
-anchor_bottom = 0.05
-offset_left = -27.5
-offset_top = -2.0
-offset_right = 32.5
-offset_bottom = 37.0
-grow_horizontal = 2
-theme = ExtResource("3_0tdpy")
-text = "16"
-horizontal_alignment = 2
-
-[node name="Def Indicator" type="TextureRect" parent="HP Progress Bar"]
-layout_mode = 1
-anchors_preset = 4
-anchor_top = 0.5
-anchor_bottom = 0.5
-offset_left = 45.0
-offset_top = -24.0
-offset_right = 85.0
-offset_bottom = 16.0
-grow_vertical = 2
-texture = ExtResource("9_l0e3u")
-stretch_mode = 5
-
-[node name="Def Label" type="Label" parent="HP Progress Bar/Def Indicator"]
-layout_mode = 1
-anchors_preset = -1
-anchor_left = -0.6875
-anchor_top = 0.05
-anchor_right = -0.6875
-anchor_bottom = 0.05
-offset_left = 59.0
-offset_top = 2.0
-offset_right = 124.0
-offset_bottom = 41.0
-grow_horizontal = 2
-theme = ExtResource("3_0tdpy")
-text = "1000"

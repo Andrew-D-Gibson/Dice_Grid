@@ -25,6 +25,12 @@ func create_and_populate_grid(tile_dictionary: Dictionary[Vector2i, PackedScene]
 			add_child(tile)
 
 
+func clear_grid() -> void:
+	for child in get_children():
+		if child is Cell or child is Tile:
+			child.queue_free()
+
+
 func get_surrounding_tiles_by_pip_value(value: int, activator_grid_location: Vector2i) -> Array[Tile]:
 	var pip_offsets = {
 		2: [Vector2i(-1,-1), Vector2i(1,1)],

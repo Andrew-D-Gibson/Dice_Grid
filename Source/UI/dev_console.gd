@@ -27,6 +27,9 @@ func _on_line_edit_text_submitted(console_command: String) -> void:
 		'heal':
 			_heal(command.slice(1))
 			
+		'shield':
+			_shield(command.slice(1))
+			
 		'reroll':
 			_reroll()
 			
@@ -75,6 +78,17 @@ func _heal(command_args: Array[String] = []) -> void:
 		Globals.player.change_health(1000)
 		
 	command_history.append_text('\n[center][i]Healed player![/i][/center]')
+	
+
+func _shield(command_args: Array[String] = []) -> void:
+	var amount: int
+	if len(command_args) > 0 and command_args[0].is_valid_int():
+		Globals.player.change_defense(int(command_args[0]))
+	else:
+		command_history.append_text('\t[i]Invalid command.[/i]')
+		return
+		
+	command_history.append_text('\n[center][i]Shielded player![/i][/center]')
 
 
 func _reroll(command_args: Array[String] = []) -> void:

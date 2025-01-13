@@ -43,11 +43,17 @@ alignment = 2
 layout_mode = 2
 size_flags_vertical = 3
 theme = ExtResource("2_hokdr")
+theme_override_font_sizes/bold_italics_font_size = 32
+theme_override_font_sizes/italics_font_size = 32
+theme_override_font_sizes/mono_font_size = 32
+theme_override_font_sizes/normal_font_size = 32
+theme_override_font_sizes/bold_font_size = 32
 scroll_following = true
 
 [node name="LineEdit" type="LineEdit" parent="Dev Console/PanelContainer/VBoxContainer"]
 layout_mode = 2
 theme = ExtResource("2_hokdr")
+theme_override_font_sizes/font_size = 32
 placeholder_text = "Enter console command"
 context_menu_enabled = false
 caret_blink = true

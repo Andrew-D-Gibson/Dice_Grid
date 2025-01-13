@@ -4,7 +4,7 @@ extends Actor
 @export_category("Components")
 @export var grid: Grid
 
-@export var dice_queue_offset: Vector2 = Vector2(-50, 100)
+@export var dice_queue_offset: Vector2 = Vector2(-96, 84)
 @export var dice_queue_spacing: int = 32
 
 @export var dice_to_spawn: int = 10
@@ -13,7 +13,7 @@ var time_since_last_die_spawn: float = 0
 
 
 @export_category("UI")
-@export var hp_bar: TextureProgressBar
+@export var hp_and_shields_indicator: HPShieldsIndicator
 
 
 func _ready() -> void:
@@ -63,14 +63,8 @@ func _update_dice_queue_locations() -> void:
 	
 
 func _update_ui() -> void:
-	hp_bar.value = hp_and_def.health / float(hp_and_def.max_health)
-	$"HP Progress Bar/HP Label".text = str(hp_and_def.health)
-	
-	$"HP Progress Bar/Def Indicator/Def Label".text = str(hp_and_def.defense)
-	if hp_and_def.defense == 0:
-		$"HP Progress Bar/Def Indicator".visible = false
-	else:
-		$"HP Progress Bar/Def Indicator".visible = true
+	hp_and_shields_indicator.set_shields()
+	hp_and_shields_indicator.set_health()
 
 
 func _death() -> void:

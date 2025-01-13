@@ -142,21 +142,19 @@ func activate_tile_tween(target: Tile) -> void:
 
 func reroll_tween(enemy_to_act: Enemy = null) -> void:
 	var tween_time = 0.75
-	being_tweened = true
 	can_be_held = false
 
 	var tween = get_tree().create_tween()
 	tween.tween_property(self, 'rotation_degrees', 180, tween_time/2).from(0).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_IN)
 	tween.tween_callback(randomize_value)
-	tween.tween_property(self, 'rotation_degrees', 360, tween_time/2).from_current().set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
+	tween.tween_property(self, 'rotation_degrees', 360, tween_time/2).from(180).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
 	
 	var finish_reroll = func finish_reroll() -> void:
-		being_tweened = false
 		can_be_held = true
 		small_shake()
 		
 		await get_tree().create_timer(1).timeout
-		if enemy_to_act:
+		if enemy_to_act != null:
 			enemy_intent_tween(enemy_to_act)
 			
 	
@@ -180,6 +178,8 @@ func enemy_intent_tween(enemy_to_act: Enemy) -> void:
 	var finish_send = func finish_send() -> void:
 		being_tweened = false
 		$AnimatedSprite2D.scale = Vector2(1,1)
-		enemy_to_act.act(self)
+		
+		if enemy_to_act:
+			enemy_to_act.act(self)
 
 	tween.chain().tween_callback(finish_send)
