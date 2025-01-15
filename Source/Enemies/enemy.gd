@@ -5,8 +5,8 @@ var action_list: Array[EnemyAction]
 var currently_acting: bool = false
 @export var action_indicator: Sprite2D
 
-@export_category("UI")
-@export var hp_bar: TextureProgressBar
+@export var default_health_bar_background: Texture2D
+@export var shielded_health_bar_background: Texture2D
 
 func _ready() -> void:
 	generate_action_list()
@@ -40,15 +40,15 @@ func generate_action_list() -> void:
 				
 func _update_ui() -> void:
 	# Set the health bar
-	hp_bar.value = hp_and_def.health / float(hp_and_def.max_health)
-	$"HP Progress Bar/HP Label".text = str(hp_and_def.health)
+	$"Health and Shields Indicator/Health Bar".value = hp_and_def.health / float(hp_and_def.max_health)
+	$"Health and Shields Indicator/Health Label".text = str(hp_and_def.health)
 	
 	# Set the defense indicator and label
-	$"HP Progress Bar/Def Indicator/Def Label".text = str(hp_and_def.defense)
+	$"Health and Shields Indicator/Shields Label".text = str(hp_and_def.defense)
 	if hp_and_def.defense == 0:
-		$"HP Progress Bar/Def Indicator".visible = false
+		$"Health and Shields Indicator".texture = default_health_bar_background
 	else:
-		$"HP Progress Bar/Def Indicator".visible = true
+		$"Health and Shields Indicator".texture = shielded_health_bar_background
 		
 	# Set the dice queue display
 	for i in range($GridContainer.get_child_count()):
@@ -56,8 +56,12 @@ func _update_ui() -> void:
 		
 	# Set up the action indicator sprites
 	for i in range(6):
+		$"Action Indicator".get_child(i).get_child(0).text = ''
 		if action_list[i].intent_texture:
 			$"Action Indicator".get_child(i).texture = action_list[i].intent_texture
+			
+			if action_list[i].intent_display_num != -1:
+				$"Action Indicator".get_child(i).get_child(0).text = str(action_list[i].intent_display_num)
 		else:
 			$"Action Indicator".get_child(i).texture = null
 
@@ -110,3 +114,11 @@ func act(die_used: Dice):
 	
 	currently_acting = false
 	_update_ui()
+
+
+func show_intent_info(action_num: int) -> void:
+	print(action_num)
+
+
+func _on_button_pressed() -> void:
+	print('Button pushed')

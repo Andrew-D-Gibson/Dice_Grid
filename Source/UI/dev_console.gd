@@ -42,8 +42,8 @@ func _on_line_edit_text_submitted(console_command: String) -> void:
 		'kill_enemies':
 			_kill_enemies()
 			
-		'load_game_state':
-			_load_game_state(command.slice(1))
+		'game_state':
+			_game_state(command.slice(1))
 			
 		'test':
 			_test(command.slice(1))
@@ -127,7 +127,7 @@ func _kill_enemies(command_args: Array[String] = []) -> void:
 	command_history.append_text('\n[center][i]Killed all enemies![/i][/center]')
 
 
-func _load_game_state(command_args: Array[String] = []) -> void:
+func _game_state(command_args: Array[String] = []) -> void:
 	if len(command_args) > 0 and command_args[0].is_valid_int():
 		Events.load_game_state.emit(int(command_args[0]))
 		command_history.append_text('\n[center][i]Attempting to load game state...[/i][/center]')

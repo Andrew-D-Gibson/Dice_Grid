@@ -1,8 +1,9 @@
-[gd_scene load_steps=11 format=3 uid="uid://skeakddxfvao"]
+[gd_scene load_steps=12 format=3 uid="uid://skeakddxfvao"]
 
 [ext_resource type="Script" path="res://Source/UI/Health and Shields Indicator/health_and_shields_indicator.gd" id="1_csfw2"]
 [ext_resource type="Texture2D" uid="uid://6k7aho8456jn" path="res://Assets/UI/Health and Shields Indicator/background.png" id="2_ts7fd"]
 [ext_resource type="Texture2D" uid="uid://bggaq10wpcli5" path="res://Assets/UI/Health and Shields Indicator/Shields-Sheet.png" id="3_sdahe"]
+[ext_resource type="Texture2D" uid="uid://b3cfmrcn8xnsb" path="res://Assets/UI/Health and Shields Indicator/health_under.png" id="4_jod1h"]
 [ext_resource type="Texture2D" uid="uid://cwoldjm4pubml" path="res://Assets/UI/Health and Shields Indicator/health_change.png" id="4_omwmb"]
 [ext_resource type="Texture2D" uid="uid://ccpalueq6vrr2" path="res://Assets/UI/Health and Shields Indicator/health.png" id="4_sdahe"]
 [ext_resource type="Texture2D" uid="uid://dwyeeyvjor44w" path="res://Assets/UI/Health and Shields Indicator/over.png" id="5_omwmb"]
@@ -51,9 +52,10 @@ offset_top = -55.0
 offset_right = 53.0
 offset_bottom = 55.0
 max_value = 1.0
-step = 0.01
+step = 0.025
 value = 1.0
 fill_mode = 4
+texture_under = ExtResource("4_jod1h")
 texture_progress = ExtResource("4_omwmb")
 
 [node name="Health Bar" type="TextureProgressBar" parent="."]
@@ -62,7 +64,7 @@ offset_top = -55.0
 offset_right = 53.0
 offset_bottom = 55.0
 max_value = 1.0
-step = 0.01
+step = 0.025
 value = 1.0
 fill_mode = 4
 texture_progress = ExtResource("4_sdahe")

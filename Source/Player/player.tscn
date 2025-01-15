@@ -8,10 +8,7 @@
 [node name="Player" type="Node2D" node_paths=PackedStringArray("grid", "hp_and_def")]
 script = ExtResource("1_g4gsc")
 grid = NodePath("Rectangular Grid")
-dice_queue_offset = null
-dice_queue_spacing = null
-dice_to_spawn = null
-dice_spawn_delay = null
+dice_queue_offset = Vector2(-144, 84)
 hp_and_def = NodePath("Health Component")
 dice_scene = ExtResource("2_880o0")
 

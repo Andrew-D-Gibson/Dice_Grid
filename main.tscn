@@ -1,8 +1,9 @@
-[gd_scene load_steps=14 format=3 uid="uid://io1ko4uxwtba"]
+[gd_scene load_steps=18 format=3 uid="uid://io1ko4uxwtba"]
 
 [ext_resource type="PackedScene" uid="uid://cygbrgfx6v2tu" path="res://Source/UI/ui.tscn" id="1_5vw27"]
 [ext_resource type="Texture2D" uid="uid://4nkkct7vh7ad" path="res://Assets/Backgrounds/default_background.png" id="1_dg77c"]
 [ext_resource type="PackedScene" uid="uid://c7lpjg53k5bkl" path="res://Source/Game State/Game State Manager/game_state_manager.tscn" id="2_272bh"]
+[ext_resource type="Texture2D" uid="uid://c1ach8cf07eus" path="res://Assets/Backgrounds/dust_particle.png" id="2_w48qg"]
 [ext_resource type="Script" path="res://Source/Game State/Game State Resources/game_state.gd" id="4_7mycd"]
 [ext_resource type="PackedScene" uid="uid://8x4oilg8o8m4" path="res://Source/Player/player.tscn" id="4_lquwl"]
 [ext_resource type="Resource" uid="uid://demco14i4e5j0" path="res://Source/Game State/Game State Resources/test_game_state.tres" id="5_272bh"]
@@ -12,9 +13,15 @@
 [ext_resource type="PackedScene" uid="uid://la8qk5ro0527" path="res://Source/UI/Reroll Button/reroll_button.tscn" id="9_4c57u"]
 [ext_resource type="Texture2D" uid="uid://c2oilt6v6uf60" path="res://Assets/UI/Cockpit/walls.png" id="9_efxa6"]
 [ext_resource type="PackedScene" uid="uid://skeakddxfvao" path="res://Source/UI/Health and Shields Indicator/health_and_shields_indicator.tscn" id="11_efxa6"]
+[ext_resource type="Texture2D" uid="uid://cnapsluylk85s" path="res://Assets/UI/Cockpit/canopy_walls.png" id="12_vivmo"]
+[ext_resource type="Texture2D" uid="uid://hj7u1jyw4cx1" path="res://Assets/UI/Dice Queue/Dice Queue.png" id="13_ycdy4"]
 
 [sub_resource type="Gradient" id="Gradient_dg77c"]
-colors = PackedColorArray(0.807843, 0.941176, 0.945098, 1, 1, 1, 1, 0.227451)
+offsets = PackedFloat32Array(0, 0.490196, 1)
+colors = PackedColorArray(1, 1, 1, 0.227451, 0.8075, 0.94525, 0.95, 0.6, 0.8075, 0.94525, 0.95, 0)
+
+[sub_resource type="Gradient" id="Gradient_w48qg"]
+colors = PackedColorArray(0.8075, 0.94525, 0.95, 0, 0.8075, 0.94525, 0.95, 0.333333)
 
 [node name="Main" type="Node2D"]
 
@@ -23,19 +30,24 @@ z_index = -100
 texture = ExtResource("1_dg77c")
 
 [node name="CPUParticles2D" type="CPUParticles2D" parent="Background"]
-position = Vector2(1, -399)
-amount = 10
-lifetime = 3.0
+position = Vector2(0, -59)
+amount = 24
+lifetime = 6.0
 preprocess = 10.0
-speed_scale = 3.7
-direction = Vector2(0, 1)
-spread = 60.0
+speed_scale = 4.16
+texture = ExtResource("2_w48qg")
+particle_flag_align_y = true
+direction = Vector2(0, -1)
+spread = 180.0
 gravity = Vector2(0, 0)
-initial_velocity_min = 128.0
-initial_velocity_max = 256.0
+initial_velocity_min = 32.0
+initial_velocity_max = 64.0
+linear_accel_min = 60.56
+linear_accel_max = 100.0
 scale_amount_max = 2.0
 color = Color(0.807843, 0.941176, 0.945098, 1)
 color_ramp = SubResource("Gradient_dg77c")
+color_initial_ramp = SubResource("Gradient_w48qg")
 
 [node name="UI" parent="." instance=ExtResource("1_5vw27")]
 
@@ -43,11 +55,12 @@ color_ramp = SubResource("Gradient_dg77c")
 zoom = Vector2(3, 3)
 
 [node name="Player" parent="." node_paths=PackedStringArray("hp_and_shields_indicator") instance=ExtResource("4_lquwl")]
-position = Vector2(0, 76)
+position = Vector2(0, 78)
+dice_queue_offset = Vector2(-144, 82)
 hp_and_shields_indicator = NodePath("../Health and Shields Indicator")
 
 [node name="Game State Manager" parent="." node_paths=PackedStringArray("player") instance=ExtResource("2_272bh")]
-current_state = 1
+current_state = 3
 game_states = Array[ExtResource("4_7mycd")]([ExtResource("5_272bh"), ExtResource("6_272bh"), ExtResource("6_5vw27"), ExtResource("8_5vw27")])
 player = NodePath("../Player")
 
@@ -55,8 +68,17 @@ player = NodePath("../Player")
 z_index = -10
 texture = ExtResource("9_efxa6")
 
+[node name="Canopy Walls" type="Sprite2D" parent="Cockpit Walls"]
+z_index = 1
+z_as_relative = false
+texture = ExtResource("12_vivmo")
+
 [node name="Reroll Button" parent="." instance=ExtResource("9_4c57u")]
 position = Vector2(-140, 130)
 
 [node name="Health and Shields Indicator" parent="." instance=ExtResource("11_efxa6")]
 position = Vector2(-204, 85)
+
+[node name="Dice Queue" type="Sprite2D" parent="."]
+position = Vector2(0, 160)
+texture = ExtResource("13_ycdy4")

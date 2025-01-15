@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://Source/Game State/Game State Resources/game_state.gd" id="1_bvtba"]
 [ext_resource type="Resource" uid="uid://dwcadnkxdggcp" path="res://Source/Encounters/2_basics_encounter.tres" id="1_q4o66"]
 [ext_resource type="PackedScene" uid="uid://jdl0rti53xfr" path="res://Source/Tiles/damage.tscn" id="3_6cq2r"]
-[ext_resource type="PackedScene" uid="uid://b7h0g1bsdfxrm" path="res://Source/Tiles/defend.tscn" id="4_gl1pb"]
+[ext_resource type="PackedScene" uid="uid://b7h0g1bsdfxrm" path="res://Source/Tiles/shield.tscn" id="4_gl1pb"]
 [ext_resource type="PackedScene" uid="uid://cjngk56klrvr4" path="res://Source/Tiles/dump.tscn" id="5_w6yhv"]
 [ext_resource type="PackedScene" uid="uid://bmfev84raru45" path="res://Source/Tiles/activator.tscn" id="7_xlsnp"]
 [ext_resource type="PackedScene" uid="uid://c0uglhkot8fu2" path="res://Source/Tiles/heal.tscn" id="8_gn3rq"]

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bgc0cv7c31np3"
-path="res://.godot/imported/3_dice.png-77ba2976f204c581eee58f4fc47fc70a.ctex"
+uid="uid://bjir85vpq5ltv"
+path="res://.godot/imported/Shields fill.png-611799048496ca8a66ae5cef7b239e2d.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Enemies/Dice Queue/3_dice.png"
-dest_files=["res://.godot/imported/3_dice.png-77ba2976f204c581eee58f4fc47fc70a.ctex"]
+source_file="res://Assets/Enemies/HP and Def UI/Shields fill.png"
+dest_files=["res://.godot/imported/Shields fill.png-611799048496ca8a66ae5cef7b239e2d.ctex"]
 
 [params]
 

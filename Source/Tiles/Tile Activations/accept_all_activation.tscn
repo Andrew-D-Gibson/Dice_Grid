@@ -1,6 +1,8 @@
-[gd_scene load_steps=2 format=3 uid="uid://bwtgx83ngvi3h"]
+[gd_scene load_steps=3 format=3 uid="uid://bwtgx83ngvi3h"]
 
 [ext_resource type="Script" path="res://Source/Tiles/Tile Activations/accept_all_activation.gd" id="1_alwyf"]
+[ext_resource type="Texture2D" uid="uid://dnno8prrr78ht" path="res://Assets/Tiles/Activator Indicators/Any.png" id="1_s3ifc"]
 
-[node name="Accept All Activation" type="Node2D"]
+[node name="Accept All Activation" type="Sprite2D"]
+texture = ExtResource("1_s3ifc")
 script = ExtResource("1_alwyf")

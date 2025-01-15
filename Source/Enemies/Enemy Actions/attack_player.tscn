@@ -8,6 +8,7 @@
 [node name="Attack Player" type="Node2D"]
 script = ExtResource("1_vn75d")
 intent_texture = ExtResource("2_jlbiu")
+intent_display_num = 5
 likelihood_weight = 2.0
 
 [node name="Target Player" parent="." instance=ExtResource("2_3qr8c")]

@@ -49,7 +49,7 @@ func set_shields() -> void:
 
 
 func set_health() -> void:
-	if $"Health Bar".value > float(Globals.player.hp_and_def.health) / float(Globals.player.hp_and_def.max_health):
+	if $"Health Bar".value > (float(Globals.player.hp_and_def.health) + 0.9) / float(Globals.player.hp_and_def.max_health):
 		health_label_shake_time = 0.25
 		
 	var tween_time = 0.1
