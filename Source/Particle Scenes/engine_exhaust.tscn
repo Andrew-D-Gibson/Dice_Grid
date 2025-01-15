@@ -1,0 +1,20 @@
+[gd_scene load_steps=2 format=3 uid="uid://dbx068qtaix0h"]
+
+[sub_resource type="Gradient" id="Gradient_s2lnk"]
+offsets = PackedFloat32Array(0, 0.556863, 1)
+colors = PackedColorArray(0.815686, 0.211765, 0.337255, 1, 0.933333, 0.827451, 0.364706, 1, 0, 0, 0, 0.901961)
+
+[node name="Engine Exhaust" type="CPUParticles2D"]
+z_index = -1
+amount = 16
+lifetime = 0.6
+preprocess = 1.0
+direction = Vector2(0, -1)
+spread = 29.16
+gravity = Vector2(0, 0)
+initial_velocity_min = 32.0
+initial_velocity_max = 64.0
+linear_accel_min = -4.0
+linear_accel_max = -1.0
+scale_amount_max = 4.0
+color_ramp = SubResource("Gradient_s2lnk")

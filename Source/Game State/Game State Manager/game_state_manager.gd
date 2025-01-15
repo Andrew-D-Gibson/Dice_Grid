@@ -6,6 +6,7 @@ extends Node2D
 
 @export_category("Components")
 @export var player: Player
+@export var targeting_computer: TargetingComputer
 
 
 func _ready() -> void:
@@ -48,7 +49,10 @@ func _load_game_state(state_num: int) -> void:
 		
 	if game_states[state_num].encounter:
 		_spawn_enemies(game_states[state_num].encounter.enemies)
-	
+		
+		
+	# Re-target the targeting computer
+	targeting_computer.attempt_retarget()
 
 
 func _spawn_enemies(encounter_enemies: Array[PackedScene]) -> void:

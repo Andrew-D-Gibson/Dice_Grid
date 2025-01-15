@@ -3,6 +3,10 @@ extends Effect
 @export var damage_amount: int = 5
 @export var dice_scene: PackedScene
 
+func _ready() -> void:
+	if get_parent() is EnemyAction and get_parent().amount != -1:
+		damage_amount = get_parent().amount
+
 
 func play(effect_variables: Dictionary) -> Dictionary:
 	# First remove null entries from our list of targets (they may have died)

@@ -1,58 +1,51 @@
-[gd_scene load_steps=17 format=3 uid="uid://djowit6k2t6lo"]
+[gd_scene load_steps=15 format=3 uid="uid://nj74oiydl1qn"]
 
-[ext_resource type="Script" path="res://Source/Enemies/enemy.gd" id="1_2wu4v"]
-[ext_resource type="PackedScene" uid="uid://cu4pw31ijdghb" path="res://Source/Dice/dice.tscn" id="2_8mhou"]
-[ext_resource type="PackedScene" uid="uid://c8t3yoopiopfp" path="res://Source/Inherited Classes/Actor/HP and Def Component/hp_and_def_component.tscn" id="2_muilx"]
-[ext_resource type="Texture2D" uid="uid://b4h4remb65b41" path="res://Assets/Enemies/Health and Shield Indicator/Shield_under.png" id="3_2ido2"]
-[ext_resource type="Texture2D" uid="uid://dl33h5o500mq" path="res://Assets/Enemies/face_on_enemy.png" id="3_s2lnk"]
-[ext_resource type="PackedScene" uid="uid://dchteabtrevci" path="res://Source/Enemies/Enemy Actions/attack_player.tscn" id="4_iqa7y"]
-[ext_resource type="Texture2D" uid="uid://cjhwwtn6nwq7s" path="res://Assets/Enemies/Enemy Intents/reroll_guide.png" id="4_m14e6"]
-[ext_resource type="PackedScene" uid="uid://dxgikxh33wmht" path="res://Source/Enemies/Enemy Actions/defend_self.tscn" id="6_1hmcw"]
-[ext_resource type="Texture2D" uid="uid://dbmhr0b6ra8j1" path="res://Assets/Enemies/Health and Shield Indicator/bar_under.png" id="6_m14e6"]
-[ext_resource type="PackedScene" uid="uid://bjty87em77mkw" path="res://Source/Enemies/Enemy Actions/do_nothing.tscn" id="6_s2lnk"]
-[ext_resource type="PackedScene" uid="uid://dq7vh7ajug7qe" path="res://Source/Enemies/Enemy Actions/lockout_random_grid_cell.tscn" id="7_s2lnk"]
-[ext_resource type="Texture2D" uid="uid://bmcylickwgpn2" path="res://Assets/Enemies/Health and Shield Indicator/Health_under.png" id="8_s2lnk"]
-[ext_resource type="Texture2D" uid="uid://b6tvjitsev7d3" path="res://Assets/Enemies/Health and Shield Indicator/bar_over.png" id="9_s2lnk"]
-[ext_resource type="Texture2D" uid="uid://dn4s4gyaegqcb" path="res://Assets/Enemies/Health and Shield Indicator/Health fill.png" id="10_2ido2"]
-[ext_resource type="PackedScene" uid="uid://dbx068qtaix0h" path="res://Source/Particle Scenes/engine_exhaust.tscn" id="11_2ido2"]
-[ext_resource type="Texture2D" uid="uid://or78aaxp4per" path="res://Assets/Enemies/Dice Queue/dice_indicator.png" id="12_1hmcw"]
+[ext_resource type="Script" path="res://Source/Enemies/enemy.gd" id="1_4h27c"]
+[ext_resource type="Texture2D" uid="uid://dbmhr0b6ra8j1" path="res://Assets/Enemies/Health and Shield Indicator/bar_under.png" id="2_d56t5"]
+[ext_resource type="Texture2D" uid="uid://dnt4sw785hboa" path="res://Assets/Enemies/Supporter/targeting_computer_image.png" id="2_wav7e"]
+[ext_resource type="Texture2D" uid="uid://b4h4remb65b41" path="res://Assets/Enemies/Health and Shield Indicator/Shield_under.png" id="3_uu5vv"]
+[ext_resource type="PackedScene" uid="uid://cu4pw31ijdghb" path="res://Source/Dice/dice.tscn" id="4_ertgc"]
+[ext_resource type="PackedScene" uid="uid://c8t3yoopiopfp" path="res://Source/Inherited Classes/Actor/HP and Def Component/hp_and_def_component.tscn" id="5_bg2ud"]
+[ext_resource type="PackedScene" uid="uid://dxgikxh33wmht" path="res://Source/Enemies/Enemy Actions/defend_self.tscn" id="8_lnj2s"]
+[ext_resource type="Texture2D" uid="uid://baus74b7kpdj" path="res://Assets/Enemies/Supporter/support.png" id="9_4h27c"]
+[ext_resource type="PackedScene" uid="uid://dbx068qtaix0h" path="res://Source/Particle Scenes/engine_exhaust.tscn" id="10_qyyj7"]
+[ext_resource type="Texture2D" uid="uid://cjhwwtn6nwq7s" path="res://Assets/Enemies/Enemy Intents/reroll_guide.png" id="11_jcn3u"]
+[ext_resource type="Texture2D" uid="uid://bmcylickwgpn2" path="res://Assets/Enemies/Health and Shield Indicator/Health_under.png" id="12_7ory6"]
+[ext_resource type="Texture2D" uid="uid://b6tvjitsev7d3" path="res://Assets/Enemies/Health and Shield Indicator/bar_over.png" id="13_j0nab"]
+[ext_resource type="Texture2D" uid="uid://dn4s4gyaegqcb" path="res://Assets/Enemies/Health and Shield Indicator/Health fill.png" id="14_327e5"]
+[ext_resource type="Texture2D" uid="uid://or78aaxp4per" path="res://Assets/Enemies/Dice Queue/dice_indicator.png" id="15_dhw4y"]
 
-[node name="Enemy" type="Node2D" node_paths=PackedStringArray("action_indicator", "hp_and_def") groups=["enemies"]]
-script = ExtResource("1_2wu4v")
+[node name="Support" type="Node2D" node_paths=PackedStringArray("action_indicator", "hp_and_def") groups=["enemies"]]
+script = ExtResource("1_4h27c")
+targeting_computer_image = ExtResource("2_wav7e")
 action_indicator = NodePath("Action Indicator")
-default_health_bar_background = ExtResource("6_m14e6")
-shielded_health_bar_background = ExtResource("3_2ido2")
+default_health_bar_background = ExtResource("2_d56t5")
+shielded_health_bar_background = ExtResource("3_uu5vv")
 hp_and_def = NodePath("Health Component")
-dice_scene = ExtResource("2_8mhou")
+dice_scene = ExtResource("4_ertgc")
 
-[node name="Health Component" parent="." instance=ExtResource("2_muilx")]
+[node name="Health Component" parent="." instance=ExtResource("5_bg2ud")]
 starting_health = 12
 max_health = 12
 
 [node name="Possible Actions Parent" type="Node2D" parent="."]
 
-[node name="Do Nothing" parent="Possible Actions Parent" instance=ExtResource("6_s2lnk")]
-likelihood_weight = 1.5
-
-[node name="Attack Player" parent="Possible Actions Parent" instance=ExtResource("4_iqa7y")]
-visible = false
-
-[node name="Defend Self" parent="Possible Actions Parent" instance=ExtResource("6_1hmcw")]
-visible = false
-
-[node name="Lockout Random Grid Cell" parent="Possible Actions Parent" instance=ExtResource("7_s2lnk")]
+[node name="Defend Self" parent="Possible Actions Parent" instance=ExtResource("8_lnj2s")]
 visible = false
 
 [node name="Ship" type="Sprite2D" parent="."]
-position = Vector2(-13, 7)
-texture = ExtResource("3_s2lnk")
+position = Vector2(0, 13)
+texture = ExtResource("9_4h27c")
 
-[node name="Engine Exhaust" parent="Ship" instance=ExtResource("11_2ido2")]
-position = Vector2(-13, -13)
+[node name="Engine Exhaust" parent="Ship" instance=ExtResource("10_qyyj7")]
+position = Vector2(-15, -19)
+
+[node name="Engine Exhaust2" parent="Ship" instance=ExtResource("10_qyyj7")]
+position = Vector2(15, -19)
 
 [node name="Action Indicator" type="Sprite2D" parent="."]
-position = Vector2(-4, -27)
-texture = ExtResource("4_m14e6")
+position = Vector2(17, -28)
+texture = ExtResource("11_jcn3u")
 
 [node name="Indicator 1" type="Sprite2D" parent="Action Indicator"]
 position = Vector2(-30, -11)
@@ -121,8 +114,8 @@ text = "
 "
 
 [node name="Health and Shields Indicator" type="Sprite2D" parent="."]
-position = Vector2(-55, -29)
-texture = ExtResource("6_m14e6")
+position = Vector2(-36, -32)
+texture = ExtResource("2_d56t5")
 
 [node name="Health Bar" type="TextureProgressBar" parent="Health and Shields Indicator"]
 offset_left = -32.0
@@ -133,9 +126,9 @@ max_value = 1.0
 step = 0.01
 value = 1.0
 fill_mode = 4
-texture_under = ExtResource("8_s2lnk")
-texture_over = ExtResource("9_s2lnk")
-texture_progress = ExtResource("10_2ido2")
+texture_under = ExtResource("12_7ory6")
+texture_over = ExtResource("13_j0nab")
+texture_progress = ExtResource("14_327e5")
 
 [node name="Health Label" type="RichTextLabel" parent="Health and Shields Indicator"]
 offset_left = -22.0
@@ -156,10 +149,10 @@ text = "1"
 horizontal_alignment = 1
 
 [node name="GridContainer" type="GridContainer" parent="."]
-offset_left = 32.0
-offset_top = -33.0
-offset_right = 112.0
-offset_bottom = 19.0
+offset_left = 53.0
+offset_top = -34.0
+offset_right = 133.0
+offset_bottom = 18.0
 scale = Vector2(0.5, 0.5)
 columns = 3
 metadata/_edit_use_anchors_ = true
@@ -167,44 +160,44 @@ metadata/_edit_use_anchors_ = true
 [node name="TextureRect" type="TextureRect" parent="GridContainer"]
 visible = false
 layout_mode = 2
-texture = ExtResource("12_1hmcw")
+texture = ExtResource("15_dhw4y")
 
 [node name="TextureRect2" type="TextureRect" parent="GridContainer"]
 visible = false
 layout_mode = 2
-texture = ExtResource("12_1hmcw")
+texture = ExtResource("15_dhw4y")
 
 [node name="TextureRect3" type="TextureRect" parent="GridContainer"]
 visible = false
 layout_mode = 2
-texture = ExtResource("12_1hmcw")
+texture = ExtResource("15_dhw4y")
 
 [node name="TextureRect4" type="TextureRect" parent="GridContainer"]
 visible = false
 layout_mode = 2
-texture = ExtResource("12_1hmcw")
+texture = ExtResource("15_dhw4y")
 
 [node name="TextureRect5" type="TextureRect" parent="GridContainer"]
 visible = false
 layout_mode = 2
-texture = ExtResource("12_1hmcw")
+texture = ExtResource("15_dhw4y")
 
 [node name="TextureRect6" type="TextureRect" parent="GridContainer"]
 visible = false
 layout_mode = 2
-texture = ExtResource("12_1hmcw")
+texture = ExtResource("15_dhw4y")
 
 [node name="TextureRect7" type="TextureRect" parent="GridContainer"]
 visible = false
 layout_mode = 2
-texture = ExtResource("12_1hmcw")
+texture = ExtResource("15_dhw4y")
 
 [node name="TextureRect8" type="TextureRect" parent="GridContainer"]
 visible = false
 layout_mode = 2
-texture = ExtResource("12_1hmcw")
+texture = ExtResource("15_dhw4y")
 
 [node name="TextureRect9" type="TextureRect" parent="GridContainer"]
 visible = false
 layout_mode = 2
-texture = ExtResource("12_1hmcw")
+texture = ExtResource("15_dhw4y")

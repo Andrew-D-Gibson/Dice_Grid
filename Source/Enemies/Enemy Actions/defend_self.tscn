@@ -8,7 +8,7 @@
 [node name="Defend Self" type="Node2D"]
 script = ExtResource("1_ie4ar")
 intent_texture = ExtResource("3_vbr7t")
-intent_display_num = 3
+amount = 3
 likelihood_weight = 1.0
 
 [node name="Defend Self Effect" parent="." instance=ExtResource("4_ikv1w")]

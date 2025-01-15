@@ -3,8 +3,11 @@ extends Actor
 
 var action_list: Array[EnemyAction]
 var currently_acting: bool = false
-@export var action_indicator: Sprite2D
 
+@export var targeting_computer_image: Texture2D
+
+@export_category('UI')
+@export var action_indicator: Sprite2D
 @export var default_health_bar_background: Texture2D
 @export var shielded_health_bar_background: Texture2D
 
@@ -12,8 +15,14 @@ func _ready() -> void:
 	generate_action_list()
 	hp_and_def.death.connect(_death)
 	_update_ui()
-
-
+	
+	var tween_time = randf_range(4, 8)
+	var tween = get_tree().create_tween()
+	tween.tween_property($Ship, 'global_position', $Ship.global_position + Vector2(0, 12), tween_time/2.0).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT)
+	tween.tween_property($Ship, 'global_position', $Ship.global_position, tween_time/2.0).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT)
+	tween.set_loops()
+	
+	
 func _process(delta: float) -> void:
 	if len(dice_queue) > 0 and not currently_acting:
 		_reroll_die_for_action()
@@ -60,8 +69,8 @@ func _update_ui() -> void:
 		if action_list[i].intent_texture:
 			$"Action Indicator".get_child(i).texture = action_list[i].intent_texture
 			
-			if action_list[i].intent_display_num != -1:
-				$"Action Indicator".get_child(i).get_child(0).text = str(action_list[i].intent_display_num)
+			if action_list[i].amount != -1:
+				$"Action Indicator".get_child(i).get_child(0).text = str(action_list[i].amount)
 		else:
 			$"Action Indicator".get_child(i).texture = null
 
@@ -72,6 +81,8 @@ func _death() -> void:
 		var die = dice_queue[i]
 		remove_die_from_queue(die)
 		Globals.player.add_die_to_queue(die)
+	
+	Events.enemy_died.emit()
 	queue_free()
 
 

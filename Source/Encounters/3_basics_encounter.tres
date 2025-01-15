@@ -1,9 +1,11 @@
-[gd_resource type="Resource" script_class="Encounter" load_steps=3 format=3 uid="uid://mkpluwvpx1xp"]
+[gd_resource type="Resource" script_class="Encounter" load_steps=5 format=3 uid="uid://mkpluwvpx1xp"]
 
-[ext_resource type="PackedScene" uid="uid://djowit6k2t6lo" path="res://Source/Enemies/enemy.tscn" id="1_5o4sp"]
+[ext_resource type="PackedScene" uid="uid://nj74oiydl1qn" path="res://Source/Enemies/support.tscn" id="1_1scm6"]
+[ext_resource type="PackedScene" uid="uid://d0cvfla155le" path="res://Source/Enemies/attacker.tscn" id="2_1scm6"]
 [ext_resource type="Script" path="res://Source/Encounters/encounter.gd" id="2_d2qyu"]
+[ext_resource type="PackedScene" uid="uid://c1kkr8xkoq5d6" path="res://Source/Enemies/disabler.tscn" id="3_1scm6"]
 
 [resource]
 script = ExtResource("2_d2qyu")
-enemies = Array[PackedScene]([ExtResource("1_5o4sp"), ExtResource("1_5o4sp"), ExtResource("1_5o4sp")])
+enemies = Array[PackedScene]([ExtResource("1_1scm6"), ExtResource("2_1scm6"), ExtResource("3_1scm6")])
 metadata/_custom_type_script = ExtResource("2_d2qyu")

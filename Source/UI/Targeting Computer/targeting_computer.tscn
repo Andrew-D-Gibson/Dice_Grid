@@ -1,0 +1,147 @@
+[gd_scene load_steps=18 format=3 uid="uid://dqfsd1jlux328"]
+
+[ext_resource type="Script" path="res://Source/UI/Targeting Computer/targeting_computer.gd" id="1_ote23"]
+[ext_resource type="Texture2D" uid="uid://b06cf85wytlt2" path="res://Assets/UI/Targeting Computer/targeting_computer.png" id="2_htbe7"]
+[ext_resource type="Texture2D" uid="uid://b6hly1phweq2t" path="res://Assets/UI/Targeting Computer/targeting_indicator.png" id="3_htbe7"]
+[ext_resource type="Texture2D" uid="uid://c75bc2jfhg6ru" path="res://Assets/UI/Targeting Computer/screen_static-Sheet.png" id="4_ukb66"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4y174"]
+atlas = ExtResource("4_ukb66")
+region = Rect2(121, 0, 121, 65)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_n65ly"]
+atlas = ExtResource("4_ukb66")
+region = Rect2(242, 0, 121, 65)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_x725k"]
+atlas = ExtResource("4_ukb66")
+region = Rect2(363, 0, 121, 65)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ukb66"]
+atlas = ExtResource("4_ukb66")
+region = Rect2(0, 0, 121, 65)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xrpvd"]
+atlas = ExtResource("4_ukb66")
+region = Rect2(484, 0, 121, 65)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mdpll"]
+atlas = ExtResource("4_ukb66")
+region = Rect2(605, 0, 121, 65)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7ydr0"]
+atlas = ExtResource("4_ukb66")
+region = Rect2(726, 0, 121, 65)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ledys"]
+atlas = ExtResource("4_ukb66")
+region = Rect2(847, 0, 121, 65)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rorqb"]
+atlas = ExtResource("4_ukb66")
+region = Rect2(968, 0, 121, 65)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_irjjs"]
+atlas = ExtResource("4_ukb66")
+region = Rect2(1089, 0, 121, 65)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_165m3"]
+atlas = ExtResource("4_ukb66")
+region = Rect2(1210, 0, 121, 65)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vgqlm"]
+atlas = ExtResource("4_ukb66")
+region = Rect2(1331, 0, 121, 65)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_mdpll"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4y174")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_n65ly")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_x725k")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4y174")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_n65ly")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_x725k")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ukb66")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xrpvd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mdpll")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7ydr0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ledys")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rorqb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_irjjs")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_165m3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vgqlm")
+}],
+"loop": false,
+"name": &"static",
+"speed": 12.0
+}]
+
+[node name="Targeting Computer" type="Node2D"]
+script = ExtResource("1_ote23")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_htbe7")
+
+[node name="Label" type="Label" parent="Sprite2D"]
+offset_left = -25.0
+offset_top = -33.0
+offset_right = 24.0
+offset_bottom = -20.0
+theme_override_colors/font_color = Color(0.772549, 0.321569, 0.945098, 1)
+text = "Targeting"
+
+[node name="Left Button" type="Area2D" parent="."]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Left Button"]
+position = Vector2(-43, 0)
+polygon = PackedVector2Array(6, -20, -15, 0, -15, 1, 6, 21)
+
+[node name="Right Button" type="Area2D" parent="."]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Right Button"]
+polygon = PackedVector2Array(38, -20, 59, 0, 59, 1, 38, 21)
+
+[node name="Targeting Indicator" type="Sprite2D" parent="."]
+visible = false
+z_index = 1
+texture = ExtResource("3_htbe7")
+
+[node name="Target Image" type="Sprite2D" parent="."]
+position = Vector2(-11, 6)
+
+[node name="Screen" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_mdpll")
+animation = &"static"
+
+[connection signal="input_event" from="Left Button" to="." method="_on_left_button_input_event"]
+[connection signal="input_event" from="Right Button" to="." method="_on_right_button_input_event"]

@@ -13,3 +13,5 @@ signal dev_console_toggled()
 
 # Game state signals
 signal load_game_state(encounter_num: int)
+
+signal enemy_died()

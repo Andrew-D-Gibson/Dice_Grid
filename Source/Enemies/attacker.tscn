@@ -1,0 +1,213 @@
+[gd_scene load_steps=17 format=3 uid="uid://d0cvfla155le"]
+
+[ext_resource type="Script" path="res://Source/Enemies/enemy.gd" id="1_85yh8"]
+[ext_resource type="Texture2D" uid="uid://bilgah5mqcjks" path="res://Assets/Enemies/Attacker/targeting_computer_image.png" id="2_2nbqg"]
+[ext_resource type="Texture2D" uid="uid://dbmhr0b6ra8j1" path="res://Assets/Enemies/Health and Shield Indicator/bar_under.png" id="2_c26fx"]
+[ext_resource type="Texture2D" uid="uid://b4h4remb65b41" path="res://Assets/Enemies/Health and Shield Indicator/Shield_under.png" id="3_2nbqg"]
+[ext_resource type="PackedScene" uid="uid://cu4pw31ijdghb" path="res://Source/Dice/dice.tscn" id="4_rp4ev"]
+[ext_resource type="PackedScene" uid="uid://c8t3yoopiopfp" path="res://Source/Inherited Classes/Actor/HP and Def Component/hp_and_def_component.tscn" id="5_5mkgy"]
+[ext_resource type="PackedScene" uid="uid://bjty87em77mkw" path="res://Source/Enemies/Enemy Actions/do_nothing.tscn" id="6_kjt1d"]
+[ext_resource type="PackedScene" uid="uid://dchteabtrevci" path="res://Source/Enemies/Enemy Actions/attack_player.tscn" id="7_0eo34"]
+[ext_resource type="PackedScene" uid="uid://dxgikxh33wmht" path="res://Source/Enemies/Enemy Actions/defend_self.tscn" id="8_oo6lm"]
+[ext_resource type="PackedScene" uid="uid://dbx068qtaix0h" path="res://Source/Particle Scenes/engine_exhaust.tscn" id="10_85yh8"]
+[ext_resource type="Texture2D" uid="uid://2nyjnmym6dit" path="res://Assets/Enemies/Attacker/attacker.png" id="10_gjp6f"]
+[ext_resource type="Texture2D" uid="uid://cjhwwtn6nwq7s" path="res://Assets/Enemies/Enemy Intents/reroll_guide.png" id="11_uf51e"]
+[ext_resource type="Texture2D" uid="uid://bmcylickwgpn2" path="res://Assets/Enemies/Health and Shield Indicator/Health_under.png" id="12_1v35s"]
+[ext_resource type="Texture2D" uid="uid://b6tvjitsev7d3" path="res://Assets/Enemies/Health and Shield Indicator/bar_over.png" id="13_kc4ug"]
+[ext_resource type="Texture2D" uid="uid://dn4s4gyaegqcb" path="res://Assets/Enemies/Health and Shield Indicator/Health fill.png" id="14_caro6"]
+[ext_resource type="Texture2D" uid="uid://or78aaxp4per" path="res://Assets/Enemies/Dice Queue/dice_indicator.png" id="15_6jxj3"]
+
+[node name="Attacker" type="Node2D" node_paths=PackedStringArray("action_indicator", "hp_and_def") groups=["enemies"]]
+script = ExtResource("1_85yh8")
+targeting_computer_image = ExtResource("2_2nbqg")
+action_indicator = NodePath("Action Indicator")
+default_health_bar_background = ExtResource("2_c26fx")
+shielded_health_bar_background = ExtResource("3_2nbqg")
+hp_and_def = NodePath("Health Component")
+dice_scene = ExtResource("4_rp4ev")
+
+[node name="Health Component" parent="." instance=ExtResource("5_5mkgy")]
+starting_health = 12
+max_health = 12
+
+[node name="Possible Actions Parent" type="Node2D" parent="."]
+
+[node name="Do Nothing" parent="Possible Actions Parent" instance=ExtResource("6_kjt1d")]
+likelihood_weight = 1.0
+
+[node name="Attack Player" parent="Possible Actions Parent" instance=ExtResource("7_0eo34")]
+visible = false
+amount = 5
+likelihood_weight = 4.0
+
+[node name="Defend Self" parent="Possible Actions Parent" instance=ExtResource("8_oo6lm")]
+visible = false
+
+[node name="Ship" type="Sprite2D" parent="."]
+position = Vector2(0, 10)
+texture = ExtResource("10_gjp6f")
+
+[node name="Engine Exhaust" parent="Ship" instance=ExtResource("10_85yh8")]
+position = Vector2(-15, -19)
+
+[node name="Engine Exhaust2" parent="Ship" instance=ExtResource("10_85yh8")]
+position = Vector2(15, -19)
+
+[node name="Action Indicator" type="Sprite2D" parent="."]
+position = Vector2(17, -28)
+texture = ExtResource("11_uf51e")
+
+[node name="Indicator 1" type="Sprite2D" parent="Action Indicator"]
+position = Vector2(-30, -11)
+
+[node name="Label" type="Label" parent="Action Indicator/Indicator 1"]
+offset_left = -5.0
+offset_top = -17.0
+offset_right = 35.0
+offset_bottom = -4.0
+text = "
+"
+
+[node name="Indicator 2" type="Sprite2D" parent="Action Indicator"]
+position = Vector2(-18, -11)
+
+[node name="Label" type="Label" parent="Action Indicator/Indicator 2"]
+offset_left = -5.0
+offset_top = -17.0
+offset_right = 35.0
+offset_bottom = -4.0
+text = "
+"
+
+[node name="Indicator 3" type="Sprite2D" parent="Action Indicator"]
+position = Vector2(-6, -11)
+
+[node name="Label" type="Label" parent="Action Indicator/Indicator 3"]
+offset_left = -5.0
+offset_top = -17.0
+offset_right = 35.0
+offset_bottom = -4.0
+text = "
+"
+
+[node name="Indicator 4" type="Sprite2D" parent="Action Indicator"]
+position = Vector2(6, -11)
+
+[node name="Label" type="Label" parent="Action Indicator/Indicator 4"]
+offset_left = -5.0
+offset_top = -17.0
+offset_right = 35.0
+offset_bottom = -4.0
+text = "
+"
+
+[node name="Indicator 5" type="Sprite2D" parent="Action Indicator"]
+position = Vector2(18, -11)
+
+[node name="Label" type="Label" parent="Action Indicator/Indicator 5"]
+offset_left = -5.0
+offset_top = -17.0
+offset_right = 35.0
+offset_bottom = -4.0
+text = "
+"
+
+[node name="Indicator 6" type="Sprite2D" parent="Action Indicator"]
+position = Vector2(30, -11)
+
+[node name="Label" type="Label" parent="Action Indicator/Indicator 6"]
+offset_left = -5.0
+offset_top = -17.0
+offset_right = 35.0
+offset_bottom = -4.0
+text = "
+"
+
+[node name="Health and Shields Indicator" type="Sprite2D" parent="."]
+position = Vector2(-36, -32)
+texture = ExtResource("2_c26fx")
+
+[node name="Health Bar" type="TextureProgressBar" parent="Health and Shields Indicator"]
+offset_left = -32.0
+offset_top = -32.0
+offset_right = 32.0
+offset_bottom = 32.0
+max_value = 1.0
+step = 0.01
+value = 1.0
+fill_mode = 4
+texture_under = ExtResource("12_1v35s")
+texture_over = ExtResource("13_kc4ug")
+texture_progress = ExtResource("14_caro6")
+
+[node name="Health Label" type="RichTextLabel" parent="Health and Shields Indicator"]
+offset_left = -22.0
+offset_top = -6.0
+offset_right = 18.0
+offset_bottom = 34.0
+theme_override_colors/default_color = Color(0.815686, 0.211765, 0.337255, 1)
+text = "10"
+horizontal_alignment = 1
+
+[node name="Shields Label" type="RichTextLabel" parent="Health and Shields Indicator"]
+offset_left = -36.0
+offset_top = 8.0
+offset_right = 4.0
+offset_bottom = 48.0
+theme_override_colors/default_color = Color(0.262745, 0.65098, 0.988235, 1)
+text = "1"
+horizontal_alignment = 1
+
+[node name="GridContainer" type="GridContainer" parent="."]
+offset_left = 53.0
+offset_top = -34.0
+offset_right = 133.0
+offset_bottom = 18.0
+scale = Vector2(0.5, 0.5)
+columns = 3
+metadata/_edit_use_anchors_ = true
+
+[node name="TextureRect" type="TextureRect" parent="GridContainer"]
+visible = false
+layout_mode = 2
+texture = ExtResource("15_6jxj3")
+
+[node name="TextureRect2" type="TextureRect" parent="GridContainer"]
+visible = false
+layout_mode = 2
+texture = ExtResource("15_6jxj3")
+
+[node name="TextureRect3" type="TextureRect" parent="GridContainer"]
+visible = false
+layout_mode = 2
+texture = ExtResource("15_6jxj3")
+
+[node name="TextureRect4" type="TextureRect" parent="GridContainer"]
+visible = false
+layout_mode = 2
+texture = ExtResource("15_6jxj3")
+
+[node name="TextureRect5" type="TextureRect" parent="GridContainer"]
+visible = false
+layout_mode = 2
+texture = ExtResource("15_6jxj3")
+
+[node name="TextureRect6" type="TextureRect" parent="GridContainer"]
+visible = false
+layout_mode = 2
+texture = ExtResource("15_6jxj3")
+
+[node name="TextureRect7" type="TextureRect" parent="GridContainer"]
+visible = false
+layout_mode = 2
+texture = ExtResource("15_6jxj3")
+
+[node name="TextureRect8" type="TextureRect" parent="GridContainer"]
+visible = false
+layout_mode = 2
+texture = ExtResource("15_6jxj3")
+
+[node name="TextureRect9" type="TextureRect" parent="GridContainer"]
+visible = false
+layout_mode = 2
+texture = ExtResource("15_6jxj3")
