@@ -62,7 +62,7 @@ func destroy():
 
 
 func attack_tween(target: Actor, damage_amount: int) -> void:
-	var tween_time = 0.75
+	var tween_time = 0.6
 	being_tweened = true
 	can_be_held = false
 	

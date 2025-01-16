@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://cv0re3xal0rqn"]
+[gd_scene load_steps=13 format=3 uid="uid://cv0re3xal0rqn"]
 
 [ext_resource type="Script" path="res://Source/UI/Engine/engine_charger.gd" id="1_2qfuf"]
 [ext_resource type="Texture2D" uid="uid://b7n38ic3matv7" path="res://Assets/UI/Engine/engine_tile_pinned.png" id="2_2qfuf"]
@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://ri7bhdwesyrp" path="res://Source/Effects/give_die_to_target_effect.tscn" id="5_rlj5y"]
 [ext_resource type="Texture2D" uid="uid://ct5cvlepd8730" path="res://Assets/UI/Engine/bar_under.png" id="7_uky5e"]
 [ext_resource type="Texture2D" uid="uid://dm7m874lwcmni" path="res://Assets/UI/Engine/bar_over.png" id="8_yxyol"]
+[ext_resource type="Texture2D" uid="uid://b0qvw86dcwvw7" path="res://Assets/UI/Engine/jump_button.png" id="9_yxyol"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_x5s2d"]
 size = Vector2(48, 34)
@@ -47,7 +48,7 @@ position = Vector2(188, 145)
 texture = ExtResource("7_uky5e")
 
 [node name="ProgressBar" type="ProgressBar" parent="."]
-custom_minimum_size = Vector2(21, 60)
+custom_minimum_size = Vector2(22, 60)
 offset_left = 192.0
 offset_top = 113.0
 offset_right = 213.0
@@ -61,9 +62,39 @@ fill_mode = 3
 show_percentage = false
 
 [node name="Bar Over" type="Sprite2D" parent="."]
-position = Vector2(188, 145)
+position = Vector2(191, 148)
 texture = ExtResource("8_yxyol")
+
+[node name="Jump Button" type="Sprite2D" parent="."]
+position = Vector2(237, 150)
+texture = ExtResource("9_yxyol")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Jump Button"]
+offset_left = -18.0
+offset_top = -26.0
+offset_right = 40.0
+offset_bottom = 3.0
+rotation = 0.453786
+theme_override_font_sizes/normal_font_size = 32
+bbcode_enabled = true
+text = "JUMP"
+horizontal_alignment = 1
+
+[node name="Button" type="Button" parent="Jump Button"]
+anchors_preset = -1
+anchor_left = 0.125
+anchor_top = -0.08
+anchor_right = 0.125
+anchor_bottom = -0.08
+offset_left = -30.875
+offset_top = -23.44
+offset_right = 33.125
+offset_bottom = 8.56
+rotation = 0.435988
+focus_mode = 0
+flat = true
 
 [connection signal="input_event" from="." to="." method="_on_input_event"]
 [connection signal="mouse_entered" from="." to="." method="_on_area_2d_mouse_entered"]
 [connection signal="mouse_exited" from="." to="." method="_on_area_2d_mouse_exited"]
+[connection signal="pressed" from="Jump Button/Button" to="." method="_on_jump_button_pushed"]

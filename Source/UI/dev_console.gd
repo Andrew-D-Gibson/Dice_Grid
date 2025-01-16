@@ -49,7 +49,7 @@ func _on_line_edit_text_submitted(console_command: String) -> void:
 			_test(command.slice(1))
 			
 		_:
-			command_history.append_text('\t[i]Invalid command.[/i]')
+			command_history.append_text('\t\tInvalid command.')
 			
 	# Clear the line edit for further commands and re-enter the edit mode
 	line_edit.text = ''
@@ -72,12 +72,12 @@ func _heal(command_args: Array[String] = []) -> void:
 		if command_args[0].is_valid_int():
 			Globals.player.change_health(int(command_args[0]))
 		else:
-			command_history.append_text('\t[i]Invalid command.[/i]')
+			command_history.append_text('\t\tInvalid command.')
 			return
 	else:
 		Globals.player.change_health(1000)
 		
-	command_history.append_text('\n[center][i]Healed player![/i][/center]')
+	command_history.append_text('\n[center]Healed player![/center]')
 	
 
 func _shield(command_args: Array[String] = []) -> void:
@@ -85,10 +85,10 @@ func _shield(command_args: Array[String] = []) -> void:
 	if len(command_args) > 0 and command_args[0].is_valid_int():
 		Globals.player.change_defense(int(command_args[0]))
 	else:
-		command_history.append_text('\t[i]Invalid command.[/i]')
+		command_history.append_text('\t\tInvalid command.')
 		return
 		
-	command_history.append_text('\n[center][i]Shielded player![/i][/center]')
+	command_history.append_text('\n[center]Shielded player![/center]')
 
 
 func _reroll(command_args: Array[String] = []) -> void:
@@ -99,9 +99,9 @@ func _reroll(command_args: Array[String] = []) -> void:
 func _player_invulnerable(command_args: Array[String] = []) -> void:
 	Globals.player.hp_and_def.invulnerable = !Globals.player.hp_and_def.invulnerable
 	if Globals.player.hp_and_def.invulnerable:
-		command_history.append_text('\n[center][i]Made player invulnerable![/i][/center]')
+		command_history.append_text('\n[center]Made player invulnerable![/center]')
 	else:
-		command_history.append_text('\n[center][i]Returned player to vulnerable.[/i][/center]')
+		command_history.append_text('\n[center]Returned player to vulnerable.[/center]')
 
 
 func _enemies_invulnerable(command_args: Array[String] = []) -> void:
@@ -114,23 +114,23 @@ func _enemies_invulnerable(command_args: Array[String] = []) -> void:
 			enemy.hp_and_def.invulnerable = invulnerable
 			
 		if invulnerable:
-			command_history.append_text('\n[center][i]Made enemies invulnerable![/i][/center]')
+			command_history.append_text('\n[center]Made enemies invulnerable![/center]')
 		else:
-			command_history.append_text('\n[center][i]Returned all enemies to vulnerable.[/i][/center]')
+			command_history.append_text('\n[center]Returned all enemies to vulnerable.[/center]')
 	else:
-		command_history.append_text('\n[center][i]No enemies alive.[/i][/center]')
+		command_history.append_text('\n[center]No enemies alive.[/center]')
 
 
 func _kill_enemies(command_args: Array[String] = []) -> void:
 	for enemy in get_tree().get_nodes_in_group('enemies'):
 		enemy.take_damage(1_000_000)
-	command_history.append_text('\n[center][i]Killed all enemies![/i][/center]')
+	command_history.append_text('\n[center]Killed all enemies![/center]')
 
 
 func _game_state(command_args: Array[String] = []) -> void:
 	if len(command_args) > 0 and command_args[0].is_valid_int():
 		Events.load_game_state.emit(int(command_args[0]))
-		command_history.append_text('\n[center][i]Attempting to load game state...[/i][/center]')
+		command_history.append_text('\n[center]Attempting to load game state...[/center]')
 		return
 	
-	command_history.append_text('\t[i]Invalid command.[/i]')
+	command_history.append_text('\t\tInvalid command.')

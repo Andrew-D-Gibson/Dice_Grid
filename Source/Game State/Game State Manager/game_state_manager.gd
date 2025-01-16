@@ -13,6 +13,7 @@ func _ready() -> void:
 	_load_game_state(current_state)
 	
 	Events.load_game_state.connect(_load_game_state)
+	Events.make_jump_transition.connect(_load_next_game_state)
 	
 	
 func _load_game_state(state_num: int) -> void:
@@ -53,7 +54,18 @@ func _load_game_state(state_num: int) -> void:
 		
 	# Re-target the targeting computer
 	targeting_computer.attempt_retarget()
+	
+	# Reset the engine charge
+	player.engine_charger.reset_charge()
 
+
+func _load_next_game_state() -> void:
+	current_state += 1
+	if current_state >= game_states.size():
+		current_state -= 1
+		
+	_load_game_state(current_state)
+	
 
 func _spawn_enemies(encounter_enemies: Array[PackedScene]) -> void:
 	if len(encounter_enemies) == 0:

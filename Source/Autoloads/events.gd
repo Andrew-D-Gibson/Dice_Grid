@@ -16,3 +16,5 @@ signal show_info(top_label_text: String, texture: Texture2D, bottom_label_text: 
 signal load_game_state(encounter_num: int)
 
 signal enemy_died()
+signal jump_started()
+signal make_jump_transition()
