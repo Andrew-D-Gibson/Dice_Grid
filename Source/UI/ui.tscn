@@ -60,6 +60,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("2_s3k8h")
+dice_image_paths = Array[String](["res://Assets/Dice/dice_blank.png", "res://Assets/Dice/dice1.png", "res://Assets/Dice/dice2.png", "res://Assets/Dice/dice3.png", "res://Assets/Dice/dice4.png", "res://Assets/Dice/dice5.png", "res://Assets/Dice/dice6.png"])
 
 [node name="Screen Dim" type="ColorRect" parent="Tile Info Shower"]
 layout_mode = 1
@@ -68,40 +69,57 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0, 0, 0, 0.796078)
+color = Color(0.0281, 0.012, 0.15, 0.929412)
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Tile Info Shower"]
+[node name="MarginContainer" type="MarginContainer" parent="Tile Info Shower"]
 layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -600.0
-offset_top = -205.0
-offset_right = 600.0
-offset_bottom = 205.0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
+theme_override_constants/margin_left = 100
+theme_override_constants/margin_top = 350
+theme_override_constants/margin_right = 100
+theme_override_constants/margin_bottom = 350
 
-[node name="Tile Display" type="TextureRect" parent="Tile Info Shower/VBoxContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="Tile Info Shower/MarginContainer"]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="Top Label" type="RichTextLabel" parent="Tile Info Shower/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+mouse_filter = 2
+theme_override_font_sizes/normal_font_size = 64
+bbcode_enabled = true
+text = "Activates with a number!"
+fit_content = true
+horizontal_alignment = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="Tile Info Shower/MarginContainer/VBoxContainer"]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/margin_top = 64
+theme_override_constants/margin_bottom = 64
+
+[node name="Texture Display" type="TextureRect" parent="Tile Info Shower/MarginContainer/VBoxContainer/MarginContainer"]
 custom_minimum_size = Vector2(256, 256)
 layout_mode = 2
 mouse_filter = 2
 texture = ExtResource("2_yups5")
 stretch_mode = 5
 
-[node name="Label" type="Label" parent="Tile Info Shower/VBoxContainer"]
-custom_minimum_size = Vector2(1200, 0)
+[node name="Bottom Label" type="RichTextLabel" parent="Tile Info Shower/MarginContainer/VBoxContainer"]
 layout_mode = 2
-theme = ExtResource("2_hokdr")
-theme_override_font_sizes/font_size = 64
-text = "Tile description label!
-"
+size_flags_vertical = 3
+mouse_filter = 2
+theme_override_font_sizes/normal_font_size = 64
+bbcode_enabled = true
+text = "Does a thing!"
+fit_content = true
 horizontal_alignment = 1
-vertical_alignment = 1
-autowrap_mode = 2
 
 [node name="Game Over Screen" type="Control" parent="."]
 visible = false
@@ -140,6 +158,7 @@ theme_override_font_sizes/font_size = 128
 text = "Game Over!"
 
 [node name="Paused Display" type="Control" parent="."]
+visible = false
 layout_mode = 3
 anchors_preset = 5
 anchor_left = 0.5

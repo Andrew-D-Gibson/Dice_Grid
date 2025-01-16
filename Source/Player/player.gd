@@ -1,19 +1,23 @@
 class_name Player
 extends Actor
 
+@export_category('Functionality')
+@export var dice_to_spawn: int = 10
+
+
 @export_category("Components")
 @export var grid: Grid
+@export var hp_and_shields_indicator: HPShieldsIndicator
+@export var engine_charger: EngineCharger
 
+@export_category("UI")
 @export var dice_queue_offset: Vector2 = Vector2(-96, 84)
 @export var dice_queue_spacing: int = 32
 
-@export var dice_to_spawn: int = 10
 @export var dice_spawn_delay: float = 0.2
 var time_since_last_die_spawn: float = 0
 
-
-@export_category("UI")
-@export var hp_and_shields_indicator: HPShieldsIndicator
+@export var damage_location: Vector2 = Vector2(-200, 64)
 
 
 func _ready() -> void:

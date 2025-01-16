@@ -5,7 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://dn5lgv5oi1u5n" path="res://Assets/Tiles/highlight.png" id="3_2dlej"]
 [ext_resource type="PackedScene" uid="uid://b1gm70vaf8x60" path="res://Source/Tiles/Tile Activations/value_activation.tscn" id="3_l7ydw"]
 [ext_resource type="PackedScene" uid="uid://cqbs1nh4yicqw" path="res://Source/Effects/damage_and_send_die_effect.tscn" id="4_44vkw"]
-[ext_resource type="Texture2D" uid="uid://bnrh37s5hyh8h" path="res://Assets/Tiles/Activator Indicators/5.png" id="5_b6b72"]
+[ext_resource type="Texture2D" uid="uid://dnno8prrr78ht" path="res://Assets/Tiles/Activator Indicators/Any.png" id="5_d2m0a"]
 [ext_resource type="PackedScene" uid="uid://d1c4vhayf4tav" path="res://Source/Effects/Targeters/target_with_computer.tscn" id="6_d2m0a"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_gtxx6"]
@@ -15,7 +15,10 @@ size = Vector2(32, 32)
 z_index = 1
 script = ExtResource("1_d2m0a")
 activation_node = NodePath("Value Activation")
-description = "Activates with a 5.  Inflicts 5 damage on a random enemy and gives them the die.  Destroys the die if there's no valid target."
+activation_text = "[color=yellow]Activates[/color] with any value die (die_blank)"
+description = "Deals [color=red]damage[/color] equivalent to the [color=yellow]activating[/color] die's
+value (die_blank) to the [color=purple]targeted[/color] enemy, then gives
+them the die."
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_gtxx6")
@@ -29,8 +32,8 @@ z_index = 1
 texture = ExtResource("3_2dlej")
 
 [node name="Value Activation" parent="." instance=ExtResource("3_l7ydw")]
-texture = ExtResource("5_b6b72")
-acceptable_values = Array[int]([5])
+texture = ExtResource("5_d2m0a")
+acceptable_values = Array[int]([1, 2, 3, 4, 5, 6])
 
 [node name="Effects Parent" type="Node2D" parent="."]
 

@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://io1ko4uxwtba"]
+[gd_scene load_steps=20 format=3 uid="uid://io1ko4uxwtba"]
 
 [ext_resource type="PackedScene" uid="uid://cygbrgfx6v2tu" path="res://Source/UI/ui.tscn" id="1_5vw27"]
 [ext_resource type="Texture2D" uid="uid://4nkkct7vh7ad" path="res://Assets/Backgrounds/default_background.png" id="1_dg77c"]
@@ -16,6 +16,7 @@
 [ext_resource type="Texture2D" uid="uid://cnapsluylk85s" path="res://Assets/UI/Cockpit/canopy_walls.png" id="12_vivmo"]
 [ext_resource type="Texture2D" uid="uid://hj7u1jyw4cx1" path="res://Assets/UI/Dice Queue/Dice Queue.png" id="13_ycdy4"]
 [ext_resource type="PackedScene" uid="uid://dqfsd1jlux328" path="res://Source/UI/Targeting Computer/targeting_computer.tscn" id="15_2cqfq"]
+[ext_resource type="PackedScene" uid="uid://cv0re3xal0rqn" path="res://Source/UI/Engine/engine_charger.tscn" id="17_yaehf"]
 
 [sub_resource type="Gradient" id="Gradient_dg77c"]
 offsets = PackedFloat32Array(0, 0.490196, 1)
@@ -55,10 +56,11 @@ color_initial_ramp = SubResource("Gradient_w48qg")
 [node name="Camera2D" type="Camera2D" parent="."]
 zoom = Vector2(3, 3)
 
-[node name="Player" parent="." node_paths=PackedStringArray("hp_and_shields_indicator") instance=ExtResource("4_lquwl")]
+[node name="Player" parent="." node_paths=PackedStringArray("hp_and_shields_indicator", "engine_charger") instance=ExtResource("4_lquwl")]
 position = Vector2(0, 78)
-dice_queue_offset = Vector2(-144, 82)
 hp_and_shields_indicator = NodePath("../Health and Shields Indicator")
+engine_charger = NodePath("../Engine Charger")
+dice_queue_offset = Vector2(-144, 82)
 
 [node name="Game State Manager" parent="." node_paths=PackedStringArray("player", "targeting_computer") instance=ExtResource("2_272bh")]
 current_state = 3
@@ -82,8 +84,10 @@ position = Vector2(-140, 130)
 position = Vector2(-204, 85)
 
 [node name="Targeting Computer" parent="." instance=ExtResource("15_2cqfq")]
-position = Vector2(184, 78)
+position = Vector2(184, 73)
 
 [node name="Dice Queue" type="Sprite2D" parent="."]
 position = Vector2(0, 160)
 texture = ExtResource("13_ycdy4")
+
+[node name="Engine Charger" parent="." instance=ExtResource("17_yaehf")]

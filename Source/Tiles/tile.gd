@@ -6,8 +6,9 @@ var host_cell: Cell
 @export_category('Tile Functionality')
 @export var activation_node: Activation
 
-@export_category('Description')
-@export var description: String
+@export_category('Info')
+@export_multiline var activation_text: String
+@export_multiline var description: String
 
 signal activation_completed()
 
@@ -72,7 +73,7 @@ func _check_valid_drop():
 		# to show tile info
 		if (Globals.hovered_cell == host_cell 
 		and Time.get_unix_time_from_system() - Globals.mouse_down_unix_time < click_window_time):
-			Events.tile_clicked_for_info.emit(self)
+			Events.show_info.emit(activation_text, tile_texture, description)
 		else:
 			# We're over a different tile, so if it's not locked out we can switch
 			if not Globals.hovered_cell.locked_out:

@@ -45,12 +45,11 @@ func _drop() -> void:
 
 
 func _check_valid_drop():
-	# Fail the drop if we're not over a cell
-	if not Globals.hovered_cell:
-		return
-		
-	# Pass this die onto the cell which will handle it as needed
-	Globals.hovered_cell.on_die_dropped(self)
+	# Pass this die onto the cell or engine charger to handle as needed
+	if Globals.hovered_cell:
+		Globals.hovered_cell.on_die_dropped(self)
+	elif Globals.hovered_engine_charger:
+		Globals.hovered_engine_charger.on_die_dropped(self)
 		
 
 func destroy():
@@ -72,8 +71,10 @@ func attack_tween(target: Actor, damage_amount: int) -> void:
 	# This line makes that single frame not move the die before being tweened.
 	last_valid_position = position
 	
+	var target_location: Vector2 = target.global_position if target is not Player else target.damage_location
+	
 	var tween = get_tree().create_tween().set_parallel(true)
-	tween.tween_property(self, 'global_position', target.global_position, tween_time).set_trans(Tween.TRANS_SPRING).set_ease(Tween.EASE_IN)
+	tween.tween_property(self, 'global_position', target_location, tween_time).set_trans(Tween.TRANS_SPRING).set_ease(Tween.EASE_IN)
 	tween.tween_property(self, 'rotation_degrees', 360 * 6, tween_time).from(0).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_IN)
 	
 	var finish_send = func finish_send() -> void:

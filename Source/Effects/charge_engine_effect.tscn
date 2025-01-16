@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://dhh7j41u5eo6u"]
+
+[ext_resource type="Script" path="res://Source/Effects/charge_engine.gd" id="1_3eh1o"]
+
+[node name="Charge Engine Effect" type="Node2D"]
+script = ExtResource("1_3eh1o")

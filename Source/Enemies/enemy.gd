@@ -86,10 +86,11 @@ func _death() -> void:
 	queue_free()
 
 
-func add_die_to_queue(die: Dice, preserve_value: bool = false) -> void:
+func add_die_to_queue(die: Dice, preserve_value: bool = true) -> void:
 	die.visible = false
 	die.can_be_held = false
 	super(die, preserve_value)
+	
 	_update_ui()
 	
 	
@@ -104,7 +105,13 @@ func _reroll_die_for_action() -> void:
 	
 	var die_used = dice_queue[0]
 	die_used.visible = true
-	die_used.reroll_tween(self)
+	#die_used.reroll_tween(self)
+	
+	# Wait a beat and then check that we're still alive before acting
+	await get_tree().create_timer(1).timeout
+	if hp_and_def.health > 0:
+		die_used.enemy_intent_tween(self)
+		
 	_update_ui()
 	
 

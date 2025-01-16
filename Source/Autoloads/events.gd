@@ -9,6 +9,7 @@ signal tile_clicked_for_info(tile: Tile)
 signal game_over()
 signal game_pause_toggled()
 signal dev_console_toggled()
+signal show_info(top_label_text: String, texture: Texture2D, bottom_label_text: String)
 
 
 # Game state signals
