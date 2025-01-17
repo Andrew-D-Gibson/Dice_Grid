@@ -6,7 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://b1gm70vaf8x60" path="res://Source/Tiles/Tile Activations/value_activation.tscn" id="4_smge1"]
 [ext_resource type="Texture2D" uid="uid://c2ltfydb4ffqk" path="res://Assets/Tiles/Activator Indicators/3.png" id="5_0vj01"]
 [ext_resource type="PackedScene" uid="uid://byyfjl8gtnwhn" path="res://Source/Effects/defend_self_effect.tscn" id="5_2377i"]
-[ext_resource type="PackedScene" uid="uid://bykepwjoitqvl" path="res://Source/Effects/Targeters/target_random_enemy.tscn" id="7_0vj01"]
+[ext_resource type="PackedScene" uid="uid://d1c4vhayf4tav" path="res://Source/Effects/Targeters/target_with_computer.tscn" id="7_0vj01"]
 [ext_resource type="PackedScene" uid="uid://ri7bhdwesyrp" path="res://Source/Effects/give_die_to_target_effect.tscn" id="8_smge1"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_gtxx6"]
@@ -17,7 +17,7 @@ z_index = 1
 script = ExtResource("1_oc6r8")
 activation_node = NodePath("Value Activation")
 activation_text = "[color=yellow]Activates[/color] with a (die_3)"
-description = "Adds 6 [color=blue]shields[/color] and gives the (die_3) to a random enemy."
+description = "Adds 8 [color=blue]shields[/color] then gives the (die_3) to the [color=purple]targeted[/color] enemy."
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_gtxx6")
@@ -38,7 +38,7 @@ acceptable_values = Array[int]([3])
 
 [node name="Defend Self Effect" parent="Effects Parent" instance=ExtResource("5_2377i")]
 
-[node name="Target Random Enemy" parent="Effects Parent" instance=ExtResource("7_0vj01")]
+[node name="Target with Computer" parent="Effects Parent" instance=ExtResource("7_0vj01")]
 
 [node name="Give Die to Target Effect" parent="Effects Parent" instance=ExtResource("8_smge1")]
 

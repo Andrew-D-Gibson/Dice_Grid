@@ -1,0 +1,42 @@
+[gd_scene load_steps=9 format=3 uid="uid://c3sempnkdelrj"]
+
+[ext_resource type="Script" path="res://Source/Tiles/tile.gd" id="1_nv7bd"]
+[ext_resource type="Texture2D" uid="uid://bfn5xm1hnixxk" path="res://Assets/Tiles/flak_cannon.png" id="2_nv7bd"]
+[ext_resource type="Texture2D" uid="uid://dn5lgv5oi1u5n" path="res://Assets/Tiles/highlight.png" id="3_7a0hm"]
+[ext_resource type="PackedScene" uid="uid://b1gm70vaf8x60" path="res://Source/Tiles/Tile Activations/value_activation.tscn" id="4_u0sgx"]
+[ext_resource type="Texture2D" uid="uid://ig46ngu6omn" path="res://Assets/Tiles/Activator Indicators/greater_than_4.png" id="5_nv7bd"]
+[ext_resource type="PackedScene" uid="uid://d1c4vhayf4tav" path="res://Source/Effects/Targeters/target_with_computer.tscn" id="6_5jugt"]
+[ext_resource type="PackedScene" uid="uid://bd5udmlcqd6cl" path="res://Source/Effects/flak_damage_and_send_effect.tscn" id="7_hmd1b"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gtxx6"]
+size = Vector2(32, 32)
+
+[node name="Flak Cannon" type="Area2D" node_paths=PackedStringArray("activation_node")]
+z_index = 1
+script = ExtResource("1_nv7bd")
+activation_node = NodePath("Value Activation")
+activation_text = "[color=yellow]Activates[/color] with a (die_5) or (die_6)"
+description = "Deals [color=red]damage[/color] equal to the number of surrounding tiles plus 1 to the [color=purple]targeted[/color] enemy then gives them the die (die_blank)"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_gtxx6")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_nv7bd")
+
+[node name="Highlight" type="Sprite2D" parent="."]
+visible = false
+z_index = 1
+texture = ExtResource("3_7a0hm")
+
+[node name="Value Activation" parent="." instance=ExtResource("4_u0sgx")]
+texture = ExtResource("5_nv7bd")
+acceptable_values = Array[int]([5, 6])
+
+[node name="Effects Parent" type="Node2D" parent="."]
+
+[node name="Target with Computer" parent="Effects Parent" instance=ExtResource("6_5jugt")]
+
+[node name="Flak Damage and Send Effect" parent="Effects Parent" instance=ExtResource("7_hmd1b")]
+
+[connection signal="input_event" from="." to="." method="_on_area_2d_input_event"]

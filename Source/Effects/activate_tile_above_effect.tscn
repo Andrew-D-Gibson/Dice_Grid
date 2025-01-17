@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://0g3kwh1xxe7u"]
+
+[ext_resource type="Script" path="res://Source/Effects/activate_tile_above_effect.gd" id="1_cqp1j"]
+
+[node name="Activate Tile Above Effect" type="Node2D"]
+script = ExtResource("1_cqp1j")

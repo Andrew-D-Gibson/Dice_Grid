@@ -6,5 +6,5 @@ func play(effect_variables: Dictionary) -> Dictionary:
 		Globals.player.add_die_to_queue(effect_variables['die_used'])
 	else:
 		effect_variables['die_used'].send_tween(effect_variables['targets'][0])
-	
+
 	return effect_variables

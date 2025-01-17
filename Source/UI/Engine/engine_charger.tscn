@@ -1,10 +1,11 @@
-[gd_scene load_steps=13 format=3 uid="uid://cv0re3xal0rqn"]
+[gd_scene load_steps=14 format=3 uid="uid://cv0re3xal0rqn"]
 
 [ext_resource type="Script" path="res://Source/UI/Engine/engine_charger.gd" id="1_2qfuf"]
 [ext_resource type="Texture2D" uid="uid://b7n38ic3matv7" path="res://Assets/UI/Engine/engine_tile_pinned.png" id="2_2qfuf"]
 [ext_resource type="PackedScene" uid="uid://bwtgx83ngvi3h" path="res://Source/Tiles/Tile Activations/accept_all_activation.tscn" id="3_r86de"]
 [ext_resource type="PackedScene" uid="uid://bykepwjoitqvl" path="res://Source/Effects/Targeters/target_random_enemy.tscn" id="4_r86de"]
 [ext_resource type="PackedScene" uid="uid://dhh7j41u5eo6u" path="res://Source/Effects/charge_engine_effect.tscn" id="4_rlj5y"]
+[ext_resource type="PackedScene" uid="uid://ckw87bu270pjb" path="res://Source/Effects/reroll_die_used_effect.tscn" id="5_7p14j"]
 [ext_resource type="PackedScene" uid="uid://ri7bhdwesyrp" path="res://Source/Effects/give_die_to_target_effect.tscn" id="5_rlj5y"]
 [ext_resource type="Texture2D" uid="uid://ct5cvlepd8730" path="res://Assets/UI/Engine/bar_under.png" id="7_uky5e"]
 [ext_resource type="Texture2D" uid="uid://dm7m874lwcmni" path="res://Assets/UI/Engine/bar_over.png" id="8_yxyol"]
@@ -22,7 +23,7 @@ bg_color = Color(0.933333, 0.827451, 0.364706, 1)
 script = ExtResource("1_2qfuf")
 activation_node = NodePath("Sprite2D/Accept All Activation")
 activation_text = "[color=yellow]Activates[/color] with any value die (die_blank)"
-description_text = "Charges the [color=yellow]engine[/color] with the die's (die_blank) value."
+description_text = "Charges the [color=yellow]engine[/color] with the die's (die_blank) value, then givies it to a random enemy."
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(144, 126)
@@ -38,6 +39,8 @@ position = Vector2(0, 1)
 [node name="Effects Parent" type="Node2D" parent="."]
 
 [node name="Charge Engine Effect" parent="Effects Parent" instance=ExtResource("4_rlj5y")]
+
+[node name="Reroll Die Used Effect" parent="Effects Parent" instance=ExtResource("5_7p14j")]
 
 [node name="Target Random Enemy" parent="Effects Parent" instance=ExtResource("4_r86de")]
 

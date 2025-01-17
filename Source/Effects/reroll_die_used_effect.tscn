@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://ckw87bu270pjb"]
+
+[ext_resource type="Script" path="res://Source/Effects/reroll_die_used_effect.gd" id="1_lcnk7"]
+
+[node name="Reroll Die Used Effect" type="Node2D"]
+script = ExtResource("1_lcnk7")

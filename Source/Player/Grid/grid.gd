@@ -66,3 +66,28 @@ func get_surrounding_tiles_by_pip_value(value: int, activator_grid_location: Vec
 		tile_list.append(cell_array[activator_grid_location.x + offset.x][activator_grid_location.y + offset.y].occupying_tile)
 		
 	return tile_list
+
+func get_all_surrounding_tiles(activator_grid_location: Vector2i) -> Array[Tile]:
+	var offsets: Array[Vector2i] = [Vector2i(-1,-1), Vector2i(-1,0), Vector2i(-1,1),
+	 		Vector2i(0,-1), Vector2i(0,1),
+			Vector2i(1,-1), Vector2i(1,0), Vector2i(1,1)]
+	
+	
+	var tile_list: Array[Tile] = []
+	for offset in offsets:
+		# Check for valid x coordinate
+		if not cell_array.has(activator_grid_location.x + offset.x):
+			continue
+		
+		# Check for valid y coordinate
+		if not cell_array[activator_grid_location.x + offset.x].has(activator_grid_location.y + offset.y):
+			continue
+			
+		# Check for a tile to activate
+		if not cell_array[activator_grid_location.x + offset.x][activator_grid_location.y + offset.y].occupying_tile:
+			continue
+
+		# Finally add the tile to the approved list
+		tile_list.append(cell_array[activator_grid_location.x + offset.x][activator_grid_location.y + offset.y].occupying_tile)
+		
+	return tile_list

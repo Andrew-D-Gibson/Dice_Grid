@@ -16,7 +16,10 @@ size = Vector2(32, 32)
 z_index = 1
 script = ExtResource("1_3yod1")
 activation_node = NodePath("Value Activation")
-description = "Activates with a 2 or greater.  Pulls dice from the queue and changes their value to activate surrounding tiles according to the pips on the activator die (e.g. a 2 activates top left and bottom right, a 4 or 5 activates all corners)."
+activation_text = "[color=yellow]Activates[/color] with  (die_2) (die_3) (die_4) (die_5) (die_6)"
+description = "Uses available dice to [color=yellow]activate[/color] surrounding tiles corresponding to the pips on the activator die.  Available dice are rerolled to the maximum value for their tile.
+
+Gives the [color=yellow]activator[/color] die to a random enemy."
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_gtxx6")

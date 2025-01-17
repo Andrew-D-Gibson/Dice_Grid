@@ -8,5 +8,5 @@ func play(effect_variables: Dictionary) -> Dictionary:
 		
 	else:
 		Globals.player.engine_charger.change_charge(amount)
-		
+
 	return effect_variables

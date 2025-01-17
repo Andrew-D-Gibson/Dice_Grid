@@ -16,7 +16,7 @@ func play(effect_variables: Dictionary) -> Dictionary:
 			
 	# If there's no target, return the die to the player
 	if len(effect_variables['targets']) == 0:
-		Globals.player.add_die_to_queue(effect_variables['die_used'])
+		Globals.player.add_die_to_queue(effect_variables['die_used'], true)
 		return effect_variables
 		
 	

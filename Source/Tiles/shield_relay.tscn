@@ -1,0 +1,45 @@
+[gd_scene load_steps=9 format=3 uid="uid://c2ce5p3vpvcem"]
+
+[ext_resource type="Script" path="res://Source/Tiles/tile.gd" id="1_yq2yv"]
+[ext_resource type="Texture2D" uid="uid://b3vx0f7ifryxm" path="res://Assets/Tiles/shield_relay.png" id="2_yq2yv"]
+[ext_resource type="Texture2D" uid="uid://dn5lgv5oi1u5n" path="res://Assets/Tiles/highlight.png" id="3_cgsl8"]
+[ext_resource type="PackedScene" uid="uid://b1gm70vaf8x60" path="res://Source/Tiles/Tile Activations/value_activation.tscn" id="4_xqmpp"]
+[ext_resource type="Texture2D" uid="uid://dxuj2eobnws85" path="res://Assets/Tiles/Activator Indicators/less_than_6.png" id="5_cvlp6"]
+[ext_resource type="PackedScene" uid="uid://byyfjl8gtnwhn" path="res://Source/Effects/defend_self_effect.tscn" id="6_fei72"]
+[ext_resource type="PackedScene" uid="uid://0g3kwh1xxe7u" path="res://Source/Effects/activate_tile_above_effect.tscn" id="6_yq2yv"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gtxx6"]
+size = Vector2(32, 32)
+
+[node name="Shield Relay" type="Area2D" node_paths=PackedStringArray("activation_node")]
+z_index = 1
+script = ExtResource("1_yq2yv")
+activation_node = NodePath("Value Activation")
+activation_text = "[color=yellow]Activates[/color] with  (die_1) (die_2) (die_3) (die_4) (die_5)"
+description = "[color=blue]Shields[/color] the player for 3.  Adds one to the value of the [color=yellow]activating[/color] die then passes it to the tile above.
+
+If this fails, give the [color=yellow]activating[/color] die to a random enemy."
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_gtxx6")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_yq2yv")
+
+[node name="Highlight" type="Sprite2D" parent="."]
+visible = false
+z_index = 1
+texture = ExtResource("3_cgsl8")
+
+[node name="Value Activation" parent="." instance=ExtResource("4_xqmpp")]
+texture = ExtResource("5_cvlp6")
+acceptable_values = Array[int]([1, 2, 3, 4, 5])
+
+[node name="Effects Parent" type="Node2D" parent="."]
+
+[node name="Defend Self Effect" parent="Effects Parent" instance=ExtResource("6_fei72")]
+defense_amount = 3
+
+[node name="Activate Tile Above Effect" parent="Effects Parent" instance=ExtResource("6_yq2yv")]
+
+[connection signal="input_event" from="." to="." method="_on_area_2d_input_event"]

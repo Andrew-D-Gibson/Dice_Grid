@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://bd5udmlcqd6cl"]
+
+[ext_resource type="Script" path="res://Source/Effects/flak_damage_and_send_die_effect.gd" id="1_upwhp"]
+
+[node name="Flak Damage and Send Effect" type="Node2D"]
+script = ExtResource("1_upwhp")
