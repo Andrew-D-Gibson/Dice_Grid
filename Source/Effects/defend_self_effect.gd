@@ -1,6 +1,6 @@
 extends Effect
 
-@export var defense_amount: int = 3
+@export var defense_amount: int = 6
 
 func _ready() -> void:
 	if get_parent() is EnemyAction and get_parent().amount != -1:

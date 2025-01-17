@@ -1,6 +1,6 @@
 extends Effect
 
-@export var damage_amount: int = 5
+@export var damage_amount: int = -1000
 @export var dice_scene: PackedScene
 
 func _ready() -> void:
@@ -35,6 +35,9 @@ func play(effect_variables: Dictionary) -> Dictionary:
 	
 	# Now shoot each dice at each target
 	for i in range(len(effect_variables['targets'])):
-		dice_to_send[i].attack_tween(effect_variables['targets'][i], dice_to_send[i].value)
-	
+		if damage_amount == -1000:
+			dice_to_send[i].attack_tween(effect_variables['targets'][i], dice_to_send[i].value)
+		else:
+			dice_to_send[i].attack_tween(effect_variables['targets'][i], damage_amount)
+			
 	return effect_variables

@@ -90,9 +90,7 @@ func bob_tween() -> void:
 
 
 func _on_jump_button_pushed() -> void:
-	print('jump pushed')
 	if current_charge >= max_charge:
-		print('jump triggered')
 		Events.jump_started.emit()
 
 

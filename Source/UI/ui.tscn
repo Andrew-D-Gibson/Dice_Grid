@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://Source/UI/dev_console.gd" id="1_4eq4m"]
 [ext_resource type="Theme" uid="uid://b6tit6cxjtdpd" path="res://Assets/UI/default_theme.tres" id="2_hokdr"]
-[ext_resource type="Script" path="res://Source/UI/tile_info_shower.gd" id="2_s3k8h"]
+[ext_resource type="Script" path="res://Source/UI/info_shower.gd" id="2_s3k8h"]
 [ext_resource type="Texture2D" uid="uid://3nfb6quhg5m1" path="res://Assets/Tiles/heal.png" id="2_yups5"]
 [ext_resource type="Script" path="res://Source/UI/game_over_screen.gd" id="3_hokdr"]
 [ext_resource type="Script" path="res://Source/UI/paused_display.gd" id="5_mfmks"]
@@ -52,7 +52,7 @@ placeholder_text = "Enter console command"
 context_menu_enabled = false
 caret_blink = true
 
-[node name="Tile Info Shower" type="Control" parent="."]
+[node name="Info Shower" type="Control" parent="."]
 visible = false
 layout_mode = 3
 anchors_preset = 15
@@ -63,7 +63,7 @@ grow_vertical = 2
 script = ExtResource("2_s3k8h")
 dice_image_paths = Array[String](["res://Assets/Dice/dice_blank.png", "res://Assets/Dice/dice1.png", "res://Assets/Dice/dice2.png", "res://Assets/Dice/dice3.png", "res://Assets/Dice/dice4.png", "res://Assets/Dice/dice5.png", "res://Assets/Dice/dice6.png"])
 
-[node name="Screen Dim" type="ColorRect" parent="Tile Info Shower"]
+[node name="Screen Dim" type="ColorRect" parent="Info Shower"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -72,7 +72,7 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.0281, 0.012, 0.15, 0.929412)
 
-[node name="MarginContainer" type="MarginContainer" parent="Tile Info Shower"]
+[node name="MarginContainer" type="MarginContainer" parent="Info Shower"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -85,11 +85,11 @@ theme_override_constants/margin_top = 115
 theme_override_constants/margin_right = 30
 theme_override_constants/margin_bottom = 115
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Tile Info Shower/MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="Info Shower/MarginContainer"]
 layout_mode = 2
 mouse_filter = 2
 
-[node name="Top Label" type="RichTextLabel" parent="Tile Info Shower/MarginContainer/VBoxContainer"]
+[node name="Top Label" type="RichTextLabel" parent="Info Shower/MarginContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 mouse_filter = 2
@@ -99,20 +99,20 @@ text = "Activates with a number!"
 fit_content = true
 horizontal_alignment = 1
 
-[node name="MarginContainer" type="MarginContainer" parent="Tile Info Shower/MarginContainer/VBoxContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="Info Shower/MarginContainer/VBoxContainer"]
 layout_mode = 2
 mouse_filter = 2
 theme_override_constants/margin_top = 16
 theme_override_constants/margin_bottom = 16
 
-[node name="Texture Display" type="TextureRect" parent="Tile Info Shower/MarginContainer/VBoxContainer/MarginContainer"]
+[node name="Texture Display" type="TextureRect" parent="Info Shower/MarginContainer/VBoxContainer/MarginContainer"]
 custom_minimum_size = Vector2(96, 96)
 layout_mode = 2
 mouse_filter = 2
 texture = ExtResource("2_yups5")
 stretch_mode = 5
 
-[node name="Bottom Label" type="RichTextLabel" parent="Tile Info Shower/MarginContainer/VBoxContainer"]
+[node name="Bottom Label" type="RichTextLabel" parent="Info Shower/MarginContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 mouse_filter = 2
@@ -206,4 +206,4 @@ color = Color(0.0281, 0.012, 0.15, 0)
 
 [connection signal="text_changed" from="Dev Console/PanelContainer/VBoxContainer/LineEdit" to="Dev Console" method="_on_line_edit_text_changed"]
 [connection signal="text_submitted" from="Dev Console/PanelContainer/VBoxContainer/LineEdit" to="Dev Console" method="_on_line_edit_text_submitted"]
-[connection signal="gui_input" from="Tile Info Shower/Screen Dim" to="Tile Info Shower" method="_on_screen_dim_gui_input"]
+[connection signal="gui_input" from="Info Shower/Screen Dim" to="Info Shower" method="_on_screen_dim_gui_input"]

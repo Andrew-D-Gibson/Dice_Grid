@@ -64,9 +64,12 @@ func _process_next_tile_activation() -> void:
 	# Remove the available die from the player's dice queue
 	Globals.player.remove_die_from_queue(available_die)
 	
-	# If needed, change its value to properly activate
-	if not tile.activation_node.criteria_satisfied(available_die):
-		available_die.set_value(tile.activation_node.get_valid_value())
+	## If needed, change its value to properly activate
+	#if not tile.activation_node.criteria_satisfied(available_die):
+	
+	# Change the value to the maximum acceptable value
+	available_die.set_value(tile.activation_node.acceptable_values[-1])
+	
 	
 	# Send it to the necessary tile
 	available_die.activate_tile_tween(tile)

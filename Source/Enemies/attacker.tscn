@@ -27,8 +27,8 @@ hp_and_def = NodePath("Health Component")
 dice_scene = ExtResource("4_rp4ev")
 
 [node name="Health Component" parent="." instance=ExtResource("5_5mkgy")]
-starting_health = 12
-max_health = 12
+starting_health = 32
+max_health = 32
 
 [node name="Possible Actions Parent" type="Node2D" parent="."]
 

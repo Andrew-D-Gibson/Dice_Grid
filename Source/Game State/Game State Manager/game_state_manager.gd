@@ -31,8 +31,9 @@ func _load_game_state(state_num: int) -> void:
 	player.hp_and_def.defense = game_states[state_num].player_defense
 	
 	# Set up the player's dice
-	for die in player.dice_queue:
-		die.destroy()
+	for child in get_tree().get_current_scene().get_children():
+		if child is Dice:
+			child.destroy()
 	player.dice_queue = []
 	player.dice_to_spawn = game_states[state_num].num_of_dice
 	
@@ -46,6 +47,7 @@ func _load_game_state(state_num: int) -> void:
 	# Set up the enemies if there's an encounter
 	var existing_enemies = get_tree().get_nodes_in_group('enemies')
 	for enemy in existing_enemies:
+		enemy.hp_and_def.health = 0
 		enemy.queue_free()
 		
 	if game_states[state_num].encounter:
