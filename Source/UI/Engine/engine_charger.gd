@@ -75,8 +75,8 @@ func _update_ui() -> void:
 	
 	# Update the jump button's label
 	if current_charge < max_charge:
-		$"Jump Button/RichTextLabel".text = 'JUMP'
-		$"Jump Button/RichTextLabel".add_theme_color_override("default_color", '#63605c')
+		$"Jump Button/RichTextLabel".text = str(current_charge) + '/' + str(max_charge)
+		$"Jump Button/RichTextLabel".add_theme_color_override("default_color", '#a5a29d')
 	else:
 		$"Jump Button/RichTextLabel".text = '[wave amp=50.0 freq=5.0 connected=1]JUMP[/wave]'
 		$"Jump Button/RichTextLabel".add_theme_color_override("default_color", '#eed35d')

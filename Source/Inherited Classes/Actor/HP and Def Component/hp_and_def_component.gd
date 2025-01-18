@@ -1,6 +1,8 @@
 class_name HP_and_Def_Component
 extends Node2D
 
+signal shield_hit()
+signal hull_hit()
 signal death() 
 
 @export var invulnerable: bool = false
@@ -25,8 +27,10 @@ func take_damage(amount: int) -> void:
 		return
 		
 	if defense > amount:
+		shield_hit.emit()
 		change_defense(-amount)
 	else:
+		hull_hit.emit()
 		amount -= defense	# Decrease the damage by the defense
 		defense = 0
 		change_health(-amount)

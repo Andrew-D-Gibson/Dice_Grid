@@ -1,5 +1,6 @@
-[gd_scene load_steps=17 format=3 uid="uid://d0cvfla155le"]
+[gd_scene load_steps=19 format=3 uid="uid://d0cvfla155le"]
 
+[ext_resource type="Shader" path="res://Source/Shaders/sprite_flasher.gdshader" id="1_2nbqg"]
 [ext_resource type="Script" path="res://Source/Enemies/enemy.gd" id="1_85yh8"]
 [ext_resource type="Texture2D" uid="uid://bilgah5mqcjks" path="res://Assets/Enemies/Attacker/targeting_computer_image.png" id="2_2nbqg"]
 [ext_resource type="Texture2D" uid="uid://dbmhr0b6ra8j1" path="res://Assets/Enemies/Health and Shield Indicator/bar_under.png" id="2_c26fx"]
@@ -16,6 +17,12 @@
 [ext_resource type="Texture2D" uid="uid://b6tvjitsev7d3" path="res://Assets/Enemies/Health and Shield Indicator/bar_over.png" id="13_kc4ug"]
 [ext_resource type="Texture2D" uid="uid://dn4s4gyaegqcb" path="res://Assets/Enemies/Health and Shield Indicator/Health fill.png" id="14_caro6"]
 [ext_resource type="Texture2D" uid="uid://or78aaxp4per" path="res://Assets/Enemies/Dice Queue/dice_indicator.png" id="15_6jxj3"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_2nbqg"]
+resource_local_to_scene = true
+shader = ExtResource("1_2nbqg")
+shader_parameter/flash_color = null
+shader_parameter/flash_value = null
 
 [node name="Attacker" type="Node2D" node_paths=PackedStringArray("action_indicator", "hp_and_def") groups=["enemies"]]
 script = ExtResource("1_85yh8")
@@ -47,6 +54,7 @@ amount = 2
 visible = false
 
 [node name="Ship" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_2nbqg")
 position = Vector2(0, 10)
 texture = ExtResource("10_gjp6f")
 

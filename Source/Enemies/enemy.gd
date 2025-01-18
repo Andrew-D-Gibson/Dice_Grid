@@ -14,6 +14,8 @@ var currently_acting: bool = false
 func _ready() -> void:
 	generate_action_list()
 	hp_and_def.death.connect(_death)
+	#hp_and_def.hull_hit.connect(_hull_hit)
+	#hp_and_def.shield_hit.connect(_shield_hit)
 	_update_ui()
 	
 	var tween_time = randf_range(4, 8)
@@ -34,9 +36,10 @@ func generate_action_list() -> void:
 	for action in $"Possible Actions Parent".get_children():
 		if action is EnemyAction:
 			action_weights_sum += action.likelihood_weight
+			action_list.append(action)
 
 	# Randomly choose 6 actions picking from our weighted list
-	for i in range(6):
+	for i in range(6 - len(action_list)):
 		var choice_threshold = randf_range(0, action_weights_sum)
 		for action in $"Possible Actions Parent".get_children():
 			if action is EnemyAction:
@@ -45,7 +48,9 @@ func generate_action_list() -> void:
 				else:
 					action_list.append(action)
 					break
-				
+	
+	action_list.shuffle()
+	
 				
 func _update_ui() -> void:
 	# Set the health bar
@@ -140,3 +145,17 @@ func show_intent_info(action_num: int) -> void:
 
 func _on_button_pressed() -> void:
 	print('Button pushed')
+
+
+#func _hull_hit() -> void:
+	#var shader_material = $Ship.material as ShaderMaterial
+	#shader_material.set_shader_parameter("flash_name", from_value)
+	#tween.tween_property(shader_material, "shader_parameter/" + param_name, to_value, duration)
+#
+#func _shield_hit() -> void:
+	#
+	#
+#func tween_shader_param(param_name: String, from_value: float, to_value: float, duration: float):
+	#var shader_material = material as ShaderMaterial
+	#shader_material.set_shader_parameter(param_name, from_value)
+	#tween.tween_property(shader_material, "shader_parameter/" + param_name, to_value, duration)

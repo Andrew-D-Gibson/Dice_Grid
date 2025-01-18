@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://c1kkr8xkoq5d6"]
+[gd_scene load_steps=19 format=3 uid="uid://c1kkr8xkoq5d6"]
 
 [ext_resource type="Script" path="res://Source/Enemies/enemy.gd" id="1_h4pdr"]
 [ext_resource type="Texture2D" uid="uid://dbmhr0b6ra8j1" path="res://Assets/Enemies/Health and Shield Indicator/bar_under.png" id="2_3cj07"]
@@ -12,10 +12,17 @@
 [ext_resource type="Texture2D" uid="uid://dkifgc6cmjov5" path="res://Assets/Enemies/Disabler/disabler.png" id="9_ihof3"]
 [ext_resource type="PackedScene" uid="uid://dbx068qtaix0h" path="res://Source/Particle Scenes/engine_exhaust.tscn" id="10_3cj07"]
 [ext_resource type="Texture2D" uid="uid://cjhwwtn6nwq7s" path="res://Assets/Enemies/Enemy Intents/reroll_guide.png" id="10_364dr"]
+[ext_resource type="Shader" path="res://Source/Shaders/sprite_flasher.gdshader" id="10_xk5na"]
 [ext_resource type="Texture2D" uid="uid://bmcylickwgpn2" path="res://Assets/Enemies/Health and Shield Indicator/Health_under.png" id="11_ho2wo"]
 [ext_resource type="Texture2D" uid="uid://b6tvjitsev7d3" path="res://Assets/Enemies/Health and Shield Indicator/bar_over.png" id="12_limqr"]
 [ext_resource type="Texture2D" uid="uid://dn4s4gyaegqcb" path="res://Assets/Enemies/Health and Shield Indicator/Health fill.png" id="13_i2y7k"]
 [ext_resource type="Texture2D" uid="uid://or78aaxp4per" path="res://Assets/Enemies/Dice Queue/dice_indicator.png" id="14_8gjxr"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_0vqln"]
+resource_local_to_scene = true
+shader = ExtResource("10_xk5na")
+shader_parameter/flash_color = null
+shader_parameter/flash_value = null
 
 [node name="Disabler" type="Node2D" node_paths=PackedStringArray("action_indicator", "hp_and_def") groups=["enemies"]]
 script = ExtResource("1_h4pdr")
@@ -49,6 +56,7 @@ visible = false
 likelihood_weight = 3.0
 
 [node name="Ship" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_0vqln")
 position = Vector2(0, 9)
 texture = ExtResource("9_ihof3")
 
