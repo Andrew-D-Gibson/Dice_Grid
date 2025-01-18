@@ -37,7 +37,7 @@ func _on_input_event(viewport: Node, event: InputEvent, shape_idx: int) -> void:
 			time_since_mouse_pressed = 0
 		else:
 			if time_since_mouse_pressed < 0.4:
-				Events.show_info.emit(activation_text, $Sprite2D.texture, description_text)
+				Events.show_info.emit(activation_text, $Sprite2D.texture, description_text, 'Engine Charger')
 	
 
 func on_die_dropped(die: Dice) -> void:

@@ -10,12 +10,18 @@ func _ready() -> void:
 	Events.show_info.connect(_show_info)
 	
 
-func _show_info(top_label_text: String, texture: Texture2D, bottom_label_text: String) -> void:
+func _show_info(top_label_text: String, texture: Texture2D, bottom_label_text: String, title_label_text: String = "", secondary_texture: Texture2D = null) -> void:
 	top_label_text = _format_text(top_label_text)
 	bottom_label_text = _format_text(bottom_label_text)
 	
+	$"MarginContainer/VBoxContainer/Title Label".text = title_label_text
 	$"MarginContainer/VBoxContainer/Top Label".text = top_label_text
-	$"MarginContainer/VBoxContainer/MarginContainer/Texture Display".texture = texture
+	$"MarginContainer/VBoxContainer/MarginContainer/Main Display".texture = texture
+	if secondary_texture:
+		$"MarginContainer/VBoxContainer/MarginContainer/Secondary Display".visible = true
+		$"MarginContainer/VBoxContainer/MarginContainer/Secondary Display".texture = secondary_texture
+	else:
+		$"MarginContainer/VBoxContainer/MarginContainer/Secondary Display".visible = false
 	$"MarginContainer/VBoxContainer/Bottom Label".text = bottom_label_text
 	self.visible = true
 

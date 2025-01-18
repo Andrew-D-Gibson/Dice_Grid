@@ -38,7 +38,10 @@ likelihood_weight = 1.0
 [node name="Attack Player" parent="Possible Actions Parent" instance=ExtResource("7_0eo34")]
 visible = false
 amount = 5
-likelihood_weight = 4.0
+
+[node name="Attack Player2" parent="Possible Actions Parent" instance=ExtResource("7_0eo34")]
+visible = false
+amount = 2
 
 [node name="Defend Self" parent="Possible Actions Parent" instance=ExtResource("8_oo6lm")]
 visible = false

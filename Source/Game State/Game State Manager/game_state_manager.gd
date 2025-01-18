@@ -22,6 +22,7 @@ func _load_game_state(state_num: int) -> void:
 		print('Attempting to load a non-existent game state: ' + str(state_num))
 		return
 		
+	current_state = state_num
 	
 	# Set up the player's health and defense
 	player.hp_and_def.starting_health = game_states[state_num].player_health

@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://nj74oiydl1qn"]
+[gd_scene load_steps=16 format=3 uid="uid://nj74oiydl1qn"]
 
 [ext_resource type="Script" path="res://Source/Enemies/enemy.gd" id="1_4h27c"]
 [ext_resource type="Texture2D" uid="uid://dbmhr0b6ra8j1" path="res://Assets/Enemies/Health and Shield Indicator/bar_under.png" id="2_d56t5"]
@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://b4h4remb65b41" path="res://Assets/Enemies/Health and Shield Indicator/Shield_under.png" id="3_uu5vv"]
 [ext_resource type="PackedScene" uid="uid://cu4pw31ijdghb" path="res://Source/Dice/dice.tscn" id="4_ertgc"]
 [ext_resource type="PackedScene" uid="uid://c8t3yoopiopfp" path="res://Source/Inherited Classes/Actor/HP and Def Component/hp_and_def_component.tscn" id="5_bg2ud"]
+[ext_resource type="PackedScene" uid="uid://dchteabtrevci" path="res://Source/Enemies/Enemy Actions/attack_player.tscn" id="8_4h27c"]
 [ext_resource type="PackedScene" uid="uid://dxgikxh33wmht" path="res://Source/Enemies/Enemy Actions/defend_self.tscn" id="8_lnj2s"]
 [ext_resource type="Texture2D" uid="uid://baus74b7kpdj" path="res://Assets/Enemies/Supporter/support.png" id="9_4h27c"]
 [ext_resource type="PackedScene" uid="uid://dbx068qtaix0h" path="res://Source/Particle Scenes/engine_exhaust.tscn" id="10_qyyj7"]
@@ -32,6 +33,16 @@ max_health = 28
 
 [node name="Defend Self" parent="Possible Actions Parent" instance=ExtResource("8_lnj2s")]
 visible = false
+likelihood_weight = 2.0
+
+[node name="Defend Self2" parent="Possible Actions Parent" instance=ExtResource("8_lnj2s")]
+visible = false
+amount = 5
+likelihood_weight = 2.0
+
+[node name="Attack Player" parent="Possible Actions Parent" instance=ExtResource("8_4h27c")]
+amount = 3
+likelihood_weight = 1.0
 
 [node name="Ship" type="Sprite2D" parent="."]
 position = Vector2(0, 13)

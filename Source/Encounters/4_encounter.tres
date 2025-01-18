@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="Encounter" load_steps=5 format=3 uid="uid://dxpwaxrcekx7p"]
+
+[ext_resource type="PackedScene" uid="uid://d0cvfla155le" path="res://Source/Enemies/attacker.tscn" id="1_773r6"]
+[ext_resource type="Script" path="res://Source/Encounters/encounter.gd" id="1_t8fwp"]
+[ext_resource type="PackedScene" uid="uid://c1kkr8xkoq5d6" path="res://Source/Enemies/disabler.tscn" id="2_e5cpr"]
+[ext_resource type="PackedScene" uid="uid://nj74oiydl1qn" path="res://Source/Enemies/support.tscn" id="3_ey24a"]
+
+[resource]
+script = ExtResource("1_t8fwp")
+enemies = Array[PackedScene]([ExtResource("1_773r6"), ExtResource("2_e5cpr"), ExtResource("3_ey24a"), ExtResource("1_773r6")])
+metadata/_custom_type_script = ExtResource("1_t8fwp")

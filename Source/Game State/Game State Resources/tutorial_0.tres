@@ -1,19 +1,21 @@
-[gd_resource type="Resource" script_class="GameState" load_steps=5 format=3 uid="uid://bpgrf52o0y81k"]
+[gd_resource type="Resource" script_class="GameState" load_steps=6 format=3 uid="uid://bpgrf52o0y81k"]
 
 [ext_resource type="Script" path="res://Source/Game State/Game State Resources/game_state.gd" id="1_58imm"]
 [ext_resource type="Resource" uid="uid://cgodyqsjv5ast" path="res://Source/Encounters/1_basic_encounter.tres" id="1_v8k8r"]
 [ext_resource type="PackedScene" uid="uid://b7h0g1bsdfxrm" path="res://Source/Tiles/shield.tscn" id="4_8tsmd"]
 [ext_resource type="PackedScene" uid="uid://jdl0rti53xfr" path="res://Source/Tiles/damage.tscn" id="4_347jl"]
+[ext_resource type="PackedScene" uid="uid://c2ce5p3vpvcem" path="res://Source/Tiles/shield_relay.tscn" id="5_670iu"]
 
 [resource]
 script = ExtResource("1_58imm")
 player_health = 30
 player_max_health = 30
 player_defense = 0
-num_of_dice = 5
+num_of_dice = 4
 tile_locations = Dictionary[Vector2i, PackedScene]({
 Vector2i(0, 0): ExtResource("4_347jl"),
-Vector2i(0, 1): ExtResource("4_8tsmd")
+Vector2i(0, 1): ExtResource("4_8tsmd"),
+Vector2i(0, 2): ExtResource("5_670iu")
 })
 encounter = ExtResource("1_v8k8r")
 metadata/_custom_type_script = ExtResource("1_58imm")

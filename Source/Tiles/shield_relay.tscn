@@ -15,6 +15,7 @@ size = Vector2(32, 32)
 z_index = 1
 script = ExtResource("1_yq2yv")
 activation_node = NodePath("Value Activation")
+tile_name = "Shield Relay"
 activation_text = "[color=yellow]Activates[/color] with  (die_1) (die_2) (die_3) (die_4) (die_5)"
 description = "[color=blue]Shields[/color] the player for 3.  Adds one to the value of the [color=yellow]activating[/color] die then passes it to the tile above.
 

@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://dje7t0sn0k3hq"]
+
+[ext_resource type="Script" path="res://Source/Effects/turn_1s_to_value_effect.gd" id="1_oe338"]
+
+[node name="Turn 1s to Value Effect" type="Node2D"]
+script = ExtResource("1_oe338")

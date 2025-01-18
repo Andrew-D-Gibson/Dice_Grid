@@ -14,9 +14,7 @@ func play(effect_variables: Dictionary) -> Dictionary:
 		return effect_variables
 		
 	var activator_grid_location = effect_variables['activating_node'].host_cell.grid_location
-	print(activator_grid_location)
 	var surrounding_tiles = Globals.player.grid.get_all_surrounding_tiles(activator_grid_location)
-	print(surrounding_tiles)
 	
 	effect_variables['die_used'].attack_tween(Globals.targeted_enemy, damage_amount + len(surrounding_tiles))
 

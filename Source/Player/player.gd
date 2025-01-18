@@ -48,10 +48,11 @@ func spawn_die() -> void:
 	get_tree().get_current_scene().add_child(new_dice)
 		
 	
-func add_die_to_queue(die: Dice, preserve_value: bool = false) -> void:
+func add_die_to_queue(die: Dice, preserve_value: bool = false, lockout: bool = true) -> void:
 	die.can_be_held = true
 	super(die, preserve_value)
-	die.set_lockout_time(5)
+	if lockout:
+		die.set_lockout_time(5)
 	_update_dice_queue_locations()
 
 

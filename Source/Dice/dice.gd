@@ -23,7 +23,23 @@ func _process(delta: float) -> void:
 		$TextureProgressBar.value = locked_out_time_remaining / locked_out_full_time
 	else:
 		can_be_held = true
-
+		
+	if being_held:
+		var current_dice_queue_position = Globals.player.dice_queue.find(self)
+		
+		if global_position.x > -156 and global_position.x < 156 and global_position.y < 172 and global_position.y > 148:
+				var hovered_dice_queue_position = int((global_position.x + 156) / 32.0)
+				hovered_dice_queue_position = min(hovered_dice_queue_position, len(Globals.player.dice_queue)-1)
+				
+				if current_dice_queue_position != hovered_dice_queue_position:
+					Globals.player.dice_queue.remove_at(current_dice_queue_position)
+					Globals.player.dice_queue.insert(hovered_dice_queue_position, self)
+					Globals.player._update_dice_queue_locations()
+					
+		elif current_dice_queue_position != len(Globals.player.dice_queue)-1:
+			Globals.player.dice_queue.remove_at(current_dice_queue_position)
+			Globals.player.add_die_to_queue(self, true, false)
+				
 
 func set_lockout_time(duration: float) -> void:
 	locked_out_full_time = duration

@@ -15,6 +15,7 @@ size = Vector2(32, 32)
 z_index = 1
 script = ExtResource("1_nv7bd")
 activation_node = NodePath("Value Activation")
+tile_name = "Flak Cannon"
 activation_text = "[color=yellow]Activates[/color] with a (die_5) or (die_6)"
 description = "Deals [color=red]damage[/color] equal to the number of surrounding tiles plus 1 to the [color=purple]targeted[/color] enemy then gives them the die (die_blank)"
 

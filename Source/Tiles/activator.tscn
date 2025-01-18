@@ -16,6 +16,7 @@ size = Vector2(32, 32)
 z_index = 1
 script = ExtResource("1_3yod1")
 activation_node = NodePath("Value Activation")
+tile_name = "Pip Relay"
 activation_text = "[color=yellow]Activates[/color] with  (die_2) (die_3) (die_4) (die_5) (die_6)"
 description = "Uses available dice to [color=yellow]activate[/color] surrounding tiles corresponding to the pips on the activator die.  Available dice are rerolled to the maximum value for their tile.
 

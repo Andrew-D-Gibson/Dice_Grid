@@ -33,12 +33,16 @@ max_health = 21
 [node name="Possible Actions Parent" type="Node2D" parent="."]
 
 [node name="Do Nothing" parent="Possible Actions Parent" instance=ExtResource("6_opx5y")]
-likelihood_weight = 1.0
+likelihood_weight = 2.0
 
 [node name="Defend Self" parent="Possible Actions Parent" instance=ExtResource("7_huswx")]
 visible = false
 amount = 5
 likelihood_weight = 2.0
+
+[node name="Defend Self2" parent="Possible Actions Parent" instance=ExtResource("7_huswx")]
+visible = false
+amount = 2
 
 [node name="Lockout Random Grid Cell" parent="Possible Actions Parent" instance=ExtResource("8_ow34d")]
 visible = false

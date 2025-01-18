@@ -7,6 +7,7 @@ var host_cell: Cell
 @export var activation_node: Activation
 
 @export_category('Info')
+@export var tile_name: String
 @export_multiline var activation_text: String
 @export_multiline var description: String
 
@@ -21,10 +22,26 @@ var click_window_time: float = 0.4
 @onready var highlight: Sprite2D = $Highlight
 
 
+#var locked_out: bool = false
+#var locked_out_time_remaining: float = 0
+
+
 func _ready() -> void:
 	process_mode = Node.PROCESS_MODE_ALWAYS
 	super()
 	
+	
+#func _process(delta: float) -> void:
+	#if locked_out:
+		#if locked_out_time_remaining <= 0:
+			#locked_out = false
+			#$Lockout.visible = false
+		#else:
+			#locked_out_time_remaining -= delta
+			#$"Lockout/Lockout Label".text = str(int(locked_out_time_remaining))
+		#
+	#super(delta)
+		
 
 func check_activation(die: Dice = null) -> void:
 	if activation_node.criteria_satisfied(die):
@@ -43,7 +60,12 @@ func check_activation(die: Dice = null) -> void:
 		for effect in $"Effects Parent".get_children(false):
 			if effect is Effect:
 				effect_dict = effect.play(effect_dict)
+				
 		highlight.visible = false
+		#locked_out = true
+		#locked_out_time_remaining = 3.0
+		#$Lockout.visible = true
+		
 		activation_completed.emit()
 
 
@@ -73,7 +95,7 @@ func _check_valid_drop():
 		# to show tile info
 		if (Globals.hovered_cell == host_cell 
 		and Time.get_unix_time_from_system() - Globals.mouse_down_unix_time < click_window_time):
-			Events.show_info.emit(activation_text, tile_texture, description)
+			Events.show_info.emit(activation_text, tile_texture, description, tile_name, activation_node.texture)
 		else:
 			# We're over a different tile, so if it's not locked out we can switch
 			if not Globals.hovered_cell.locked_out:

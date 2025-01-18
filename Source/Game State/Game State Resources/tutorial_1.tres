@@ -1,23 +1,27 @@
-[gd_resource type="Resource" script_class="GameState" load_steps=7 format=3 uid="uid://dbevm8luap6p3"]
+[gd_resource type="Resource" script_class="GameState" load_steps=9 format=3 uid="uid://dbevm8luap6p3"]
 
 [ext_resource type="Script" path="res://Source/Game State/Game State Resources/game_state.gd" id="1_bvtba"]
 [ext_resource type="Resource" uid="uid://dwcadnkxdggcp" path="res://Source/Encounters/2_basics_encounter.tres" id="1_q4o66"]
 [ext_resource type="PackedScene" uid="uid://jdl0rti53xfr" path="res://Source/Tiles/damage.tscn" id="3_6cq2r"]
 [ext_resource type="PackedScene" uid="uid://b7h0g1bsdfxrm" path="res://Source/Tiles/shield.tscn" id="4_gl1pb"]
+[ext_resource type="PackedScene" uid="uid://c3sempnkdelrj" path="res://Source/Tiles/flak_cannon.tscn" id="7_supxf"]
 [ext_resource type="PackedScene" uid="uid://bmfev84raru45" path="res://Source/Tiles/activator.tscn" id="7_xlsnp"]
 [ext_resource type="PackedScene" uid="uid://c0uglhkot8fu2" path="res://Source/Tiles/heal.tscn" id="8_gn3rq"]
+[ext_resource type="PackedScene" uid="uid://c2ce5p3vpvcem" path="res://Source/Tiles/shield_relay.tscn" id="8_q4o66"]
 
 [resource]
 script = ExtResource("1_bvtba")
 player_health = 40
 player_max_health = 40
 player_defense = 0
-num_of_dice = 8
+num_of_dice = 6
 tile_locations = Dictionary[Vector2i, PackedScene]({
 Vector2i(0, 0): ExtResource("3_6cq2r"),
 Vector2i(0, 1): ExtResource("4_gl1pb"),
+Vector2i(0, 2): ExtResource("7_supxf"),
 Vector2i(1, 0): ExtResource("8_gn3rq"),
-Vector2i(1, 1): ExtResource("7_xlsnp")
+Vector2i(1, 1): ExtResource("7_xlsnp"),
+Vector2i(2, 1): ExtResource("8_q4o66")
 })
 encounter = ExtResource("1_q4o66")
 metadata/_custom_type_script = ExtResource("1_bvtba")

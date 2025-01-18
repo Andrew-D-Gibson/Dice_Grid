@@ -16,6 +16,7 @@ size = Vector2(32, 32)
 z_index = 1
 script = ExtResource("1_t7jds")
 activation_node = NodePath("Value Activation")
+tile_name = "Repair Drone"
 activation_text = "[color=yellow]Activates[/color] with a (die_4)"
 description = "Heals the player for 4 [color=red]hull[/color] then gives the (die_4) to the [color=purple]targeted[/color] enemy."
 

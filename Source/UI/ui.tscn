@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://cygbrgfx6v2tu"]
+[gd_scene load_steps=10 format=3 uid="uid://cygbrgfx6v2tu"]
 
 [ext_resource type="Script" path="res://Source/UI/dev_console.gd" id="1_4eq4m"]
 [ext_resource type="Theme" uid="uid://b6tit6cxjtdpd" path="res://Assets/UI/default_theme.tres" id="2_hokdr"]
@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://3nfb6quhg5m1" path="res://Assets/Tiles/heal.png" id="2_yups5"]
 [ext_resource type="Script" path="res://Source/UI/game_over_screen.gd" id="3_hokdr"]
 [ext_resource type="Script" path="res://Source/UI/paused_display.gd" id="5_mfmks"]
+[ext_resource type="Texture2D" uid="uid://bg5dj8a14xqte" path="res://Assets/Tiles/Activator Indicators/2.png" id="5_qrgb0"]
 [ext_resource type="Script" path="res://Source/UI/screen_fade.gd" id="7_3la8e"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4eq4m"]
@@ -89,6 +90,16 @@ theme_override_constants/margin_bottom = 115
 layout_mode = 2
 mouse_filter = 2
 
+[node name="Title Label" type="RichTextLabel" parent="Info Shower/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+mouse_filter = 2
+theme_override_font_sizes/normal_font_size = 64
+bbcode_enabled = true
+text = "Title!"
+fit_content = true
+horizontal_alignment = 1
+
 [node name="Top Label" type="RichTextLabel" parent="Info Shower/MarginContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
@@ -105,11 +116,18 @@ mouse_filter = 2
 theme_override_constants/margin_top = 16
 theme_override_constants/margin_bottom = 16
 
-[node name="Texture Display" type="TextureRect" parent="Info Shower/MarginContainer/VBoxContainer/MarginContainer"]
+[node name="Main Display" type="TextureRect" parent="Info Shower/MarginContainer/VBoxContainer/MarginContainer"]
 custom_minimum_size = Vector2(96, 96)
 layout_mode = 2
 mouse_filter = 2
 texture = ExtResource("2_yups5")
+stretch_mode = 5
+
+[node name="Secondary Display" type="TextureRect" parent="Info Shower/MarginContainer/VBoxContainer/MarginContainer"]
+custom_minimum_size = Vector2(96, 96)
+layout_mode = 2
+mouse_filter = 2
+texture = ExtResource("5_qrgb0")
 stretch_mode = 5
 
 [node name="Bottom Label" type="RichTextLabel" parent="Info Shower/MarginContainer/VBoxContainer"]

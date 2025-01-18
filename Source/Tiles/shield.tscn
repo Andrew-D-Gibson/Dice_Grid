@@ -16,6 +16,7 @@ size = Vector2(32, 32)
 z_index = 1
 script = ExtResource("1_oc6r8")
 activation_node = NodePath("Value Activation")
+tile_name = "Shield Generator"
 activation_text = "[color=yellow]Activates[/color] with a (die_3)"
 description = "Adds 8 [color=blue]shields[/color] then gives the (die_3) to the [color=purple]targeted[/color] enemy."
 
